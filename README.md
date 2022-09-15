@@ -1,5 +1,10 @@
-Author:
-Jax Tan
+# [Coinchat](https://coinchat.netlify.app/)
+
+## Authors:
+- Jax Tan
+- Riccardo Prosdocimi
+- Nano Liklikadze
+- Gino Romanello
 
 # Getting Started with Create React App
 
