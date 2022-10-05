@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="content-detail-page.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/d4bf5eb249.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
         google.charts.load('current', {'packages': ['corechart']});
@@ -32,278 +32,170 @@
         }
     </script>
 
-    <style>
-        * {box-sizing: border-box;}
 
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        .navibar {
-            overflow: hidden;
-            background-color: #e9e9e9;
-        }
-
-        .navibar a {
-            float: left;
-            display: block;
-            color: black;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-
-        .navibar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .navibar a.active {
-            background-color: #2196F3;
-            color: white;
-        }
-
-    </style>
-
-    <style>
-        body{margin-top:20px;}
-
-        .content-item {
-            padding:30px 0;
-            background-color:#FFFFFF;
-        }
-
-        .content-item.grey {
-            background-color:#F0F0F0;
-            padding:50px 0;
-            height:100%;
-        }
-
-        .content-item h2 {
-            font-weight:700;
-            font-size:35px;
-            line-height:45px;
-            text-transform:uppercase;
-            margin:20px 0;
-        }
-
-        .content-item h3 {
-            font-weight:400;
-            font-size:20px;
-            color:#555555;
-            margin:10px 0 15px;
-            padding:0;
-        }
-
-        .content-headline {
-            height:1px;
-            text-align:center;
-            margin:20px 0 70px;
-        }
-
-        .content-headline h2 {
-            background-color:#FFFFFF;
-            display:inline-block;
-            margin:-20px auto 0;
-            padding:0 20px;
-        }
-
-        .grey .content-headline h2 {
-            background-color:#F0F0F0;
-        }
-
-        .content-headline h3 {
-            font-size:14px;
-            color:#AAAAAA;
-            display:block;
-        }
-
-
-        #comments {
-            box-shadow: 0 -1px 6px 1px rgba(0,0,0,0.1);
-            background-color:#FFFFFF;
-        }
-
-        #comments form {
-            margin-bottom:30px;
-        }
-
-        #comments .btn {
-            margin-top:7px;
-        }
-
-        #comments form fieldset {
-            clear:both;
-        }
-
-        #comments form textarea {
-            height:100px;
-        }
-
-        #comments .media {
-            border-top:1px dashed #DDDDDD;
-            padding:20px 0;
-            margin:0;
-        }
-
-        #comments .media > .pull-left {
-            margin-right:20px;
-        }
-
-        #comments .media img {
-            max-width:100px;
-        }
-
-        #comments .media h4 {
-            margin:0 0 10px;
-        }
-
-        #comments .media h4 span {
-            font-size:14px;
-            float:right;
-            color:#999999;
-        }
-
-        #comments .media p {
-            margin-bottom:15px;
-            text-align:justify;
-        }
-
-        #comments .media-detail {
-            margin:0;
-        }
-
-        #comments .media-detail li {
-            color:#AAAAAA;
-            font-size:12px;
-            padding-right: 10px;
-            font-weight:600;
-        }
-
-        #comments .media-detail a:hover {
-            text-decoration:underline;
-        }
-
-        #comments .media-detail li:last-child {
-            padding-right:0;
-        }
-
-        #comments .media-detail li i {
-            color:#666666;
-            font-size:15px;
-            margin-right:10px;
-        }
-    </style>
 </head>
 <body>
-<div class="navibar">
-    <a class="active" href="../home/index.html">Home</a>
-    <a href="../search/search-page.html">Search</a>
-    <a href="#home">Placeholder2</a>
+
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../home/index.html">CoinChat</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../home/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../search/search-page.html">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Placeholder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Placeholder</a>
+                </li>
+            </ul>
+            <div class="d-flex">
+                <button class="btn wd-btn-lowlight" type="button">Sign in</button>
+                <span class="me-1"></span>
+                <button class="btn btn-outline-success wd-btn-highlight active" type="button">Log on</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="row justify-content-center py-3 px-5 border border-bottom-1">
+    <div class="col-4">
+        <h3>BitCoin BTC</h3>
+    </div>
+    <div class="col-2">
+        <button type="submit" class="btn wd-btn-highlight active" >Add Watchlist</button>
+    </div>
 </div>
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
-<div class="" style="padding-left: 30px">
-    <button type="submit" class="" ><i class="bi bi-arrow-up-square">Watchlist</i> </button>
+
+<div class="d-flex justify-content-center">
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
 </div>
 
 <br>
 <br>
 
-<section class="content-item" id="comments">
+<section id="comments" class="border border-2">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-8">
-                <form>
-                    <h3 class="pull-left">New Comment</h3>
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <form class="pt-3">
                     <fieldset>
                         <div class="row">
-                            <div class="col-sm-3 col-lg-2 hidden-xs">
-                                <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" height="120px">
+                            <div class="col-sm-3 col-lg-2 ">
+                                <img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" height="120px">
+                                <div class="d-flex justify-content-center">
+                                    <h4 class="">Coin Dude</h4>
+                                </div>
                             </div>
-                            <div class="form-group col-xs-12 col-sm-9 col-lg-10">
-                                <textarea cols="100" rows="5" class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                            <div class="col-xs-12 col-sm-9 col-lg-10">
+                                <textarea cols="100" rows="5" class="form-control me-2 border" id="message" placeholder="Your Comment" required=""></textarea>
                                 <br>
-                                <i class="bi bi-arrow-up-square"></i>
-                                <button type="submit"><i class="bi bi-arrow-up-square">Submit</i> </button>
+                                <div class="row justify-content-end">
+                                    <div class="col-2 d-flex flex-column-reverse">
+                                        <button type="submit" class="btn wd-btn-highlight active" >Submit</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </fieldset>
                 </form>
 
+                <hr>
+
                 <h3>4 Comments</h3>
 
                 <!-- COMMENT 1 - START -->
-                <div class="media">
-                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""></a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
+                <div class="row">
+                    <div class="col-2">
+                        <a  href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" height="120px"></a>
+                        <div class="d-flex justify-content-center">
+                            <h4 class="">John Doe</h4>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="list-unstyled list-inline media-detail pull-left">
-                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            <li><i class="fa fa-thumbs-up"></i>13</li>
-                        </ul>
-                        <ul class="list-unstyled list-inline media-detail pull-right">
-                            <li class=""><a href="">Like</a></li>
-                            <li class=""><a href="">Reply</a></li>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <!-- COMMENT 1 - END -->
 
                 <!-- COMMENT 2 - START -->
-                <div class="media">
-                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
+                <div class="row">
+                    <div class="col-2">
+                        <a  href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" height="120px"></a>
+                        <div class="d-flex justify-content-center">
+                            <h4 class="">John Doe</h4>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="list-unstyled list-inline media-detail pull-left">
-                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            <li><i class="fa fa-thumbs-up"></i>13</li>
-                        </ul>
-                        <ul class="list-unstyled list-inline media-detail pull-right">
-                            <li class=""><a href="">Like</a></li>
-                            <li class=""><a href="">Reply</a></li>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <!-- COMMENT 2 - END -->
 
                 <!-- COMMENT 3 - START -->
-                <div class="media">
-                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
+                <div class="row">
+                    <div class="col-2">
+                        <a  href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" height="120px"></a>
+                        <div class="d-flex justify-content-center">
+                            <h4 class="">John Doe</h4>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="list-unstyled list-inline media-detail pull-left">
-                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            <li><i class="fa fa-thumbs-up"></i>13</li>
-                        </ul>
-                        <ul class="list-unstyled list-inline media-detail pull-right">
-                            <li class=""><a href="">Like</a></li>
-                            <li class=""><a href="">Reply</a></li>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <!-- COMMENT 3 - END -->
 
                 <!-- COMMENT 4 - START -->
-                <div class="media">
-                    <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></a>
-                    <div class="media-body">
-                        <h4 class="media-heading">John Doe</h4>
+                <div class="row">
+                    <div class="col-2">
+                        <a  href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="" height="120px"></a>
+                        <div class="d-flex justify-content-center">
+                            <h4 class="">John Doe</h4>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <ul class="list-unstyled list-inline media-detail pull-left">
-                            <li><i class="fa fa-calendar"></i>27/02/2014</li>
-                            <li><i class="fa fa-thumbs-up"></i>13</li>
-                        </ul>
-                        <ul class="list-unstyled list-inline media-detail pull-right">
-                            <li class=""><a href="">Like</a></li>
-                            <li class=""><a href="">Reply</a></li>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
                         </ul>
                     </div>
                 </div>
+                <hr>
                 <!-- COMMENT 4 - END -->
 
             </div>
