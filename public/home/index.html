@@ -3,68 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <title>CoinChat/Home</title>
+    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="margin: 60px">
 
-    <h1> CoinChat</h1>
-    <a href="../profile.html"> sign in </a>
-    <a href="register.html"> <button> Sign Up </button></a>
-    <br>
-    <br>
-    <br>
-    <input class="wd-search" placeholder= "  &#128269 Search Crypto"/>
-    <a href="search.html"> &#9881; </a>
-    <br>
-    <br>
-    <br>
+<div class="container">
 
-    <div>
+    <div class="row">
+        <div class="col-2">
+            <p class="h1 text-warning"> CoinChat</p>
+        </div>
 
-    <table border="1" style="float: left">
+<!--        middle firts row -->
+        <div class="col-8">
+        <ul class="nav nav-tabs pt-1 mb-1">
 
-            <tr>
-                <th> Name </th>
-                <th> Price </th>
-                <th> reviews  </th>
-            </tr>
-
-
-            <tr>
-                <td><img src="../bitcoin.jpeg" width="48px" , height="48px" > BitCoin </td>
-                <td> $19,541.67 </td>
-                <td>  &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.3 </td>
-            </tr>
-
-            <tr>
-                <td> <img src="../ethereum.jpeg" width="48px" , height="48px">Ethereum </td>
-                <td> $1,342.62 </td>
-                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.2</td>
-            </tr>
-
-            <tr>
-                <td> <img src="../Cardano-1.jpeg" width="48px" , height="48px">cardano </td>
-                <td> $0.44 </td>
-                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.4 </td>
-            </tr>
-
-    </table>
-    </div>
-    <div style="float: right">
-        <h2> Biggest Gainers <span style="color: gray"> 24 h </span> </h2>
-
-        <ul style="list-style-type: none">
-
-
-            <li> Ethernity Chain       $3.25 </li>
-            <span> ERN</span> <br><br>
-            <li> Highstreet            $1.63 </li>
-            <span> HIGH </span> <br><br>
-            <li> XMON                   $1.63 </li>
-            <span> XMON </span>
-
+            <li class="nav-item">
+                <a class="nav-link active" href="#"> Explore </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Learn </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"> Individuals </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" tabindex="-1"> Developers </a>
+            </li>
         </ul>
+        </div>
 
+
+        <!--      section for sign up sign in -->
+        <div class="col-2">
+            <button type="button" class="btn btn-warning"> sign up </button>
+            <button type="button" class="btn btn-light">
+                <a href="../login/login.html"> sign in </a> </button>
+
+
+        </div>
     </div>
+
+    <div class="row pt-2" >
+
+        <div class="col-10">
+            <div class="row">
+                <div class="col"> currency pic </div>
+                <div class="col"> price </div>
+                <div class="col"> review </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col"> currency pic </div>
+                <div class="col"> price </div>
+                <div class="col"> review </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col"> currency pic </div>
+                <div class="col"> price </div>
+                <div class="col"> review </div>
+            </div>
+
+
+        </div>
+        <div class="col-2">
+            <div class="row pb-1 "> Biggest gaines </div>
+            <ul class="list-group">
+                <li class="list-group-item">Forta</li>
+                <li class="list-group-item">TE-FOOD</li>
+                <li class="list-group-item">Media Network</li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+<!--    <h1> CoinChat</h1>-->
+<!--    <a href="../profile.html"> sign in </a>-->
+<!--    <a href="register.html"> <button> Sign Up </button></a>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <input class="wd-search" placeholder= "  &#128269 Search Crypto"/>-->
+<!--    <a href="search.html"> &#9881; </a>-->
+<!--    <br>-->
+<!--    <br>-->
+<!--    <br>-->
+
+<!--    <div>-->
+
+<!--    <table border="1" style="float: left">-->
+
+<!--            <tr>-->
+<!--                <th> Name </th>-->
+<!--                <th> Price </th>-->
+<!--                <th> reviews  </th>-->
+<!--            </tr>-->
+
+
+<!--            <tr>-->
+<!--                <td><img src="../bitcoin.jpeg" width="48px" , height="48px" > BitCoin </td>-->
+<!--                <td> $19,541.67 </td>-->
+<!--                <td>  &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.3 </td>-->
+<!--            </tr>-->
+
+<!--            <tr>-->
+<!--                <td> <img src="../ethereum.jpeg" width="48px" , height="48px">Ethereum </td>-->
+<!--                <td> $1,342.62 </td>-->
+<!--                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.2</td>-->
+<!--            </tr>-->
+
+<!--            <tr>-->
+<!--                <td> <img src="../Cardano-1.jpeg" width="48px" , height="48px">cardano </td>-->
+<!--                <td> $0.44 </td>-->
+<!--                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.4 </td>-->
+<!--            </tr>-->
+
+<!--    </table>-->
+<!--    </div>-->
+<!--    <div style="float: right">-->
+<!--        <h2> Biggest Gainers <span style="color: gray"> 24 h </span> </h2>-->
+
+<!--        <ul style="list-style-type: none">-->
+
+
+<!--            <li> Ethernity Chain       $3.25 </li>-->
+<!--            <span> ERN</span> <br><br>-->
+<!--            <li> Highstreet            $1.63 </li>-->
+<!--            <span> HIGH </span> <br><br>-->
+<!--            <li> XMON                   $1.63 </li>-->
+<!--            <span> XMON </span>-->
+
+<!--        </ul>-->
+
+<!--    </div>-->
+
+</div>
 
 
 
