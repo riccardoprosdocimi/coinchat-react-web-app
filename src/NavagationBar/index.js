@@ -1,11 +1,10 @@
-import {useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import './index.css';
 
 function NavigationBar() {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
-
     return (
         <nav className="navbar navbar-expand-lg wd-bg-navbar">
             <div className="container-fluid">
@@ -23,20 +22,23 @@ function NavigationBar() {
                 <div className="collapse navbar-collapse"
                      id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li className={`nav-item ${active === 'home' ? 'active' : ''}`}>
-                            <a className="nav-link"
-                               style={active === 'home' ? null : {"color" : "#ffc300"}}
-                               aria-current="page" href="#">
+                        <Link to={'/'} className={`nav-item text-decoration-none 
+                        ${active === 'home' || active === '' ? 'active' : ''}`}>
+                            <span className={`nav-link`}
+                                  style={active === 'home' || active === '' ?
+                                         null : {"color" : "#ffc300"}}>
                                 Home
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className={`nav-link ${active === 'profile' ? 'active' : ''}`}
-                               style={active === 'profile' ? null : {"color" : "#ffc300"}}
-                               href="#">
+                            </span>
+                        </Link>
+                        
+                        <Link to={'/profile'} className={`nav-item text-decoration-none 
+                        ${active === 'profile' ? 'active' : ''}`}>
+                            <span className={`nav-link`}
+                               style={active === 'profile' ? null : {"color" : "#ffc300"}}>
                                 Profile
-                            </a>
-                        </li>
+                            </span>
+                        </Link>
+
                         <li className="nav-item">
                             <a className={`nav-link ${active === 'search' ? 'active' : ''}`}
                                style={active === 'search' ? null : {"color" : "#ffc300"}}
