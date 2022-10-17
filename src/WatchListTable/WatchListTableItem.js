@@ -3,6 +3,7 @@ const WatchListTableItem =(
         item = {
             "symbol" : "BTC",
             "coinDetails" : "#",
+            "icon" : "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
             "percentChange" : 1.03,
             "currentPrice" : 403428.21,
         }
@@ -19,8 +20,9 @@ const WatchListTableItem =(
     })
     return(
         <tr>
-            <th scope="row" className={'text-center'}>
-                <a className="nav-link rounded-3 me-2" href={item.coinDetails}>
+            <th scope="row" className={''}>
+                <a className="nav-link rounded-3" href={item.coinDetails}>
+                    <img className={'float-start pe-1 pt-1'} height={24} src={item.icon} alt=""/>
                     {item.symbol}
                 </a>
             </th>

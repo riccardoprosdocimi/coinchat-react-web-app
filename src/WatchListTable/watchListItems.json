@@ -1,42 +1,49 @@
 [
   {
     "symbol": "BTC",
+    "icon" : "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
     "coinDetails" : "#",
     "percentChange" : 1.03,
     "currentPrice" : 43428.21
   },
   {
     "symbol": "XMR",
+    "icon" : "https://assets.coingecko.com/coins/images/69/thumb/monero_logo.png?1547033729",
     "coinDetails" : "#",
     "percentChange" : 6.35,
     "currentPrice" : 150.24
   },
   {
     "symbol": "ETH",
+    "icon" : "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880",
     "coinDetails" : "#",
     "percentChange" : -2.62,
     "currentPrice" : 1264.24
   },
   {
     "symbol": "ALGO",
+    "icon" : "https://assets.coingecko.com/coins/images/4380/thumb/download.png?1547039725",
     "coinDetails" : "#",
     "percentChange" : -2.23,
     "currentPrice" : 14.23
   },
   {
     "symbol": "ZEC",
+    "icon" : "https://assets.coingecko.com/coins/images/486/thumb/circle-zcash-color.png?1547034197",
     "coinDetails" : "#",
     "percentChange" : 1.24,
     "currentPrice" : 0.21
   },
   {
     "symbol": "POLY",
+    "icon" : "https://assets.coingecko.com/coins/images/4713/thumb/matic-token-icon.png?1624446912",
     "coinDetails" : "#",
     "percentChange" : -0.24,
     "currentPrice" : 683.28
   },
   {
     "symbol": "USDC",
+    "icon" : "https://assets.coingecko.com/coins/images/6319/thumb/USD_Coin_icon.png?1547042389",
     "coinDetails" : "#",
     "percentChange" : 0.00,
     "currentPrice" : 1.00
