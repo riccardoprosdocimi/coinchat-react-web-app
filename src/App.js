@@ -5,10 +5,11 @@ import ProfileScreen from "./Profile";
 import NavigationBar from "./NavagationBar";
 
 function App() {
+    document.body.style.background = '#f2f2f2'
   return (
     <BrowserRouter>
         <NavigationBar active={'home'}/>
-        <div className={'container-fluid'} style={{'background-color' : '#f2f2f2'}}>
+        <div className={'container-fluid'}>
             <Routes>
                 <Route index
                        element={<HomeScreen/>}/>
