@@ -1,0 +1,44 @@
+[
+  {
+    "symbol": "BTC",
+    "coinDetails" : "#",
+    "percentChange" : 1.03,
+    "currentPrice" : 43428.21
+  },
+  {
+    "symbol": "XMR",
+    "coinDetails" : "#",
+    "percentChange" : 6.35,
+    "currentPrice" : 150.24
+  },
+  {
+    "symbol": "ETH",
+    "coinDetails" : "#",
+    "percentChange" : -2.62,
+    "currentPrice" : 1264.24
+  },
+  {
+    "symbol": "ALGO",
+    "coinDetails" : "#",
+    "percentChange" : -2.23,
+    "currentPrice" : 14.23
+  },
+  {
+    "symbol": "ZEC",
+    "coinDetails" : "#",
+    "percentChange" : 1.24,
+    "currentPrice" : 0.21
+  },
+  {
+    "symbol": "POLY",
+    "coinDetails" : "#",
+    "percentChange" : -0.24,
+    "currentPrice" : 683.28
+  },
+  {
+    "symbol": "USDC",
+    "coinDetails" : "#",
+    "percentChange" : 0.00,
+    "currentPrice" : 1.00
+  }
+]

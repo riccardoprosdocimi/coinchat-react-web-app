@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+
+.wd-bg-navbar {
+    background-color: #033153;
+    font-family: Audiowide, sans-serif;
+}
+
+.active {
+    background-color: #ffc300;
+    color: #00000A;
+    border-radius: 10px;
+}
+
+.wd-text-mikado-yellow {
+    color: #ffc300;
+}
+
+
