@@ -9,7 +9,7 @@ const SearchBar = () => {
             <div className="container pt-3 col-4">
                 <div className="input-group">
                     <input type="search" className="form-control rounded" placeholder="Search"/>
-                    <button type="button" className="btn wd-btn-lowlight ms-1 rounded">search</button>
+                    <button type="button" className="btn wd-btn-lowlight ms-1 rounded">Search</button>
                 </div>
             </div>
         </div>
