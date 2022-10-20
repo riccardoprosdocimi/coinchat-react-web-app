@@ -3,151 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <title>CoinChat/Home</title>
-    <link href="../vendors/css/bootstrap.min.css" rel="stylesheet">
+    <link href="index.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    <script src="https://kit.fontawesome.com/d4bf5eb249.js" crossorigin="anonymous"></script>
 </head>
-<body style="margin: 60px">
 
-<body style="margin: 60px">
+<body class="bg-light">
 
-<div class="container">
+<!--below is the navigation bar-->
+        <nav class="navbar navbar-expand-lg bg-light border border-top-0">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="../home/index.html">CoinChat</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggler">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../search/search-page.html" ><span class="wd-navbar-text"> Search </span>S</a>
+                        </li>
+                        <li class="nav-item text-black">
+                            <a class="nav-link "> <span class="wd-navbar-text">Placeholder </span> </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled"> <span class="wd-navbar-text">Placeholder </span></a>
+                        </li>
+                    </ul>
+                    <div class="d-flex">
+                        <button class="btn wd-btn-lowlight wd-navbar-text" type="button">Log in</button>
+                        <span class="me-1"></span>
+                        <button type="button" class="btn btn-warning wd-navbar-text"> Sing in </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
 
-    <div class="row">
-        <div class="col-2">
-            <p class="h1 text-warning"> CoinChat</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <ul class="list-group pt-4">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/bitcoin.jpeg" class="rounded" width="100px" height="100px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-7 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Bitcoin <i class="fab fa-bitcoin"></i> </div>
+                                <div class="text-secondary">  somethings can go here </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4">
+                                <button class="btn btn-warning wd-navbar-text float-end"  > Follow </button>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/ethereum.jpeg" class="rounded" width="100px" height="100px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-7 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Ethereum  <i class="fab fa-ethereum"></i> </div>
+                                <div class="text-secondary">  somethings can go here </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4">
+                                <button class="btn btn-warning wd-navbar-text float-end"  > Follow </button>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/cardano.jpeg" class="rounded" width="100px" height="100px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-7 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Cardano </div>
+                                <div class="text-secondary"> somethings can go here</div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-3 col-xl-4 col-lg-4">
+                                <button class="btn btn-warning wd-navbar-text float-end"  > Follow </button>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="col-4">
+                <ul class="list-group pt-4">
+                    <li class="list-group-item">
+                        <h5>Biggest Gainers <span class="text-secondary"> -2hours</span></h5>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/cardano.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Hedera </div>
+                                <div class="text-secondary"> HBAR </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 10 </span>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/cardano.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Hedera </div>
+                                <div class="text-secondary"> HBAR </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 10 </span>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/cardano.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Illuvium </div>
+                                <div class="text-secondary"> ILV </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 9 </span>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+<!--                new on coinchat-->
+
+                <ul class="list-group pt-4">
+                    <li class="list-group-item">
+                        <h5> New On Coinchat  <span class="text-secondary"> -2hours</span></h5>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/bitcoin.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Hedera </div>
+                                <div class="text-secondary"> HBAR </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 10 </span>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/bitcoin.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Hedera </div>
+                                <div class="text-secondary"> HBAR </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 10 </span>
+                            </div>
+                        </div>
+
+                    </li>
+
+                    <li class="list-group-item">
+                        <div class="row">
+                            <!--                            left side images-->
+                            <div class="col-xxl-2 col-xl-3 col-lg-3 ">
+                                <img src="../images/bitcoin.jpeg" class="rounded-circle" width="48px" height="48px"" width="48px" height="48px">
+                            </div>
+                            <!--                            middle texts-->
+                            <div class="col-xxl-6 col-xl-5 col-lg-5">
+                                <div class="fw-bolder"> Illuvium </div>
+                                <div class="text-secondary"> ILV </div>
+                                <!--                                buttons-->
+                            </div>
+                            <div class="col-xxl-4 col-xl-4 col-lg-4">
+                                <span class="text-secondary"> Added 0ct 9 </span>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+
+
+            </div>
+
+
         </div>
 
-        <!--        middle firts row -->
-        <div class="col-8">
-            <ul class="nav nav-tabs pt-1 mb-1">
-
-                <li class="nav-item">
-                    <a class="nav-link active" href="#"> Explore </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Learn </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> Individuals </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" tabindex="-1"> Developers </a>
-                </li>
-            </ul>
-        </div>
-
-
-        <!--      section for sign up sign in -->
-        <div class="col-2">
-            <button type="button" class="btn btn-warning"> sign up </button>
-            <button type="button" class="btn btn-light">
-                <a href="../login/login.html"> sign in </a> </button>
-
-
-        </div>
     </div>
 
-    <div class="row pt-2" >
-
-        <div class="col-10">
-            <div class="row">
-                <div class="col"> currency pic </div>
-                <div class="col"> price </div>
-                <div class="col"> review </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col"> currency pic </div>
-                <div class="col"> price </div>
-                <div class="col"> review </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col"> currency pic </div>
-                <div class="col"> price </div>
-                <div class="col"> review </div>
-            </div>
-
-
-        </div>
-        <div class="col-2">
-            <div class="row pb-1 "> Biggest gaines </div>
-            <ul class="list-group">
-                <li class="list-group-item">Forta</li>
-                <li class="list-group-item">TE-FOOD</li>
-                <li class="list-group-item">Media Network</li>
-            </ul>
-
-        </div>
-    </div>
-
-
-
-
-
-
-<!--    <h1> CoinChat</h1>-->
-<!--    <a href="../profile.html"> sign in </a>-->
-<!--    <a href="register.html"> <button> Sign Up </button></a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <input class="wd-search" placeholder= "  &#128269 Search Crypto"/>-->
-<!--    <a href="search.html"> &#9881; </a>-->
-<!--    <br>-->
-<!--    <br>-->
-<!--    <br>-->
-
-<!--    <div>-->
-
-<!--    <table border="1" style="float: left">-->
-
-<!--            <tr>-->
-<!--                <th> Name </th>-->
-<!--                <th> Price </th>-->
-<!--                <th> reviews  </th>-->
-<!--            </tr>-->
-
-
-<!--            <tr>-->
-<!--                <td><img src="../bitcoin.jpeg" width="48px" , height="48px" > BitCoin </td>-->
-<!--                <td> $19,541.67 </td>-->
-<!--                <td>  &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.3 </td>-->
-<!--            </tr>-->
-
-<!--            <tr>-->
-<!--                <td> <img src="../ethereum.jpeg" width="48px" , height="48px">Ethereum </td>-->
-<!--                <td> $1,342.62 </td>-->
-<!--                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.2</td>-->
-<!--            </tr>-->
-
-<!--            <tr>-->
-<!--                <td> <img src="../Cardano-1.jpeg" width="48px" , height="48px">cardano </td>-->
-<!--                <td> $0.44 </td>-->
-<!--                <td> &#9733;  &#9733;  &#9733;  &#9733; &#9734; 4.4 </td>-->
-<!--            </tr>-->
-
-<!--    </table>-->
-<!--    </div>-->
-<!--    <div style="float: right">-->
-<!--        <h2> Biggest Gainers <span style="color: gray"> 24 h </span> </h2>-->
-
-<!--        <ul style="list-style-type: none">-->
-
-
-<!--            <li> Ethernity Chain       $3.25 </li>-->
-<!--            <span> ERN</span> <br><br>-->
-<!--            <li> Highstreet            $1.63 </li>-->
-<!--            <span> HIGH </span> <br><br>-->
-<!--            <li> XMON                   $1.63 </li>-->
-<!--            <span> XMON </span>-->
-
-<!--        </ul>-->
-
-<!--    </div>-->
-
-</div>
 
 
 

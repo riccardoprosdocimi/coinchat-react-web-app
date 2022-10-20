@@ -1,0 +1,27 @@
+.navbar {
+    font-family: "Audiowide", sans-serif;
+}
+
+.navbar .navbar-brand {
+    color: #ffc300;
+    font-weight: bold;
+}
+
+.navbar .navbar-brand {
+    color: #ffc300;
+    font-weight: bold;
+}
+
+.wd-theme-yellow {
+    color: #ffc300;
+}
+
+.navbar .nav-item a:hover {
+    background-color: #ffd60a;
+    color: #000814;
+    border-radius: 0.375rem;
+}
+.wd-navbar-text {
+    color: #003153
+}
+
