@@ -1,7 +1,7 @@
 [
   {
     "searchID": 0,
-    "coinIcon": "bitcoin.png",
+    "coinIcon": "bitcoinIcon.png",
     "coinCode": "BTC",
     "coinName": "Bitcoin",
     "coinInfo": "Some basic crypto information",

@@ -39,13 +39,14 @@ function NavigationBar() {
                             </span>
                         </Link>
 
-                        <li className="nav-item">
-                            <a className={`nav-link ${active === 'search' ? 'active' : ''}`}
-                               style={active === 'search' ? null : {"color" : "#ffc300"}}
-                               href="/#">
+                        <Link to={'/search'} className={`nav-item text-decoration-none 
+                        ${active === 'search' ? 'active' : ''}`}>
+                            <span className={`nav-link`}
+                                  style={active === 'search' ? null : {"color" : "#ffc300"}}>
                                 Search
-                            </a>
-                        </li>
+                            </span>
+                        </Link>
+
                     </ul>
                     <form className="d-flex">
                         <button className={'bg-transparent border-0'}>
