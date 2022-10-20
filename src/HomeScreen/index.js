@@ -11,16 +11,16 @@ function HomeScreen() {
                     <ul className="nav nav-tabs pt-1 mb-1">
 
                         <li className="nav-item">
-                            <a className="nav-link active" href="#"> Explore </a>
+                            <a className="nav-link active" href="/#"> Explore </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#"> Learn </a>
+                            <a className="nav-link" href="/#"> Learn </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#"> Individuals </a>
+                            <a className="nav-link" href="/#"> Individuals </a>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#" tabIndex="-1"> Developers </a>
+                            <a className="nav-link" href="/#" tabIndex="-1"> Developers </a>
                         </li>
                     </ul>
                 </div>

@@ -4,13 +4,13 @@ function ProfileContent () {
             <nav>
                 <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <a className="nav-item nav-link active" id="nav-home-tab" data-toggle="tab"
-                       href="#nav-home" role="tab" aria-controls="nav-home"
+                       href="/#nav-home" role="tab" aria-controls="nav-home"
                        aria-selected="true">Comments</a>
                     <a className="nav-item nav-link" id="nav-profile-tab" data-toggle="tab"
-                       href="#nav-profile" role="tab" aria-controls="nav-profile"
+                       href="/#nav-profile" role="tab" aria-controls="nav-profile"
                        aria-selected="false">Likes</a>
                     <a className="nav-item nav-link" id="nav-contact-tab" data-toggle="tab"
-                       href="#nav-contact" role="tab" aria-controls="nav-contact"
+                       href="/#nav-contact" role="tab" aria-controls="nav-contact"
                        aria-selected="false">Profile Info</a>
                 </div>
             </nav>
@@ -18,7 +18,7 @@ function ProfileContent () {
                 <div className="tab-pane fade show active" id="nav-home" role="tabpanel"
                      aria-labelledby="nav-home-tab">
                     <div className="list-group">
-                        <a className="list-group-item position-relative" href="#">
+                        <a className="list-group-item position-relative" href="/#">
                             <h3>
                                 <img className={'pe-1 pb-1'}
                                      src="https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579" alt=""/>
@@ -36,7 +36,7 @@ function ProfileContent () {
                             <i className="bi bi-hand-thumbs-up-fill text-success"></i> 1,234
                             <i className="bi bi-hand-thumbs-down-fill text-danger ps-3"></i> 131
                         </a>
-                        <a className="list-group-item position-relative" href="#">
+                        <a className="list-group-item position-relative" href="/#">
                             <h3>
                                 <img className={'pe-1 pb-1'}
                                     src="https://assets.coingecko.com/coins/images/69/thumb/monero_logo.png?1547033729" alt=""/>
@@ -59,7 +59,7 @@ function ProfileContent () {
                             <i className="bi bi-hand-thumbs-up-fill text-success"></i> 19.1K
                             <i className="bi bi-hand-thumbs-down-fill text-danger ps-3"></i> 3
                         </a>
-                        <a className="list-group-item position-relative" href="#">
+                        <a className="list-group-item position-relative" href="/#">
                             <h3>
                                 <img className={'pe-1 pb-1'}
                                      src="https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880" alt=""/>
