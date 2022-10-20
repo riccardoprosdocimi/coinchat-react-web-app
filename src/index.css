@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +13,41 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.wd-btn-lowlight {
+  --bs-btn-color: #001d3d;
+  --bs-btn-border-color: #001d3d;
+  --bs-btn-hover-color: #000814;
+  --bs-btn-hover-bg: #ffd60a;
+  --bs-btn-active-border-color: #ffd60a;
+  --bs-btn-active-color: #000814;
+  --bs-btn-active-bg: #ffd60a;
+  font-family: Audiowide, sans-serif;
+}
+
+
+.wd-btn-highlight {
+  --bs-btn-color: #000814;
+  --bs-btn-border-color: #ffd60a;
+  --bs-btn-bg: #ffd60a;
+  --bs-btn-hover-color: #000814;
+  --bs-btn-hover-bg: #ffd60a;
+  --bs-btn-hover-border-color: #001d3d;
+  --bs-btn-focus-shadow-rgb: 25, 135, 84;
+  --bs-btn-active-color: #000814;
+  --bs-btn-active-bg: #ffd60a;
+  --bs-btn-active-border-color: #ffd60a;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #198754;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: #198754;
+  --bs-gradient: none;
+  font-family: Audiowide, sans-serif;
+}
+
+
+.wd-theme-yellow {
+  color: #ffc300;
 }

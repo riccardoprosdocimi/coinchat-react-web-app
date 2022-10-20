@@ -10,7 +10,7 @@ function NavigationBar() {
             <div className="container-fluid">
                 <a className="navbar-brand"
                    style={{"color" : "#ffc300"}}
-                   href="#">CoinChat</a>
+                   href="/#">CoinChat</a>
                 <button className="navbar-toggler"
                         type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent"
@@ -39,13 +39,14 @@ function NavigationBar() {
                             </span>
                         </Link>
 
-                        <li className="nav-item">
-                            <a className={`nav-link ${active === 'search' ? 'active' : ''}`}
-                               style={active === 'search' ? null : {"color" : "#ffc300"}}
-                               href="#">
+                        <Link to={'/search'} className={`nav-item text-decoration-none 
+                        ${active === 'search' ? 'active' : ''}`}>
+                            <span className={`nav-link`}
+                                  style={active === 'search' ? null : {"color" : "#ffc300"}}>
                                 Search
-                            </a>
-                        </li>
+                            </span>
+                        </Link>
+
                     </ul>
                     <form className="d-flex">
                         <button className={'bg-transparent border-0'}>

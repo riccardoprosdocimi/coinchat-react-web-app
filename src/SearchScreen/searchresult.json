@@ -1,0 +1,13 @@
+[
+  {
+    "searchID": 0,
+    "coinIcon": "bitcoinIcon.png",
+    "coinCode": "BTC",
+    "coinName": "Bitcoin",
+    "coinInfo": "Some basic crypto information",
+    "coinPrice": 19112.83
+
+  }
+
+
+]
