@@ -1,5 +1,5 @@
-import watchListArray from './watchListItems.json';
-import WatchListTableItem from "./WatchListTableItem";
+import watchListArray from './watch-list-items.json';
+import WatchListTableItem from "./watch-list-table-item";
 
 function WatchListTable() {
     return (

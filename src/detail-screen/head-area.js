@@ -1,7 +1,7 @@
 import React from "react";
 
 const HeadArea = () => {
-    const detail = require("./coindetail.json")
+    const detail = require("./coin-detail.json")
     return(
         <div className="d-flex justify-content-center py-4 row">
             <div className="container col-8">
