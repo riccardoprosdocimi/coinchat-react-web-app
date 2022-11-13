@@ -1,15 +1,18 @@
 import React from "react";
-import searchresult from "./searchresult.json"
 import SearchResultItem from "./SearchResultItem";
+import {useSelector} from "react-redux";
 
 
 const SearchResultList = () => {
+    const {resList, Searching} = useSelector((state) => {
+        return state.resList;
+    });
     return(
         <section id="search-result" className="container">
             <div className="list-group">
                 {
-                    searchresult.map(
-                        result => <SearchResultItem key={result.searchID} result={result} />
+                    resList.map(
+                        result => <SearchResultItem key={result.id} result={result} />
                     )
                 }
             </div>
