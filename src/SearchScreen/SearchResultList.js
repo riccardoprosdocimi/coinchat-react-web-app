@@ -4,11 +4,11 @@ import {useSelector} from "react-redux";
 
 
 const SearchResultList = () => {
-    const {resList, Searching} = useSelector((state) => {
+    const {resList} = useSelector((state) => {
         return state.resList;
     });
     return(
-        <section id="search-result" className="container">
+        <section id="search-result" className="container col-6">
             <div className="list-group">
                 {
                     resList.map(
