@@ -1,9 +1,9 @@
 import React from "react";
 import SearchBar from "./search-bar";
-import SearchResultList from "./search-result-list";
 import {configureStore} from "@reduxjs/toolkit";
 import SearchReducer from "./Service/SearchReducer";
 import {Provider} from "react-redux";
+import SearchResultPagination from "./search-result-pagination";
 
 const store = configureStore({
     reducer: {
@@ -17,7 +17,7 @@ const SearchScreen = () => {
         <Provider store={store}>
             <div className="align-self-center pt-5">
                 <SearchBar />
-                <SearchResultList />
+                <SearchResultPagination itemsPerPage={5}/>
 
             </div>
         </Provider>
