@@ -7,7 +7,7 @@ import NavigationBar from "./navigation-bar";
 import SearchScreen from "./search";
 import DetailScreen from "./detail-screen";
 import LoginScreen from "./login";
-import EditProfile from "./EditProfile";
+import EditProfile from "./edit-profile";
 
 function App() {
     document.body.style.background = '#f2f2f2'

@@ -1,5 +1,5 @@
-import postArray from './postTest.json'
-import PostListItem from "./PostListItem";
+import postArray from './post-test.json'
+import PostListItem from "./post-list-item";
 
 const PostList = () => {
     return(
