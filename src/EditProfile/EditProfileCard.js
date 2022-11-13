@@ -2,7 +2,7 @@ import React from "react";
 import './index.css'
 import {Link} from "react-router-dom";
 
-function ProfileCard () {
+function EditProfileCard () {
     return(
         <div className="card">
             <div className="card-img-top position-relative">
@@ -27,4 +27,4 @@ function ProfileCard () {
         </div>
     )
 }
-export default ProfileCard
+export default EditProfileCard

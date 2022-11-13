@@ -6,6 +6,7 @@ import ProfileScreen from "./Profile";
 import NavigationBar from "./NavagationBar";
 import SearchScreen from "./SearchScreen";
 import DetailScreen from "./DetailScreen";
+import EditProfile from "./EditProfile";
 
 
 
@@ -20,6 +21,8 @@ function App() {
                            element={<HomeScreen/>}/>
                     <Route path={'/profile'}
                            element={<ProfileScreen/>}/>
+                    <Route path={'/edit-profile'}
+                           element={<EditProfile/>}/>
                     <Route path={"/search"}
                            element={<SearchScreen />}/>
                     <Route path={"/detail"}

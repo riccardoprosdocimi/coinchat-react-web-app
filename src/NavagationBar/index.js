@@ -32,9 +32,9 @@ function NavigationBar() {
                         </Link>
                         
                         <Link to={'/profile'} className={`nav-item text-decoration-none 
-                        ${active === 'profile' ? 'active' : ''}`}>
+                        ${active === 'profile' || active === 'edit-profile' ? 'active' : ''}`}>
                             <span className={`nav-link`}
-                               style={active === 'profile' ? null : {"color" : "#ffc300"}}>
+                               style={active === 'profile' || active === 'edit-profile' ? null : {"color" : "#ffc300"}}>
                                 Profile
                             </span>
                         </Link>
