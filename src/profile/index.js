@@ -1,18 +1,24 @@
 import ProfileCard from "./profile-card";
 import ProfileContent from "./profile-content";
 import WatchListTable from "../watchlist-table/watch-list-table";
+import {Link} from "react-router-dom";
+import React from "react";
 
 function ProfileComponent () {
     return(
         <div className={'row'}>
-            <div className="d-none d-xl-block col-3 mt-2">
-                <ProfileCard/>
-            </div>
-            <div className="col-xl-6 col-lg-8 col-md-7 col-sm mt-2">
-                <ProfileContent/>
-            </div>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
-                <WatchListTable/>
+                <ProfileCard/>
+                <div className={'text-center pt-3'}>
+                    <Link to={'/edit-profile'}>
+                        <button className={'btn btn-warning w-100'}>
+                            Edit Profile
+                        </button>
+                    </Link>
+                </div>
+            </div>
+            <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
+                <ProfileContent/>
             </div>
         </div>
     )

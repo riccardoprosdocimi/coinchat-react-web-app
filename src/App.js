@@ -7,6 +7,7 @@ import NavigationBar from "./navigation-bar";
 import SearchScreen from "./search";
 import DetailScreen from "./detail-screen";
 import LoginScreen from "./login";
+import EditProfile from "./EditProfile";
 
 function App() {
     document.body.style.background = '#f2f2f2'
@@ -19,6 +20,8 @@ function App() {
                            element={<HomeScreen/>}/>
                     <Route path={'/profile'}
                            element={<ProfileScreen/>}/>
+                    <Route path={'/edit-profile'}
+                           element={<EditProfile/>}/>
                     <Route path={"/search"}
                            element={<SearchScreen/>}/>
                     <Route path={"/detail"}
