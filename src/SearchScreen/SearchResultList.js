@@ -8,7 +8,7 @@ const SearchResultList = () => {
         return state.resList;
     });
     return(
-        <section id="search-result" className="container">
+        <section id="search-result" className="container col-6">
             <div className="list-group">
                 {
                     resList.map(

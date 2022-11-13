@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {SearchCoinThunk} from "./Service/SearchThunk";
 
@@ -6,7 +6,7 @@ const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('')
 
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(SearchCoinThunk(searchTerm))}, [])
+    // useEffect(() => {dispatch(SearchCoinThunk(searchTerm))}, [])
 
     return(
         <div id="main-search-bar" className="mb-5">
