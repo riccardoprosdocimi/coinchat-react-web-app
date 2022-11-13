@@ -1,18 +1,15 @@
 import React from "react";
-import LineChartArea from "./LineChartArea";
-import CommentArea from "./CommentArea";
-import HeadArea from "./HeadArea";
+import LineChartArea from "./line-chart-area";
+import CommentArea from "./comment-area";
+import HeadArea from "./head-area";
 
 const DetailScreen = () => {
     return(
-
-        <div className={"container"}>
+        <div className="container">
             <HeadArea />
             <LineChartArea />
             <CommentArea />
         </div>
-    )
-
+    );
 }
-
 export default DetailScreen;

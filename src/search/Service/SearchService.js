@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Search_API} from "../../Util/GlobalVariables";
+import {Search_API} from "../../util/global-variables";
 
 
 function removeWhiteSpace(s) {
