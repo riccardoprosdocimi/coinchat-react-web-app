@@ -2,7 +2,7 @@ const WatchlistTableItem =(
     {
         item = {
             "symbol" : "BTC",
-            "coinDetails" : "#",
+            "coinDetails" : "details",
             "icon" : "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
             "percentChange" : 1.03,
             "currentPrice" : 403428.21,
