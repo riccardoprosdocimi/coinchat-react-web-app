@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {SearchCoinThunk} from "./Service/SearchThunk";
 
 const SearchBar = () => {
-    const [searchTerm, setSearchTerm] = useState('Avatar')
+    const [searchTerm, setSearchTerm] = useState('')
 
     const dispatch = useDispatch();
     useEffect(() => {dispatch(SearchCoinThunk(searchTerm))}, [searchTerm, dispatch])
