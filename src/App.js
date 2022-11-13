@@ -7,12 +7,22 @@ import NavigationBar from "./NavagationBar";
 import SearchScreen from "./SearchScreen";
 import DetailScreen from "./DetailScreen";
 import EditProfile from "./EditProfile";
+import {configureStore} from "@reduxjs/toolkit";
+import profileReducer from "./Profile/reducers/profile-reducer";
+import {Provider} from "react-redux";
 
-
+const store = configureStore(
+    {
+        reducer: {
+            profile: profileReducer,
+        }
+    }
+)
 
 function App() {
     document.body.style.background = '#f2f2f2'
   return (
+      <Provider store={store}>
           <BrowserRouter>
             <NavigationBar />
             <div className={'container-fluid'}>
@@ -30,6 +40,7 @@ function App() {
                 </Routes>
             </div>
         </BrowserRouter>
+      </Provider>
   );
 }
 

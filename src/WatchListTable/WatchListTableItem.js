@@ -35,6 +35,9 @@ const WatchListTableItem =(
             <td className={'text-center'}>
                 {moneyFormat.format(item.currentPrice)}
             </td>
+            <td className={'text-center'}>
+                <i className={'bi bi-x-lg'}></i>
+            </td>
         </tr>
     )
 }

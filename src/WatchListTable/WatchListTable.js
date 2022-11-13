@@ -13,6 +13,7 @@ function WatchListTable() {
                     <th scope="col" className={'text-center'}>Coin</th>
                     <th scope="col" className={'text-center'}>24H Change</th>
                     <th scope="col" className={'text-center'}>Current Price</th>
+                    <th scope="col" className={'text-center'}>Remove</th>
                 </tr>
                 </thead>
                 <tbody>
