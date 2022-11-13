@@ -1,8 +1,8 @@
-import WatchListTable from "../WatchListTable/WatchListTable";
+import WatchListTable from "../watchlist-table/watchlist-table";
 import {Link} from "react-router-dom";
 import React from "react";
 import Tab from "react-bootstrap/Tab";
-import PostList from "../Profile/Posts/PostList";
+import PostList from "../profile/posts/post-list";
 import Tabs from "react-bootstrap/Tabs";
 
 const EditProfile = () => {

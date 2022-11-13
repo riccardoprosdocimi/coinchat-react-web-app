@@ -1,4 +1,4 @@
-const WatchListTableItem =(
+const WatchlistTableItem =(
     {
         item = {
             "symbol" : "BTC",
@@ -41,4 +41,4 @@ const WatchListTableItem =(
         </tr>
     )
 }
-export default WatchListTableItem
+export default WatchlistTableItem

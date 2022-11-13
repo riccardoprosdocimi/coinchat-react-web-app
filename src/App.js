@@ -1,14 +1,15 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-import HomeScreen from "./HomeScreen";
-import ProfileScreen from "./Profile";
-import NavigationBar from "./NavagationBar";
-import SearchScreen from "./SearchScreen";
-import DetailScreen from "./DetailScreen";
-import EditProfile from "./EditProfile";
+import HomeScreen from "./home";
+import ProfileScreen from "./profile";
+import NavigationBar from "./navigation-bar";
+import SearchScreen from "./search";
+import DetailScreen from "./detail-screen";
+import LoginScreen from "./login";
+import EditProfile from "./edit-profile";
 import {configureStore} from "@reduxjs/toolkit";
-import profileReducer from "./Profile/reducers/profile-reducer";
+import profileReducer from "./profile/reducers/profile-reducer";
 import {Provider} from "react-redux";
 
 const store = configureStore(
@@ -34,14 +35,17 @@ function App() {
                     <Route path={'/edit-profile'}
                            element={<EditProfile/>}/>
                     <Route path={"/search"}
-                           element={<SearchScreen />}/>
+                           element={<SearchScreen/>}/>
                     <Route path={"/detail"}
-                           element={<DetailScreen />}/>
+                           element={<DetailScreen/>}/>
+                    <Route path={"/login"}
+                           element={<LoginScreen/>}/>
+                    <Route path={"/register"}
+                           element={<DetailScreen/>}/>
                 </Routes>
             </div>
         </BrowserRouter>
       </Provider>
   );
 }
-
 export default App;
