@@ -6,7 +6,7 @@ const SearchBar = () => {
     const [searchTerm, setSearchTerm] = useState('')
 
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(SearchCoinThunk(searchTerm))}, [searchTerm, dispatch])
+    useEffect(() => {dispatch(SearchCoinThunk(searchTerm))}, [])
 
     return(
         <div id="main-search-bar" className="mb-5">

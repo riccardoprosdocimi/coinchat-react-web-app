@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 
 
 const SearchResultList = () => {
-    const {resList, Searching} = useSelector((state) => {
+    const {resList} = useSelector((state) => {
         return state.resList;
     });
     return(
