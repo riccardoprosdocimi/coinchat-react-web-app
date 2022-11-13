@@ -1,6 +1,6 @@
-import ProfileCard from "../Profile/ProfileCard";
-import ProfileContent from "../Profile/ProfileContent";
-import WatchListTable from "../WatchListTable/WatchListTable";
+import ProfileCard from "../profile/profile-card";
+import ProfileContent from "../profile/profile-content";
+import WatchListTable from "../watchlist-table/watchlist-table";
 import {Link} from "react-router-dom";
 import React from "react";
 

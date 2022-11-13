@@ -1,5 +1,5 @@
-import watchListArray from './watch-list-items.json';
-import WatchListTableItem from "./watch-list-table-item";
+import watchListArray from './watchlist-items.json';
+import WatchlistTableItem from "./watchlist-table-item";
 
 function WatchListTable() {
     return (
@@ -18,7 +18,7 @@ function WatchListTable() {
                 <tbody>
                 {
                     watchListArray.map(item =>
-                        <WatchListTableItem item={item}/>
+                        <WatchlistTableItem item={item}/>
                     )
                 }
                 </tbody>

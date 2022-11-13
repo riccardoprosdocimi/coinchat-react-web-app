@@ -1,9 +1,9 @@
 import React from "react";
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import PostList from "./Posts/PostList";
+import PostList from "./posts/post-list";
 import './index.css'
-import WatchListTable from "../WatchListTable/WatchListTable";
+import WatchListTable from "../watchlist-table/watchlist-table";
 
 
 function ProfileContent () {
