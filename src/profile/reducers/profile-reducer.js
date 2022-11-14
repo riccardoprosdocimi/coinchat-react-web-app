@@ -6,6 +6,8 @@ const currentUser = {
     username: "coolDog",
     profilePicture: "profile-picture.jpg",
     bannerPicture: "profile-banner.jpg",
+    followers: 3271,
+    following: 134,
     bio: "A pretty cool and awesome dog. Loves tennis balls and playing in parks. Let's go for a walk!",
     website: "google.com",
     location: "Boston, MA",

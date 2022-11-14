@@ -44,7 +44,17 @@ function ProfileComponent () {
                             </span>
                         </div>
                         <p className="card-text">
-                            <div>
+                            <div className={'row'}>
+                                <div className={'col'}>
+                                    <span className={'fw-bold pe-2'}>{profile.following}</span>
+                                    <span className={'text-secondary'}>Following</span>
+                                </div>
+                                <div className={'col'}>
+                                    <span className={'fw-bold pe-2'}>{profile.followers}</span>
+                                    <span className={'text-secondary'}>Followers</span>
+                                </div>
+                            </div>
+                            <div className={'pt-2'}>
                                 {profile.bio}
                             </div>
                             <div className={'pt-2'}>
@@ -97,8 +107,8 @@ function ProfileComponent () {
                         <PostList />
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Likes">
-                        Comment Likes List
+                         eventKey="second" title="Likes/Dislikes">
+                        Comment Likes and Dislikes List
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Watchlist">
