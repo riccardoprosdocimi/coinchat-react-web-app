@@ -32,7 +32,7 @@ function SearchResultPagination({ itemsPerPage }) {
 
 
     const endOffset = itemOffset + itemsPerPage;
-    console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     const currentItems = resList.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(resList.length / itemsPerPage);
 
