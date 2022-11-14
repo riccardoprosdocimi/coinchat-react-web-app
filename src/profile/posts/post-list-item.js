@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const PostListItem = (
     {
@@ -15,11 +16,13 @@ const PostListItem = (
     return(
         <div className={'list-group-item'}>
             <i className={'bi bi-x-lg float-end'}></i>
-            <h3>
-                <img className={'pe-1 pb-1'}
-                     src={post.symbol} alt=""/>
-                {post.coin}
-            </h3>
+            <Link to={'/detail'} style={{textDecoration: 'none', color: 'black'}}>
+                <h3>
+                    <img className={'pe-1 pb-1'}
+                         src={post.symbol} alt=""/>
+                    {post.coin}
+                </h3>
+            </Link>
             <p>
                 {post.comment}
             </p>
