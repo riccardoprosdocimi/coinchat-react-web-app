@@ -11,14 +11,17 @@ import EditProfile from "./edit-profile";
 import {configureStore} from "@reduxjs/toolkit";
 import profileReducer from "./profile/reducers/profile-reducer";
 import {Provider} from "react-redux";
+import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
 
 const store = configureStore(
     {
         reducer: {
             profile: profileReducer,
+            coinData: CoinDataReducer,
         }
     }
 )
+
 
 function App() {
     document.body.style.background = '#f2f2f2'
@@ -36,7 +39,7 @@ function App() {
                            element={<EditProfile/>}/>
                     <Route path={"/search"}
                            element={<SearchScreen/>}/>
-                    <Route path={"/detail"}
+                    <Route path={"/detail/*"}
                            element={<DetailScreen/>}/>
                     <Route path={"/login"}
                            element={<LoginScreen/>}/>
