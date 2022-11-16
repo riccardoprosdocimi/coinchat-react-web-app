@@ -12,12 +12,14 @@ import {configureStore} from "@reduxjs/toolkit";
 import profileReducer from "./profile/reducers/profile-reducer";
 import {Provider} from "react-redux";
 import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
+import CoinMarketChartReducer from "./detail-screen/service/reducers/coin-market-chart-reducer";
 
 const store = configureStore(
     {
         reducer: {
             profile: profileReducer,
             coinData: CoinDataReducer,
+            coinMarketChart: CoinMarketChartReducer
         }
     }
 )

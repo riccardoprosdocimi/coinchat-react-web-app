@@ -11,7 +11,7 @@ const SearchBar = () => {
     useEffect(() => {
         dispatch(SearchCoinThunk(searchParams.get("query")));
         setSearchTerm(searchParams.get("query"));
-    }, [searchParams.get("query")])
+    }, [searchParams, dispatch])
 
     return(
         <div id="main-search-bar" className="mb-5">
