@@ -8,19 +8,16 @@ const initialState = {
 }
 
 const CoinDataReducer = createSlice({
-    name: 'SearchReducer',
+    name: 'CoinDataReducer',
     initialState,
     extraReducers: {
         [CoinDataThunk.pending]: (s, a) => {
-            console.log("pending");
             s.fetching = true;
         },
         [CoinDataThunk.rejected]: (s, a) => {
-            console.log("rejected")
             s.fetching = true;
         },
         [CoinDataThunk.fulfilled]: (state, action) => {
-            console.log("extraReducer");
             state.fetching = false;
             state.coinData = action.payload;
         }
