@@ -5,6 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import PostList from "./posts/post-list";
 import Tabs from "react-bootstrap/Tabs";
 import {useSelector} from "react-redux";
+import './index.css'
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
