@@ -1,16 +1,19 @@
 import React from 'react';
 import moment from 'moment'
+
 import {
-    Chart as ChartJS,
     CategoryScale,
+    Chart as ChartJS,
+    Legend,
     LinearScale,
-    PointElement,
     LineElement,
+    PointElement,
     Title,
     Tooltip,
-    Legend,
+    Filler
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import {Line} from 'react-chartjs-2';
+
 import marketData from "../data/coin-detail/coin-market";
 
 
@@ -21,7 +24,8 @@ ChartJS.register(
     LineElement,
     Title,
     Tooltip,
-    Legend
+    Legend,
+    Filler
 );
 
 
@@ -29,26 +33,45 @@ export const options = {
     responsive: true,
     elements: {
         point: {
-            pointStyle: "line"
+            pointStyle: "circle",
+            radius: 0,
+            hoverRadius: 6,
+            // pointBorderWidth: 0,
+            // pointHoverBorderWidth: 0,
+        },
+        line: {
+            // fill: true,
+            // backgroundColor: ,
         }
     },
     plugins: {
         legend: {
-            position: 'top',
+            display: false
         },
         title: {
-            display: true,
-            text: 'Chart.js Line Chart',
+            display: false
         },
+        tooltip: {
+            // position: "nearest"
+        }
     },
     interaction: {
-        mode: 'nearest',
+        mode: 'index',
         intersect: false,
 
     },
     scales: {
-        y:{
+        y: {
             display: false,
+        },
+        x: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                maxRotation: 0,
+                maxTicksLimit: 6
+            }
         }
     }
 };
@@ -57,35 +80,40 @@ const labels = marketData.prices.map(
     (price) => {
         const unixTimestamp = price[0];
         let t = new Date();
-        t.setSeconds( unixTimestamp );
-        let formatted = moment(t).format("dd hh:MM");
-        return formatted;
+        t.setSeconds(unixTimestamp);
+        return moment(t).format("dd hh:MM");
     }
 );
 export const data = {
     labels,
     datasets: [
         {
-            label: 'Dataset 1',
+            label: 'USD', // Should be coin name
             data: marketData.prices.map((price) => {
-                let rawPrice = price[1];
                 // return Math.round((rawPrice + Number.EPSILON) * 1000000) / 1000000
-                return rawPrice
+                return price[1]
             }),
             borderColor: 'rgb(255, 99, 132)',
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            fill: true
+
         }
     ],
 };
 
 
-
-
 const LineChartArea = () => {
-    return(
-        <div className="d-flex justify-content-center">
+    return (
+        <div className="d-flex flex-column align-items-center">
+            <div id={"timeRangeNavigation"}>
+                <ul className="nav nav-pills">
+                    <a className="nav-link active" aria-current="page" href="#">1D</a>
+                    <a className="nav-link" href="#">1W</a>
+                    <a className="nav-link" href="#">1M</a>
+                </ul>
+            </div>
             <div id="price_trend_chart" className={"w-50"}>
-                <Line options={options} data={data} />
+                <Line options={options} data={data}/>
             </div>
         </div>
 
