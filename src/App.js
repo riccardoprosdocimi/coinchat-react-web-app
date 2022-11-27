@@ -11,14 +11,19 @@ import EditProfile from "./edit-profile";
 import {configureStore} from "@reduxjs/toolkit";
 import profileReducer from "./profile/reducers/profile-reducer";
 import {Provider} from "react-redux";
+import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
+import CoinMarketChartReducer from "./detail-screen/service/reducers/coin-market-chart-reducer";
 
 const store = configureStore(
     {
         reducer: {
             profile: profileReducer,
+            coinData: CoinDataReducer,
+            coinMarketChart: CoinMarketChartReducer
         }
     }
 )
+
 
 function App() {
   return (
@@ -35,7 +40,7 @@ function App() {
                            element={<EditProfile/>}/>
                     <Route path={"/search"}
                            element={<SearchScreen/>}/>
-                    <Route path={"/detail"}
+                    <Route path={"/detail/*"}
                            element={<DetailScreen/>}/>
                     <Route path={"/login"}
                            element={<LoginScreen/>}/>

@@ -3,12 +3,13 @@ import CommentItem from "./comment-item";
 import comments from "./comments.json"
 
 
-const CommentArea = ({
-                       curUser = {
+const CommentArea = ({curUser = {
                            avatar: "profile-picture.jpg",
                            userName: "Coin Dude"
-                       }
-}) => {
+                       },
+                     coinID
+}
+) => {
 
     return(
         <section id="comments" className="border-top">
