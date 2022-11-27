@@ -41,7 +41,7 @@ const LoginScreen = () => {
                             </button>
                         </div>
                         <div className="d-flex justify-content-center">
-                            <a href="register.html" type="button"
+                            <a href="register/index.js" type="button"
                                className="btn btn-sm btn-secondary rounded-pill mt-2 w-75 wd-font"
                                style="color: white">Create account</a>
                         </div>

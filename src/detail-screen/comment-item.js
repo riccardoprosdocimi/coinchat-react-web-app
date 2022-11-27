@@ -17,9 +17,9 @@ const CommentItem = ({comment}) => {
 
                 <p>{comment.commentContent}</p>
                 <ul className="list-unstyled list-inline d-flex justify-content-between">
-                    <li><i className="fa fa-calendar wd-theme-yellow"></i> {comment.commentDate}</li>
-                    <li><a href="/#"><i className="fa fa-thumbs-up wd-theme-yellow"></i></a> {comment.commentThumbUp}</li>
-                    <li><a href="/#"><i className="fa-solid fa-reply wd-theme-yellow"></i></a> {comment.commentReply}</li>
+                    <li><i className="fa fa-calendar wd-app-color"></i> {comment.commentDate}</li>
+                    <li><a href="/#"><i className="fa fa-thumbs-up wd-app-color"></i></a> {comment.commentThumbUp}</li>
+                    <li><a href="/#"><i className="fa-solid fa-reply wd-app-color"></i></a> {comment.commentReply}</li>
                 </ul>
             </div>
             <hr />

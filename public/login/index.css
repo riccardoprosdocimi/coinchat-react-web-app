@@ -22,7 +22,7 @@ body {
     font-family: "Audiowide", sans-serif;
 }
 
-.wd-nav-tab {
+.wd-nav-bar {
     --bs-btn-hover-color: #002147;
     --bs-btn-hover-bg: #ffc300;
     --bs-btn-hover-border-color: #ffc300;

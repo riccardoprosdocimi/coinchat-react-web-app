@@ -21,7 +21,6 @@ const store = configureStore(
 )
 
 function App() {
-    document.body.style.background = '#f2f2f2'
   return (
       <Provider store={store}>
           <BrowserRouter>

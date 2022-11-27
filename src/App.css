@@ -1,38 +1,127 @@
-.App {
-  text-align: center;
+/*----------------------------------------fonts----------------------------------------*/
+@import url('https://fonts.googleapis.com/css?family=Audiowide');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+/*----------------------------------------app----------------------------------------*/
+body {
+  background-color: #f2f2f2 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.wd-app-color {
+  color: #ffc300;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1, h2, h3 {
+  font-family: Audiowide, sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+h4, h5, h6, p {
+  font-family: "Open Sans", monospace;
+}
+/*----------------------------------------home----------------------------------------*/
+.wd-body {
+  font-family: "Open Sans", monospace;
+  background-color: #f2f2f2;
 }
 
-.App-link {
-  color: #61dafb;
+.wd-button-follow {
+  background-color: #E0BE36;
+}
+/*----------------------------------------navigation bar----------------------------------------*/
+.wd-nav-bar-bg-font {
+  background-color: #033153;
+  font-family: Audiowide, sans-serif;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*.navbar-nav {*/
+/*  --bs-nav-link-color: #ffc300;*/
+/*  --bs-btn-color: #ffc300;*/
+/*  --bs-navbar-hover-color: #033153;*/
+/*  --bs-btn-hover-bg: #ffc300;*/
+/*  --bs-btn-active-bg: #ffc300;*/
+/*  --bs-btn-active-color: #033153;*/
+/*  --bs-btn-active-border-color: #ffc300;*/
+/*}*/
+
+.wd-nav-bar {
+  color: #ffc300;
+  background-color: #033153;
+  border-radius: 5px;
+  padding: 10px;
+  --bs-nav-bar-link-hover-color: #033153;
+  text-decoration: none;
+}
+
+.wd-nav-bar:hover {
+  color: #033153;
+  background-color: #ffc300;
+}
+
+.wd-nav-bar.active {
+  color: #033153;
+  background-color: #ffc300;
+}
+
+.btn-close {
+  filter: invert(69%) sepia(87%) saturate(990%) hue-rotate(357deg) brightness(102%) contrast(109%) !important;
+  opacity: 1 !important;
+}
+
+.navbar {
+  --bs-navbar-toggler-focus-width: 0 !important;
+  --bs-navbar-toggler-border-color: transparent !important;
+  --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%280255, 195, 0, 1%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e") !important;
+}
+
+.wd-btn-highlight {
+  --bs-nav-link-hover-color: #000814;
+  --bs-nav-link-hover-bg: #ffc300;
+  --bs-nav-link-hover-border-color: #ffc300;
+  --bs-nav-link-focus-shadow-rgb: 25, 135, 84;
+  --bs-nav-link-active-color: #000814;
+  --bs-nav-link-bg: #ffd60a;
+  --bs-nav-link-border-color: #ffc300;
+  --bs-nav-link-active-bg: #ffb224;
+  --bs-nav-link-active-border-color: #ffb224;
+  --bs-nav-link-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-gradient: none;
+}
+
+.wd-btn-lowlight {
+  --bs-btn-color: #001d3d;
+  --bs-btn-border-color: #001d3d;
+  --bs-btn-hover-color: #000814;
+  --bs-btn-hover-bg: #ffd60a;
+  --bs-btn-active-border-color: #ffd60a;
+  --bs-btn-active-color: #000814;
+  --bs-btn-active-bg: #ffd60a;
+  font-family: Audiowide, sans-serif;
+}
+/*----------------------------------------profile----------------------------------------*/
+body {
+  font-family: "Open Sans", monospace;
+}
+
+.wd-banner-img {
+  height: 300px;
+}
+
+.wd-nav-tabs-font {
+  color: black;
+}
+
+.wd-bg-watchlist {
+  background-color: #f2f2f2;
+  border-color: #282c34;
+  border-style: solid;
+}
+
+.wd-profile-icon {
+  height: 80%;
+  width: 50%;
+
+}
+
+.wd-profile-icon-position {
+  bottom: 5%;
+  left: 25%;
 }
