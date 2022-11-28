@@ -13,6 +13,7 @@ import profileReducer from "./profile/reducers/profile-reducer";
 import {Provider} from "react-redux";
 import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./detail-screen/service/reducers/coin-market-chart-reducer";
+import RegisterScreen from "./register";
 
 const store = configureStore(
     {
@@ -22,35 +23,34 @@ const store = configureStore(
             coinMarketChart: CoinMarketChartReducer
         }
     }
-)
-
+);
 
 function App() {
-    document.body.style.background = '#f2f2f2'
-  return (
-      <Provider store={store}>
-          <BrowserRouter>
-            <NavigationBar />
-            <div className={'container-fluid'}>
-                <Routes>
-                    <Route index
-                           element={<HomeScreen/>}/>
-                    <Route path={'/profile'}
-                           element={<ProfileScreen/>}/>
-                    <Route path={'/edit-profile'}
-                           element={<EditProfile/>}/>
-                    <Route path={"/search"}
-                           element={<SearchScreen/>}/>
-                    <Route path={"/detail/*"}
-                           element={<DetailScreen/>}/>
-                    <Route path={"/login"}
-                           element={<LoginScreen/>}/>
-                    <Route path={"/register"}
-                           element={<DetailScreen/>}/>
-                </Routes>
-            </div>
-        </BrowserRouter>
-      </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <BrowserRouter>
+                <NavigationBar/>
+                <div className={'container-fluid'}>
+                    <Routes>
+                        <Route index
+                               element={<HomeScreen/>}/>
+                        <Route path={'/profile'}
+                               element={<ProfileScreen/>}/>
+                        <Route path={'/edit-profile'}
+                               element={<EditProfile/>}/>
+                        <Route path={"/search"}
+                               element={<SearchScreen/>}/>
+                        <Route path={"/detail/*"}
+                               element={<DetailScreen/>}/>
+                        <Route path={"/login"}
+                               element={<LoginScreen/>}/>
+                        <Route path={"/register"}
+                               element={<RegisterScreen/>}/>
+                    </Routes>
+                </div>
+            </BrowserRouter>
+        </Provider>
+    );
 }
+
 export default App;

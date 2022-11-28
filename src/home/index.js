@@ -1,7 +1,6 @@
 import MainComponent from "./main";
 import RightComponent from "./watchlist";
 import New from "./new"
-import "./index.css"
 
 function HomeScreen() {
     return(
