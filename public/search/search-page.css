@@ -32,7 +32,7 @@ body {
     --bs-btn-active-bg: #ffd60a;
 }
 
-.wd-btn-highlight {
+.wd-btn-style {
     --bs-btn-color: #198754;
     --bs-btn-border-color: #198754;
     --bs-btn-hover-color: #000814;

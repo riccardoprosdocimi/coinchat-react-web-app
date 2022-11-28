@@ -6,6 +6,11 @@ body {
   background-color: #f2f2f2 !important;
 }
 
+a, a:link, a:hover, a:visited {
+  text-decoration: none;
+  color: #ffc300;
+}
+
 .wd-app-color {
   color: #ffc300;
 }
@@ -16,6 +21,18 @@ h1, h2, h3 {
 
 h4, h5, h6, p {
   font-family: "Open Sans", monospace;
+}
+
+.wd-btn-style {
+  --bs-btn-hover-color: #000814 !important;
+  --bs-btn-hover-bg: #ffc300 !important;
+  --bs-btn-hover-border-color: #ffc300 !important;
+  --bs-btn-focus-shadow-rgb: 25, 135, 84 !important;
+  --bs-btn-active-color: #000814 !important;
+  --bs-btn-bg: #ffd60a !important;
+  --bs-btn-border-color: #ffc300 !important;
+  --bs-btn-active-bg: #ffb224 !important;
+  --bs-btn-active-border-color: #ffb224 !important;
 }
 /*----------------------------------------home----------------------------------------*/
 .wd-body {
@@ -71,30 +88,78 @@ h4, h5, h6, p {
   --bs-navbar-toggler-border-color: transparent !important;
   --bs-navbar-toggler-icon-bg: url("data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%280255, 195, 0, 1%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e") !important;
 }
-
-.wd-btn-highlight {
-  --bs-nav-link-hover-color: #000814;
-  --bs-nav-link-hover-bg: #ffc300;
-  --bs-nav-link-hover-border-color: #ffc300;
-  --bs-nav-link-focus-shadow-rgb: 25, 135, 84;
-  --bs-nav-link-active-color: #000814;
-  --bs-nav-link-bg: #ffd60a;
-  --bs-nav-link-border-color: #ffc300;
-  --bs-nav-link-active-bg: #ffb224;
-  --bs-nav-link-active-border-color: #ffb224;
-  --bs-nav-link-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-  --bs-gradient: none;
+/*----------------------------------------login----------------------------------------*/
+.wd-bg-color {
+  background-color: #f2f2f2 !important;
 }
 
-.wd-btn-lowlight {
-  --bs-btn-color: #001d3d;
-  --bs-btn-border-color: #001d3d;
-  --bs-btn-hover-color: #000814;
-  --bs-btn-hover-bg: #ffd60a;
-  --bs-btn-active-border-color: #ffd60a;
-  --bs-btn-active-color: #000814;
-  --bs-btn-active-bg: #ffd60a;
-  font-family: Audiowide, sans-serif;
+.wd-header-bg-color {
+  background-color: #033153 !important;
+}
+
+.wd-brand {
+  color: #ffc300 !important;
+  font-weight: bold;
+}
+
+.wd-brand-font {
+  font-family: "Audiowide", sans-serif;
+  font-size: 1.25rem;
+}
+
+.wd-font {
+  font-family: "Audiowide", sans-serif !important;
+}
+/*----------------------------------------register----------------------------------------*/
+.wd-profile-nudge-up {
+  top: -100px;
+  left: 20px;
+}
+
+.wd-profile-nudge-down {
+  top: 120px;
+}
+
+.wd-circle-x-banner-overlap {
+  left: 330px;
+  top: -150px;
+  color: black;
+  font-size: 50px;
+}
+
+.wd-x-banner-overlap {
+  left: 330px;
+  top: -150px;
+  color: white;
+  font-size: 50px;
+}
+
+.wd-circle-camera-banner-overlap {
+  left: 270px;
+  top: -150px;
+  color: black;
+  font-size: 50px;
+}
+
+.wd-camera-banner-overlap {
+  left: 280px;
+  top: -142px;
+  color: white;
+  font-size: 30px;
+}
+
+.wd-circle-avatar-overlap {
+  left: 95px;
+  top: -30px;
+  color: black;
+  font-size: 50px;
+}
+
+.wd-camera-avatar-overlap {
+  left: 105px;
+  top: -22px;
+  color: white;
+  font-size: 30px;
 }
 /*----------------------------------------profile----------------------------------------*/
 body {

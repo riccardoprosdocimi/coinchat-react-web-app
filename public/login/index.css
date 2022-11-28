@@ -4,13 +4,16 @@ body {
 }
 
 .wd-bg-color {
-    background-color: #F2F2F2;
+    background-color: #f2f2f2;
+}
+
+.wd-header-bg-color {
+    background-color: #033153;
 }
 
 .wd-brand {
     color: #ffc300;
     font-weight: bold;
-    background-color: #003153;
 }
 
 .wd-brand-font {
@@ -40,7 +43,7 @@ a, a:link, a:hover, a:visited {
     color: #ffc300;
 }
 
-.wd-btn-highlight {
+.wd-btn-style {
     --bs-btn-hover-color: #000814;
     --bs-btn-hover-bg: #ffc300;
     --bs-btn-hover-border-color: #ffc300;

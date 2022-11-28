@@ -36,7 +36,7 @@ const CommentArea = ({curUser = {
                                             <div className="row justify-content-end">
                                                 <div className="col-2 d-flex flex-column-reverse">
                                                     <button type="submit"
-                                                            className="btn wd-btn-highlight active">Submit
+                                                            className="btn wd-btn-style active">Submit
                                                     </button>
                                                 </div>
                                             </div>
