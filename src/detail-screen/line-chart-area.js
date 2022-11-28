@@ -36,11 +36,11 @@ const LineChartArea = () => {
     const {marketData, fetching} = useSelector((state) => {
         return state.coinMarketChart;
     });
-    let [coinPrice, setCoinPrice] = useState(marketData.prices[0][1])
+    let [coinPrice, setCoinPrice] = useState(marketData.prices[marketData.prices.length - 1][1])
 
     useEffect(() => {
-        setCoinPrice(marketData.prices[0][1])
-    }, [marketData.prices[0][1]])
+        setCoinPrice(marketData.prices[marketData.prices.length - 1][1])
+    }, [marketData.prices[marketData.prices.length - 1][1]])
 
     const options = {
         responsive: true,
