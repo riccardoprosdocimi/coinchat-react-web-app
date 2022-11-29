@@ -35,7 +35,7 @@ function App() {
                     <Routes>
                         <Route index
                                element={<HomeScreen/>}/>
-                        <Route path={'/profile'}
+                        <Route path={'/profile/*'}
                                element={<ProfileScreen/>}/>
                         <Route path={'/edit-profile'}
                                element={<EditProfile/>}/>
