@@ -1,6 +1,8 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {CoinData_API} from "../util/global-variables";
+import {useDispatch} from "react-redux";
+import {removeWatchlistThunk} from "./services/watchlist-thunks";
 
 const moneyFormat = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -13,6 +15,11 @@ const percentFormat = new Intl.NumberFormat('en-US', {
 })
 
 const WatchlistTableItem =({item}) => {
+    const dispatch = useDispatch()
+    const removeWatchlistItem = (wid) => {
+        dispatch(removeWatchlistThunk(wid))
+    }
+
     // Source: https://reactjs.org/docs/faq-ajax.html
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -59,7 +66,8 @@ const WatchlistTableItem =({item}) => {
                     {moneyFormat.format(coin.market_data.current_price.usd)}
                 </td>
                 <td className={'text-center'}>
-                    <i className={'bi bi-x-lg'}></i>
+                    <i className={'bi bi-x-lg'}
+                       onClick={() => removeWatchlistItem(item._id)}></i>
                 </td>
             </tr>
         )
