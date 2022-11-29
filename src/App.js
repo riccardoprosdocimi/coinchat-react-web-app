@@ -1,29 +1,28 @@
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-
-import HomeScreen from "./home";
-import ProfileScreen from "./profile";
+import {Provider} from "react-redux";
 import NavigationBar from "./navigation-bar";
+import HomeScreen from "./home";
+import RegisterScreen from "./register";
+import LoginScreen from "./login";
+import ProfileScreen from "./profile";
+import EditProfile from "./edit-profile";
 import SearchScreen from "./search";
 import DetailScreen from "./detail-screen";
-import LoginScreen from "./login";
-import EditProfile from "./edit-profile";
 import {configureStore} from "@reduxjs/toolkit";
-import profileReducer from "./profile/reducers/profile-reducer";
-import {Provider} from "react-redux";
-import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
-import CoinMarketChartReducer from "./detail-screen/service/reducers/coin-market-chart-reducer";
-import RegisterScreen from "./register";
+import usersReducer from "./reducers/users-reducer";
+import profileReducer from "./reducers/profile-reducer";
+import CoinDataReducer from "./reducers/coin-data-reducer";
+import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
 
-const store = configureStore(
-    {
-        reducer: {
-            profile: profileReducer,
-            coinData: CoinDataReducer,
-            coinMarketChart: CoinMarketChartReducer
-        }
+const store = configureStore({
+    reducer: {
+        users: usersReducer,
+        profile: profileReducer,
+        coinData: CoinDataReducer,
+        coinMarketChart: CoinMarketChartReducer
     }
-);
+});
 
 function App() {
     return (
@@ -52,5 +51,4 @@ function App() {
         </Provider>
     );
 }
-
 export default App;

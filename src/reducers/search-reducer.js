@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import resList from "../../data/search/search-result";
-import {SearchCoinThunk} from "./SearchThunk";
+import resList from "../data/search/search-result";
+import {SearchCoinThunk} from "../services/search-thunk";
 
 // ready for interact with database
 

@@ -5,7 +5,7 @@ import Tab from "react-bootstrap/Tab";
 import PostList from "../profile/posts/post-list";
 import Tabs from "react-bootstrap/Tabs";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from '../profile/reducers/profile-reducer'
+import {updateProfile} from '../reducers/profile-reducer'
 
 const EditProfile = () => {
     const profile = useSelector(state => state.profile)
