@@ -1,7 +1,14 @@
-import watchListArray from './watchlist-items.json';
 import WatchlistTableItem from "./watchlist-table-item";
+import {useDispatch, useSelector} from "react-redux";
+import {useEffect} from "react";
+import {findWatchlistThunk} from "./services/watchlist-thunks";
 
 function WatchListTable() {
+    const {watchlist, loading} = useSelector(state => state.watchlist)
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(findWatchlistThunk('1'))
+    }, [])
     return (
         <div className="wd-bg-watchlist rounded-3">
             <h3 className="text-decoration-underline fw-bold pt-2 text-center">
@@ -18,9 +25,13 @@ function WatchListTable() {
                 </thead>
                 <tbody>
                 {
-                    watchListArray.map(coin =>
-                        <WatchlistTableItem item={coin}/>
-                    )
+                    loading &&
+                    <tr>
+                        <td>Loading...</td>
+                    </tr>
+                }
+                {
+                    watchlist.map(item => <WatchlistTableItem item={item}/> )
                 }
                 </tbody>
             </table>

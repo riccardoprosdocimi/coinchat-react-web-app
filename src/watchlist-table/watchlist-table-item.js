@@ -1,11 +1,5 @@
-import {json, Link} from "react-router-dom";
-import coinData from "../data/coin-detail/coin-data";
-import {getCoinData, getCoinMC} from "../detail-screen/service/detail-service";
-import coinDataReducer from "../detail-screen/service/reducers/coin-data-reducer";
-import {useSelector} from "react-redux";
-import {CoinDataThunk, CoinMCThunk} from "../detail-screen/service/detail-thunks";
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
 import {CoinData_API} from "../util/global-variables";
 
 const moneyFormat = new Intl.NumberFormat('en-US', {
@@ -24,7 +18,7 @@ const WatchlistTableItem =({item}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [coin, setCoin] = useState(null);
     useEffect(() => {
-        fetch(`${CoinData_API}${item.coinId}`)
+        fetch(`${CoinData_API}${item.coinID}`)
             .then(res => res.json())
             .then((result) => {
                     setIsLoaded(true);
@@ -44,11 +38,10 @@ const WatchlistTableItem =({item}) => {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
-        console.log(coin)
         return(
             <tr>
                 <th scope="row">
-                    <Link to={`/detail?coinID=${item.coinId}`} style={{textDecoration: 'none', color: 'black'}}>
+                    <Link to={`/detail?coinID=${item.coinID}`} style={{textDecoration: 'none', color: 'black'}}>
                         <img className={'float-start pe-1 pt-1'} height={24} src={coin.image.large} alt=""/>
                         {coin.symbol.toUpperCase()}
                     </Link>
