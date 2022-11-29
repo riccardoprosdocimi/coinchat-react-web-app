@@ -44,7 +44,6 @@ const WatchlistTableItem =({item}) => {
     } else if (!isLoaded) {
         return <div>Loading...</div>;
     } else {
-        console.log(coin)
         return(
             <tr>
                 <th scope="row">
