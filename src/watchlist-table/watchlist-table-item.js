@@ -4,6 +4,8 @@ import {CoinData_API} from "../util/global-variables";
 import {useDispatch} from "react-redux";
 import {removeWatchlistThunk} from "./services/watchlist-thunks";
 
+const COINGECKO_API_BASE_URL = 'https://api.coingecko.com/api/v3/coins'
+
 const moneyFormat = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD'
@@ -25,7 +27,7 @@ const WatchlistTableItem =({item}) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [coin, setCoin] = useState(null);
     useEffect(() => {
-        fetch(`${CoinData_API}${item.coinID}`)
+        fetch(`${COINGECKO_API_BASE_URL}/${item.coinID}`)
             .then(res => res.json())
             .then((result) => {
                     setIsLoaded(true);

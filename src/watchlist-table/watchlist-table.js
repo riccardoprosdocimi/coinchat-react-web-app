@@ -31,7 +31,7 @@ function WatchListTable() {
                     </tr>
                 }
                 {
-                    watchlist.map(item => <WatchlistTableItem item={item}/> )
+                    watchlist.map(item => <WatchlistTableItem key={item._id} item={item}/> )
                 }
                 </tbody>
             </table>
