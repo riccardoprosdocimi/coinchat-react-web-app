@@ -7,9 +7,10 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
+import {Dropdown, DropdownButton} from "react-bootstrap";
 
 function NavigationBar() {
-    //const {currentUser} = useSelector(state => state.users);
+    const {currentUser} = useSelector(state => state.users);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
@@ -73,15 +74,26 @@ function NavigationBar() {
                                             </NavDropdown.Item>
                                         </NavDropdown>
                                     </Nav>
-                                    <form className="d-flex">
-                                        <button className={'bg-transparent border-0'}>
-                                            <i style={{'color' : '#ffc300'}}
-                                               className={'bi-caret-down-fill pe-2'}></i>
-                                            <img className={'rounded-circle border'}
-                                                 height={48} width={48}
-                                                 src="/images/profile-picture.jpg" alt=""/>
-                                        </button>
-                                    </form>
+                                    <DropdownButton
+                                        className="wd-dropdown-btn"
+                                        align="end"
+                                        title="Avatar"
+                                        id="dropdown-menu-align-end">
+                                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
+                                        <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
+                                        <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
+                                        <Dropdown.Divider/>
+                                        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+                                    </DropdownButton>
+                                    {/*<form className="d-flex">*/}
+                                    {/*    <button className={'bg-transparent border-0'}>*/}
+                                    {/*        <i style={{'color' : '#ffc300'}}*/}
+                                    {/*           className={'bi-caret-down-fill pe-2'}></i>*/}
+                                    {/*        <img className={'rounded-circle border'}*/}
+                                    {/*             height={48} width={48}*/}
+                                    {/*             src="/images/profile-picture.jpg" alt=""/>*/}
+                                    {/*    </button>*/}
+                                    {/*</form>*/}
                                 </Offcanvas.Body>
                             </Navbar.Offcanvas>
                         </Container>
