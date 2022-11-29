@@ -7,6 +7,7 @@ function WatchListTable() {
     const {watchlist, loading} = useSelector(state => state.watchlist)
     const dispatch = useDispatch()
     useEffect(() => {
+        //TODO: Input correct uid for watchlist
         dispatch(findWatchlistThunk('1'))
     }, [])
     return (

@@ -1,6 +1,5 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {CoinData_API} from "../util/global-variables";
 import {useDispatch} from "react-redux";
 import {removeWatchlistThunk} from "./services/watchlist-thunks";
 
