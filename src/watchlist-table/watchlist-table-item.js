@@ -1,6 +1,9 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {CoinData_API} from "../util/global-variables";
+import {useDispatch} from "react-redux";
+import {removeWatchlistThunk} from "./services/watchlist-thunks";
+
+const COINGECKO_API_BASE_URL = 'https://api.coingecko.com/api/v3/coins'
 
 const moneyFormat = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -13,12 +16,17 @@ const percentFormat = new Intl.NumberFormat('en-US', {
 })
 
 const WatchlistTableItem =({item}) => {
+    const dispatch = useDispatch()
+    const removeWatchlistItem = (wid) => {
+        dispatch(removeWatchlistThunk(wid))
+    }
+
     // Source: https://reactjs.org/docs/faq-ajax.html
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [coin, setCoin] = useState(null);
     useEffect(() => {
-        fetch(`${CoinData_API}${item.coinID}`)
+        fetch(`${COINGECKO_API_BASE_URL}/${item.coinID}`)
             .then(res => res.json())
             .then((result) => {
                     setIsLoaded(true);
@@ -59,7 +67,8 @@ const WatchlistTableItem =({item}) => {
                     {moneyFormat.format(coin.market_data.current_price.usd)}
                 </td>
                 <td className={'text-center'}>
-                    <i className={'bi bi-x-lg'}></i>
+                    <i className={'bi bi-x-lg'}
+                       onClick={() => removeWatchlistItem(item._id)}></i>
                 </td>
             </tr>
         )

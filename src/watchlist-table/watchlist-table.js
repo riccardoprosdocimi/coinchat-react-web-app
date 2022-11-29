@@ -7,6 +7,7 @@ function WatchListTable() {
     const {watchlist, loading} = useSelector(state => state.watchlist)
     const dispatch = useDispatch()
     useEffect(() => {
+        //TODO: Input correct uid for watchlist
         dispatch(findWatchlistThunk('1'))
     }, [])
     return (
@@ -31,7 +32,7 @@ function WatchListTable() {
                     </tr>
                 }
                 {
-                    watchlist.map(item => <WatchlistTableItem item={item}/> )
+                    watchlist.map(item => <WatchlistTableItem key={item._id} item={item}/> )
                 }
                 </tbody>
             </table>
