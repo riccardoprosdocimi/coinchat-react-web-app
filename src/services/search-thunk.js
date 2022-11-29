@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {SearchCoin} from "./SearchService";
+import {SearchCoin} from "./search-service";
 
 
 export const SearchCoinThunk = createAsyncThunk(

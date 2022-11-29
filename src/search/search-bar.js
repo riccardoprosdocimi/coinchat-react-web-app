@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {SearchCoinThunk} from "./service/SearchThunk";
+import {SearchCoinThunk} from "../services/search-thunk";
 import {useSearchParams} from "react-router-dom";
 
 const SearchBar = () => {

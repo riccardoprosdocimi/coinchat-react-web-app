@@ -3,7 +3,7 @@ import LineChartArea from "./line-chart-area";
 import CommentArea from "./comment-area";
 import HeadArea from "./head-area";
 import {useSearchParams} from "react-router-dom";
-import {CoinDataThunk, CoinMCThunk} from "./service/detail-thunks";
+import {CoinDataThunk, CoinMCThunk} from "../services/detail-thunks";
 import {useDispatch} from "react-redux";
 import AboutArea from "./about-area";
 

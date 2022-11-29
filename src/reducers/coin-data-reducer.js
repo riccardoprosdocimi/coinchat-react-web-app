@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import coinData from "../../../data/coin-detail/coin-data";
-import {CoinDataThunk} from "../detail-thunks";
+import coinData from "../data/coin-detail/coin-data";
+import {CoinDataThunk} from "../services/detail-thunks";
 
 const initialState = {
     coinData,
