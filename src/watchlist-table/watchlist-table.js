@@ -18,8 +18,8 @@ function WatchListTable() {
                 </thead>
                 <tbody>
                 {
-                    watchListArray.map(item =>
-                        <WatchlistTableItem item={item}/>
+                    watchListArray.map(coin =>
+                        <WatchlistTableItem item={coin}/>
                     )
                 }
                 </tbody>
