@@ -1,6 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import marketData from "../../../data/coin-detail/coin-market";
-import {CoinMCThunk} from "../detail-thunks";
+import marketData from "../data/coin-detail/coin-market";
+import {CoinMCThunk} from "../services/detail-thunks";
 
 const initialState = {
     marketData,

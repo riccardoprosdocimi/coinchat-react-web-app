@@ -1,5 +1,5 @@
 import axios from "axios";
-import {CoinData_API, CoinMarketChartAPI} from "../../util/global-variables";
+import {CoinData_API, CoinMarketChartAPI} from "../util/global-variables";
 
 
 export const getCoinData = async (coinID) => {

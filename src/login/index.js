@@ -1,7 +1,34 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import {Link, Navigate, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {loginThunk} from "../services/users-thunks";
 
 const LoginScreen = () => {
+    const {currentUser} = useSelector(state => state.users);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const changeEmail = event => {
+        const newEmail = event.target.value;
+        setEmail(newEmail);
+    };
+    const changePassword = event => {
+        const newPassword = event.target.value;
+        setPassword(newPassword);
+    };
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const handleLoginBtn = () => {
+        try {
+            dispatch(loginThunk({email, password}));
+            navigate('/profile');
+        } catch (e) {
+
+        }
+        if (currentUser) {
+            return(<Navigate to={'/profile'}/>);
+        }
+    };
+
     return(
         <>
             <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
@@ -26,7 +53,9 @@ const LoginScreen = () => {
                                    className="form-control form-control-lg"
                                    id="login-fields-username"
                                    placeholder="Your email address"
-                                   title="Please enter your email address here"/>
+                                   title="Please enter your email address here"
+                                   value={email}
+                                   onChange={changeEmail}/>
                             <br/>
                             <label htmlFor="login-fields-password"
                                    className="col-form-label col-form-label-lg mb-0 pb-0">
@@ -36,7 +65,9 @@ const LoginScreen = () => {
                                    className="form-control form-control-lg"
                                    id="login-fields-password"
                                    placeholder="Password"
-                                   title="Please enter your password here"/>
+                                   title="Please enter your password here"
+                                   value={password}
+                                   onChange={changePassword}/>
                                 <div className="form-check">
                                     <input className="form-check-input"
                                            type="checkbox"
@@ -51,7 +82,8 @@ const LoginScreen = () => {
                         </form>
                         <div className="d-flex justify-content-center">
                             <button type="submit"
-                                    className="btn wd-btn-style rounded-pill mt-2 w-75 wd-font">
+                                    className="btn wd-btn-style rounded-pill mt-2 w-75 wd-font"
+                                    onClick={handleLoginBtn}>
                                 Continue
                             </button>
                         </div>

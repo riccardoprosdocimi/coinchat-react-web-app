@@ -1,7 +1,7 @@
 import React from "react";
 import SearchBar from "./search-bar";
 import {configureStore} from "@reduxjs/toolkit";
-import SearchReducer from "./service/SearchReducer";
+import SearchReducer from "../reducers/search-reducer";
 import {Provider} from "react-redux";
 import SearchResultPagination from "./search-result-pagination";
 
