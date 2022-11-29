@@ -14,13 +14,15 @@ import {Provider} from "react-redux";
 import CoinDataReducer from "./detail-screen/service/reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./detail-screen/service/reducers/coin-market-chart-reducer";
 import RegisterScreen from "./register";
+import WatchlistReducer from "./watchlist-table/reducers/watchlist-reducer";
 
 const store = configureStore(
     {
         reducer: {
             profile: profileReducer,
             coinData: CoinDataReducer,
-            coinMarketChart: CoinMarketChartReducer
+            coinMarketChart: CoinMarketChartReducer,
+            watchlist: WatchlistReducer,
         }
     }
 );
