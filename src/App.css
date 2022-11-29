@@ -8,7 +8,7 @@ body {
 
 a, a:link, a:hover, a:visited {
   text-decoration: none;
-  color: #ffc300;
+  /*color: #ffc300;*/
 }
 
 .wd-app-color {
@@ -47,6 +47,24 @@ h4, h5, h6, p {
 .wd-nav-bar-bg-font {
   background-color: #033153;
   font-family: Audiowide, sans-serif;
+}
+
+.btn-primary {
+  --bs-btn-active-border-color: #ffc300 !important;
+  --bs-btn-active-bg: #ffc300 !important;
+  --bs-btn-active-color: #033153 !important;
+  --bs-btn-hover-border-color: #ffc300 !important;
+  --bs-btn-border-color: #033153 !important;
+  --bs-btn-bg: #033153 !important;
+  --bs-btn-color: #ffc300 !important;
+  --bs-btn-hover-color: #033153 !important;
+  --bs-btn-hover-bg: #ffc300 !important;
+}
+
+.dropdown-item {
+  --bs-dropdown-link-active-color: #033153 !important;
+  --bs-dropdown-link-hover-color: #ffc300 !important;
+  --bs-dropdown-link-hover-bg: #033153 !important;
 }
 
 /*.navbar-nav {*/
