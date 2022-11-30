@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
-import {removeWatchlistThunk} from "./services/watchlist-thunks";
+import {removeWatchlistThunk} from "../services/watchlist-thunks";
 
 const COINGECKO_API_BASE_URL = 'https://api.coingecko.com/api/v3/coins'
 
