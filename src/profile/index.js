@@ -1,9 +1,7 @@
 import WatchListTable from "../watchlist-table/watchlist-table";
-import {Link} from "react-router-dom";
+import {Link, Route, Routes, useLocation} from "react-router-dom";
 import React from "react";
-import Tab from "react-bootstrap/Tab";
 import PostList from "./posts/post-list";
-import Tabs from "react-bootstrap/Tabs";
 import {useSelector} from "react-redux";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
@@ -23,9 +21,10 @@ let formatPhoneNumber = (str) => {
     return null;
 }
 
-function ProfileComponent () {
+function ProfileComponent() {
+    const location = useLocation()
     const profile = useSelector(state => state.profile)
-    return(
+    return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
@@ -33,7 +32,12 @@ function ProfileComponent () {
                         <img src={`/images/${profile.bannerPicture}`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute rounded-circle img-thumbnail"
-                             style={{'height' : '85%', 'width' : '50%', 'bottom' : '5%', 'left' : '25%'}}
+                             style={{
+                                 'height': '85%',
+                                 'width': '50%',
+                                 'bottom': '5%',
+                                 'left': '25%'
+                             }}
                              src={`/images/${profile.profilePicture}`} alt=""/>
                     </div>
                     <div className="card-body">
@@ -101,22 +105,37 @@ function ProfileComponent () {
                 </div>
             </div>
             <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
-                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="first" title="Comments">
-                        <PostList />
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Likes/Dislikes">
-                        Comment Likes and Dislikes List
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Watchlist">
-                        <WatchListTable/>
-                    </Tab>
-                </Tabs>
+                <ul className="mt-4 nav nav-pills nav-fill">
+                    <li className={'nav-item'}>
+                        <Link to={'/profile/comments'}
+                              className={`nav-link ${location.pathname.indexOf('comments') >= 0
+                                                     ? 'active' : ''}`}>
+                            Comments
+                        </Link>
+                    </li>
+                    <li className={'nav-item'}>
+                        <Link to={'/profile/reactions'}
+                              className={`nav-link ${location.pathname.indexOf('reactions') >= 0
+                                                     ? 'active' : ''}`}>
+                            Likes/Dislikes
+                        </Link>
+                    </li>
+                    <li className={'nav-item'}>
+                        <Link to={'/profile/watchlist'}
+                              className={`nav-link ${location.pathname.indexOf('watchlist') >= 0
+                                                     ? 'active' : ''}`}>
+                            Watchlist
+                        </Link>
+                    </li>
+                </ul>
+                <Routes>
+                    <Route path={'/comments'} element={<PostList/>}/>
+                    <Route path={'/reactions'} element={''}/>
+                    <Route path={'/watchlist'} element={<WatchListTable/>}/>
+                </Routes>
             </div>
         </div>
     )
- }
- export default ProfileComponent
+}
+
+export default ProfileComponent
