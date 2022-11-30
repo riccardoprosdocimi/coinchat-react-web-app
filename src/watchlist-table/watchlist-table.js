@@ -1,7 +1,7 @@
 import WatchlistTableItem from "./watchlist-table-item";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {findWatchlistThunk} from "./services/watchlist-thunks";
+import {findWatchlistThunk} from "../services/watchlist-thunks";
 
 function WatchListTable() {
     const {watchlist, loading} = useSelector(state => state.watchlist)

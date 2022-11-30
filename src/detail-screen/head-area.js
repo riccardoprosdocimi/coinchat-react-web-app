@@ -1,6 +1,6 @@
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addWatchlistThunk,} from "../watchlist-table/services/watchlist-thunks";
+import {addWatchlistThunk,} from "../services/watchlist-thunks";
 
 
 const HeadArea = () => {
