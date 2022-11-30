@@ -3,23 +3,24 @@ import {createSlice} from "@reduxjs/toolkit";
 const currentUser = {
     firstName: "Cool",
     lastName: "Dog",
-    username: "coolDog",
+    email: 'cool@dog.com',  // username
+    handle: "@coolDog",  // username?
     profilePicture: "profile-picture.jpg",
     bannerPicture: "profile-banner.jpg",
-    followers: 3271,
-    following: 134,
     bio: "A pretty cool and awesome dog. Loves tennis balls and playing in parks. Let's go for a walk!",
     website: "google.com",
-    location: "Boston, MA",
+    city: "Boston, MA",
     dateOfBirth: "11/12/15",
     dateJoined: "4/2016",
     phoneNumber: "+18584531530",
     address: "360 Huntington Ave",
-    accountType: "Admin"
-
+    accountType: "Admin",
+    followers: 3271,
+    following: 134,
+    //totalComments: 1234,  // wanna add?
 }
 
-const profileSlice = createSlice(
+const profileReducer = createSlice(
     {
         name: 'profile',
         initialState: currentUser,
@@ -49,8 +50,11 @@ const profileSlice = createSlice(
                     accountType
                 }
             }
+        },
+        extraReducers: {
+
         }
     }
 )
-export const {updateProfile} = profileSlice.actions
-export default profileSlice.reducer
+export const {updateProfile} = profileReducer.actions
+export default profileReducer.reducer
