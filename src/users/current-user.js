@@ -1,13 +1,13 @@
-import {useDispatch, useSelector} from "react-redux";
+import React from "react";
+import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {profileThunk} from "../services/users-thunks";
 
-const currentUser = ({children}) => {
-    const {currentUser} = useSelector(state => state.users);
+const CurrentUser = ({children}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(profileThunk())
     }, []);
     return(children);
 };
-export default currentUser;
+export default CurrentUser;

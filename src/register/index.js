@@ -83,26 +83,27 @@ const RegisterScreen = () => {
         if (password !== validatePassword) {
             setError('Passwords must match');
             return
+        } else {
+            setError(null);
+            const newUser = {
+                banner,
+                avatar,
+                firstName,
+                lastName,
+                bio,
+                city,
+                address,
+                website,
+                birthday,
+                email,
+                handle,
+                countryCode,
+                number,
+                password,
+                accountType
+            };
+            dispatch(registerThunk(newUser));
         }
-        setError(null);
-        const newUser = {
-            banner,
-            avatar,
-            firstName,
-            lastName,
-            bio,
-            city,
-            address,
-            website,
-            birthday,
-            email,
-            handle,
-            countryCode,
-            number,
-            password,
-            accountType
-        };
-        dispatch(registerThunk(newUser));
     };
 
     if (currentUser) {

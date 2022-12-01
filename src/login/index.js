@@ -7,6 +7,7 @@ const LoginScreen = () => {
     const {currentUser} = useSelector(state => state.users);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState(null);
     const changeEmail = event => {
         const newEmail = event.target.value;
         setEmail(newEmail);
@@ -19,55 +20,63 @@ const LoginScreen = () => {
     const navigate = useNavigate();
     const handleLoginBtn = () => {
         try {
-            dispatch(loginThunk({email, password}));
+            setError(null);
+            const loginUser = {email, password};
+            dispatch(loginThunk(loginUser));
             navigate('/profile');
         } catch (e) {
 
         }
-        if (currentUser) {
-            return(<Navigate to={'/profile'}/>);
-        }
     };
 
-    return(
-        <>
-            <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
-                <div className="card wd-bg-color"
-                     style={{maxWidth: "30rem"}}>
-                    <div className="card-header text-center wd-header-bg-color">
-                        <Link to="/"
-                              className="wd-brand wd-brand-font">
-                            CoinChat
-                        </Link>
+    if (currentUser) {
+        return(<Navigate to={'/profile'}/>);
+    } else {
+        return(
+            <>
+                {
+                    error &&
+                    <div className="alert alert-danger">
+                        {error}
                     </div>
-                    <div className="card-body">
-                        <h3 className="card-title fw-bolder">
-                            Sign in to CoinChat
-                        </h3>
-                        <form className="row gy-2 gx-3">
-                            <label htmlFor="login-fields-username"
-                                   className="col-form-label col-form-label-lg mb-0 pb-0">
-                                Email
-                            </label>
-                            <input type="email"
-                                   className="form-control form-control-lg"
-                                   id="login-fields-username"
-                                   placeholder="Your email address"
-                                   title="Please enter your email address here"
-                                   value={email}
-                                   onChange={changeEmail}/>
-                            <br/>
-                            <label htmlFor="login-fields-password"
-                                   className="col-form-label col-form-label-lg mb-0 pb-0">
-                                Password
-                            </label>
-                            <input type="password"
-                                   className="form-control form-control-lg"
-                                   id="login-fields-password"
-                                   placeholder="Password"
-                                   title="Please enter your password here"
-                                   value={password}
-                                   onChange={changePassword}/>
+                }
+                <div className="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+                    <div className="card wd-bg-color"
+                         style={{maxWidth: "30rem"}}>
+                        <div className="card-header text-center wd-header-bg-color">
+                            <Link to="/"
+                                  className="wd-brand wd-brand-font">
+                                CoinChat
+                            </Link>
+                        </div>
+                        <div className="card-body">
+                            <h3 className="card-title fw-bolder">
+                                Sign in to CoinChat
+                            </h3>
+                            <form className="row gy-2 gx-3">
+                                <label htmlFor="login-fields-username"
+                                       className="col-form-label col-form-label-lg mb-0 pb-0">
+                                    Email
+                                </label>
+                                <input type="email"
+                                       className="form-control form-control-lg"
+                                       id="login-fields-username"
+                                       placeholder="Your email address"
+                                       title="Please enter your email address here"
+                                       value={email}
+                                       onChange={changeEmail}/>
+                                <br/>
+                                <label htmlFor="login-fields-password"
+                                       className="col-form-label col-form-label-lg mb-0 pb-0">
+                                    Password
+                                </label>
+                                <input type="password"
+                                       className="form-control form-control-lg"
+                                       id="login-fields-password"
+                                       placeholder="Password"
+                                       title="Please enter your password here"
+                                       value={password}
+                                       onChange={changePassword}/>
                                 <div className="form-check">
                                     <input className="form-check-input"
                                            type="checkbox"
@@ -79,26 +88,27 @@ const LoginScreen = () => {
                                         Remember me
                                     </label>
                                 </div>
-                        </form>
-                        <div className="d-flex justify-content-center">
-                            <button type="submit"
-                                    className="btn wd-btn-style rounded-pill mt-2 w-75 wd-font"
-                                    onClick={handleLoginBtn}>
-                                Continue
-                            </button>
-                        </div>
-                        <div className="d-flex justify-content-center">
-                            <Link to="/register"
-                               type="button"
-                               className="btn btn-sm btn-secondary rounded-pill mt-2 w-75 wd-font"
-                               style={{color: "white"}}>
-                                Create account
-                            </Link>
+                            </form>
+                            <div className="d-flex justify-content-center">
+                                <button type="submit"
+                                        className="btn wd-btn-style rounded-pill mt-2 w-75 wd-font"
+                                        onClick={handleLoginBtn}>
+                                    Continue
+                                </button>
+                            </div>
+                            <div className="d-flex justify-content-center">
+                                <Link to="/register"
+                                      type="button"
+                                      className="btn btn-sm btn-secondary rounded-pill mt-2 w-75 wd-font"
+                                      style={{color: "white"}}>
+                                    Create account
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </>
-    );
+            </>
+        );
+    }
 };
 export default LoginScreen;
