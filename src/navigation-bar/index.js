@@ -19,7 +19,7 @@ function NavigationBar() {
     const dispatch = useDispatch;
     const handleLogout = () => {
         dispatch(logoutThunk());
-        navigate('/');
+        navigate('/')
     };
 
     if (active === 'login') {
@@ -81,24 +81,26 @@ function NavigationBar() {
                                             </NavDropdown.Item>
                                         </NavDropdown>
                                     </Nav>
-                                    {/*{*/}
-                                    {/*    !currentUser &&*/}
-                                    {/*    <Nav.Link>*/}
-                                    {/*        <Link to="login"*/}
-                                    {/*              className="wd-nav-bar">*/}
-                                    {/*            Login*/}
-                                    {/*        </Link>*/}
-                                    {/*    </Nav.Link>*/}
-                                    {/*}*/}
-                                    {/*{*/}
-                                    {/*    currentUser &&*/}
+                                    {
+                                        !currentUser &&
+                                        <Nav>
+                                            <Nav.Link>
+                                                <Link to="login"
+                                                      className="wd-nav-bar">
+                                                    Login
+                                                </Link>
+                                            </Nav.Link>
+                                        </Nav>
+                                    }
+                                    {
+                                        currentUser &&
                                         <DropdownButton
                                             className="wd-dropdown-btn"
                                             align="end"
                                             title={<img className="{rounded-circle border"
                                                         height={48}
                                                         width={48}
-                                                        // src={currentUser.avatar}
+                                                        src={currentUser && currentUser.avatar}
                                                         alt="user's avatar"/>}
                                             id="dropdown-menu-align-end">
                                             <Dropdown.Item eventKey="1">
@@ -118,33 +120,7 @@ function NavigationBar() {
                                                 Logout
                                             </Dropdown.Item>
                                         </DropdownButton>
-                                        <DropdownButton
-                                            className="wd-dropdown-btn"
-                                            align="end"
-                                            title={<img className="{rounded-circle border"
-                                                        height={48}
-                                                        width={48}
-                                                        // src={currentUser.avatar}
-                                                        alt="user's avatar"/>}
-                                            id="dropdown-menu-align-end">
-                                            <Dropdown.Item eventKey="1">
-                                                <Link to="profile">
-                                                    Profile
-                                                </Link>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item eventKey="2">
-                                                Another action
-                                            </Dropdown.Item>
-                                            <Dropdown.Item eventKey="3">
-                                                Something else here
-                                            </Dropdown.Item>
-                                            <Dropdown.Divider/>
-                                            <Dropdown.Item eventKey="4"
-                                                           onClick={handleLogout}>
-                                                Logout
-                                            </Dropdown.Item>
-                                        </DropdownButton>
-
+                                    }
                                     {/*<form className="d-flex">*/}
                                     {/*    <button className={'bg-transparent border-0'}>*/}
                                     {/*        <i style={{'color' : '#ffc300'}}*/}

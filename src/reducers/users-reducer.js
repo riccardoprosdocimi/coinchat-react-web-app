@@ -15,22 +15,22 @@ const initialState = {
     error: null
 }
 
-const usersReducer = createSlice({
+const UsersReducer = createSlice({
     name: 'users',
     initialState,
     extraReducers: {
-        [createUserThunk.fulfilled]: (state, {payload}) => {
+        [createUserThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.users.push(payload);
+            state.users.push(action.payload);
         },
         [registerThunk.pending]: state => {
             state.loading = true;
             state.currentUser = null;
         },
-        [registerThunk.fulfilled]: (state, {payload}) => {
+        [registerThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.users.push(payload);
-            state.currentUser = payload;
+            state.users.push(action.payload);
+            state.currentUser = action.payload;
         },
         [registerThunk.rejected]: (state, action) => {
             state.loading = false;
@@ -41,23 +41,23 @@ const usersReducer = createSlice({
             state.loading = true;
             state.users = [];
         },
-        [findAllUsersThunk.fulfilled]: (state, {payload}) => {
+        [findAllUsersThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.users = payload;
+            state.users = action.payload;
         },
         [findAllUsersThunk.rejected]: state => {
             state.loading = false;
         },
-        [deleteUserThunk.fulfilled]: (state, {payload}) => {
+        [deleteUserThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            state.users = state.users.filter(user => user._id !== payload);
+            state.users = state.users.filter(user => user._id !== action.payload);
         },
-        [updateUserThunk.fulfilled]: (state, {payload}) => {
+        [updateUserThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            const userIndex = state.users.findIndex(user => user._id === payload._id);
+            const userIndex = state.users.findIndex(user => user._id === action.payload._id);
             state.users[userIndex] = {
                 ...state.users[userIndex],
-                ...payload
+                ...action.payload
             };
         },
         [loginThunk.fulfilled]: (state, action) => {
@@ -84,4 +84,4 @@ const usersReducer = createSlice({
         }
     }
 });
-export default usersReducer.reducer;
+export default UsersReducer.reducer;

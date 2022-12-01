@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/users-thunks";
 import {Navigate} from "react-router-dom";
 
-const RegisterScreen = () => {
+const Register = () => {
     const {currentUser} = useSelector(state => state.users);
     const [error, setError] = useState(null);
     const [banner, setBanner] = useState('');
@@ -418,4 +418,4 @@ const RegisterScreen = () => {
         );
     }
 };
-export default RegisterScreen;
+export default Register;

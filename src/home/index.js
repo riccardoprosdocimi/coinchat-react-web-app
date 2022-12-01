@@ -2,7 +2,7 @@ import MainComponent from "./main";
 import RightComponent from "./watchlist";
 import New from "./new"
 
-function HomeScreen() {
+function Home() {
     return(
         <body className="wd-body">
             <div className="container">
@@ -19,4 +19,4 @@ function HomeScreen() {
         </body>
     );
 }
-export default HomeScreen;
+export default Home;
