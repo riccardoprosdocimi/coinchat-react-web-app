@@ -25,6 +25,10 @@ export const updateUser = async user => {
     await axios.put(`${USERS_API}/${user._id}`, user);
     return user;
 };
+export const loginEmail = async email => {
+    const response = await api.get(`${USERS_API}/loginEmail`, email);
+    return response.data;
+};
 export const login = async user => {
     const response = await api.post(`${USERS_API}/login`, user);
     return response.data;

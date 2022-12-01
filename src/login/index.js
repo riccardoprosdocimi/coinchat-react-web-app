@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link, Navigate, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {loginThunk} from "../services/users-thunks";
+import {loginEmailThunk, loginThunk} from "../services/users-thunks";
 
 const Login = () => {
     const {currentUser} = useSelector(state => state.users);
@@ -22,17 +22,17 @@ const Login = () => {
     const handleContinueBtn = () => {  // TODO: handle error
         try {
             setError(null);
-            const loginUser = {email};
-            dispatch(loginThunk(loginUser));
-            setValidUsername(true);
+            dispatch(loginEmailThunk(email));
+            //setValidUsername(true);
         } catch (e) {
+            console.log('here')
             setError('Invalid username');
         }
     };
     const handleLoginBtn = () => {  // TODO: handle error
         try {
             setError(null);
-            const loginUser = {password};
+            const loginUser = {email, password};
             dispatch(loginThunk(loginUser));
             navigate('/profile');
         } catch (e) {

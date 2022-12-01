@@ -86,21 +86,21 @@ const Register = () => {
         } else {
             setError(null);
             const newUser = {
-                banner,
-                avatar,
-                firstName,
-                lastName,
-                bio,
-                city,
-                address,
-                website,
-                birthday,
-                email,
-                handle,
-                countryCode,
-                number,
-                password,
-                accountType
+                "banner": banner,
+                "avatar": avatar,
+                "firstName": firstName,
+                "lastName": lastName,
+                "bio": bio,
+                "city": city,
+                "address": address,
+                "website": website,
+                "birthday": birthday,
+                "email": email,
+                "handle": handle,
+                "countryCode": countryCode,
+                "number": number,
+                "password": password,
+                "accountType": accountType
             };
             dispatch(registerThunk(newUser));
         }
@@ -115,42 +115,42 @@ const Register = () => {
                     Create your CoinChat account
                 </h1>
                 <br/>
-                <div className="position-relative">
-                    <img src="/images/opacity.jpeg"
-                         className="opacity-50 position-absolute"
-                         width="100%"
-                         height={250}
-                         alt="null"/>
-                    <img src={`/images/${banner}`}
-                         className="opacity-50"
-                         width="100%"
-                         height={250}
-                         alt="user's profile banner"/>
-                </div>
-                <div className="position-relative">
-                    <img src="/images/opacity.jpeg"
-                         className="rounded-circle wd-profile-nudge-up position-absolute"
-                         width={200}
-                         height={200}
-                         alt="null"/>
-                    <img src={`/images/${avatar}`}
-                         className="rounded-circle wd-profile-nudge-up position-absolute opacity-50"
-                         width={200}
-                         height={200}
-                         alt="user's avatar"/>
-                    <button className="wd-clear-button-styling position-absolute">
-                        <i className="bi bi-circle-fill position-absolute wd-circle-avatar-overlap opacity-50 hstack"/>
-                        <i className="bi bi-camera position-absolute wd-camera-avatar-overlap opacity-75 hstack"/>
-                    </button>
-                    <button className="wd-clear-button-styling position-absolute">
-                        <i className="bi bi-circle-fill position-absolute wd-circle-camera-banner-overlap opacity-50 hstack"/>
-                        <i className="bi bi-camera position-absolute wd-camera-banner-overlap opacity-75 hstack"/>
-                    </button>
-                    <button className="wd-clear-button-styling position-absolute">
-                        <i className="bi bi-circle-fill position-absolute wd-circle-x-banner-overlap opacity-50 hstack"/>
-                        <i className="bi bi-x position-absolute wd-x-banner-overlap opacity-75 hstack"/>
-                    </button>
-                </div>
+                {/*<div className="position-relative">*/}
+                {/*    <img src="/images/opacity.jpeg"*/}
+                {/*         className="opacity-50 position-absolute"*/}
+                {/*         width="100%"*/}
+                {/*         height={250}*/}
+                {/*         alt="null"/>*/}
+                {/*    <img src={`/images/profile-banner.jpg`}*/}
+                {/*         className="opacity-50"*/}
+                {/*         width="100%"*/}
+                {/*         height={250}*/}
+                {/*         alt="user's profile banner"/>*/}
+                {/*</div>*/}
+                {/*<div className="position-relative">*/}
+                {/*    <img src="/images/opacity.jpeg"*/}
+                {/*         className="rounded-circle wd-profile-nudge-up position-absolute"*/}
+                {/*         width={200}*/}
+                {/*         height={200}*/}
+                {/*         alt="null"/>*/}
+                {/*    <img src={`/images/profile-picture.jpg`}*/}
+                {/*         className="rounded-circle wd-profile-nudge-up position-absolute opacity-50"*/}
+                {/*         width={200}*/}
+                {/*         height={200}*/}
+                {/*         alt="user's avatar"/>*/}
+                {/*    <button className="wd-clear-button-styling position-absolute">*/}
+                {/*        <i className="bi bi-circle-fill position-absolute wd-circle-avatar-overlap opacity-50 hstack"/>*/}
+                {/*        <i className="bi bi-camera position-absolute wd-camera-avatar-overlap opacity-75 hstack"/>*/}
+                {/*    </button>*/}
+                {/*    <button className="wd-clear-button-styling position-absolute">*/}
+                {/*        <i className="bi bi-circle-fill position-absolute wd-circle-camera-banner-overlap opacity-50 hstack"/>*/}
+                {/*        <i className="bi bi-camera position-absolute wd-camera-banner-overlap opacity-75 hstack"/>*/}
+                {/*    </button>*/}
+                {/*    <button className="wd-clear-button-styling position-absolute">*/}
+                {/*        <i className="bi bi-circle-fill position-absolute wd-circle-x-banner-overlap opacity-50 hstack"/>*/}
+                {/*        <i className="bi bi-x position-absolute wd-x-banner-overlap opacity-75 hstack"/>*/}
+                {/*    </button>*/}
+                {/*</div>*/}
                 <div className="position-relative wd-profile-nudge-down">
                     <hr/>
                     <h6>
@@ -176,8 +176,7 @@ const Register = () => {
                                    aria-label="First name"
                                    title="Please enter your first name here"
                                    value={firstName}
-                                   onChange={changeFirstName}
-                                   required/>
+                                   onChange={changeFirstName}/>
                         </div>
                         <div className="col">
                             <label htmlFor="last-name"
@@ -191,8 +190,7 @@ const Register = () => {
                                    aria-label="Last name"
                                    title="Please enter your last name here"
                                    value={lastName}
-                                   onChange={changeLastName}
-                                   required/>
+                                   onChange={changeLastName}/>
                         </div>
                     </div>
                     <br/>
@@ -279,8 +277,7 @@ const Register = () => {
                            id="birthday"
                            title="Please enter your birthdate here"
                            value={birthday}
-                           onChange={changeBirthday}
-                           required/>
+                           onChange={changeBirthday}/>
                     <br/>
                     <hr/>
                     <label htmlFor="email"
@@ -293,8 +290,7 @@ const Register = () => {
                            placeholder="name@example.com"
                            title="Please enter your email address here"
                            value={email}
-                           onChange={changeEmail}
-                           required/>
+                           onChange={changeEmail}/>
                     <br/>
                     <label className="visually-hidden"
                            htmlFor="username">
@@ -310,8 +306,7 @@ const Register = () => {
                                placeholder="Username*"
                                title="Please enter your username here"
                                value={handle}
-                               onChange={changeHandle}
-                               required/>
+                               onChange={changeHandle}/>
                     </div>
                     <br/>
                     <div className="row g-5">
@@ -370,16 +365,14 @@ const Register = () => {
                            placeholder="Password*"
                            title="Please enter your password here"
                            value={password}
-                           onChange={changePassword}
-                           required/>
+                           onChange={changePassword}/>
                     <br/>
                     <input type="password"
                            className="form-control form-control-lg"
                            placeholder="Confirm password*"
                            title="Please re-enter your password here"
                            value={validatePassword}
-                           onChange={changeValidatePassword}
-                           required/>
+                           onChange={changeValidatePassword}/>
                     <br/>
                     <hr/>
                     <label htmlFor="account-type"
@@ -390,8 +383,7 @@ const Register = () => {
                             className="form-select form-select-lg"
                             title="Please select which account type you want to create"
                             value={accountType}
-                            onChange={changeAccountType}
-                            required>
+                            onChange={changeAccountType}>
                         <option value={null} selected disabled>
                             Please select the account type
                         </option>
