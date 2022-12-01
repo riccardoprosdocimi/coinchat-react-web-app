@@ -7,7 +7,7 @@ import {CoinDataThunk, CoinMCThunk} from "../services/detail-thunks";
 import {useDispatch} from "react-redux";
 import AboutArea from "./about-area";
 
-const DetailScreen = () => {
+const Detail = () => {
     let [searchParams] = useSearchParams();
     const coinID = searchParams.get("coinID");
     const dispatch = useDispatch();
@@ -31,4 +31,4 @@ const DetailScreen = () => {
         </div>
     );
 }
-export default DetailScreen;
+export default Detail;

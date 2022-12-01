@@ -21,10 +21,10 @@ let formatPhoneNumber = (str) => {
     return null;
 }
 
-const ProfileScreen = () => {
+const Profile = () => {
+    const {currentUser} = useSelector(state => state.users);  // TODO: just keep this one?
     const location = useLocation();
-    const {currentUser} = useSelector(state => state.users);
-    const profile = useSelector(state => state.profile);
+    const profile = useSelector(state => state.profile);  // TODO: instead of this one?
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -139,4 +139,4 @@ const ProfileScreen = () => {
     )
 }
 
-export default ProfileScreen
+export default Profile

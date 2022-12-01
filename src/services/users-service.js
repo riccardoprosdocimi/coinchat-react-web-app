@@ -26,7 +26,7 @@ export const updateUser = async user => {
     return user;
 };
 export const login = async user => {
-    const response = await axios.post(`${USERS_API}/login`, user);
+    const response = await api.post(`${USERS_API}/login`, user);
     return response.data;
 };
 export const logout = async () => {
