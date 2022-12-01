@@ -15,6 +15,8 @@ import {
 import {Line} from 'react-chartjs-2';
 
 import {useDispatch, useSelector} from "react-redux";
+import {Link, useSearchParams} from "react-router-dom";
+import {CoinDataThunk, CoinMCThunk} from "../services/detail-thunks";
 
 
 ChartJS.register(
@@ -32,12 +34,18 @@ ChartJS.register(
 
 const LineChartArea = () => {
 
-
+    let [searchParams] = useSearchParams();
     const {marketData, fetching} = useSelector((state) => {
         return state.coinMarketChart;
     });
     let [coinPrice, setCoinPrice] = useState(marketData.prices[marketData.prices.length - 1][1])
 
+    const dispatch = useDispatch();
+    useEffect(
+        () => {
+            dispatch(CoinMCThunk({coinID: searchParams.get("coinID"), days: searchParams.get("days")}));
+        }, [dispatch, searchParams]
+    )
     useEffect(() => {
         setCoinPrice(marketData.prices[marketData.prices.length - 1][1])
     }, [marketData.prices[marketData.prices.length - 1][1]])
@@ -140,9 +148,21 @@ const LineChartArea = () => {
             <div id={"timeRangeNavigation"} className={"d-flex col-8"}>
                 <h3 className={"fw-bold ms-5"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
                 <ul className="nav nav-pills ms-auto">
-                    <a className="nav-link active" aria-current="page" href="#">24h</a>
-                    <a className="nav-link" href="#">1W</a>
-                    <a className="nav-link" href="#">1M</a>
+                    <Link to={{
+                        pathname: '.',
+                        search: "coinID=" + searchParams.get("coinID") + "&days=1"
+                    }} className={`nav-link ${searchParams.get("days") === null || searchParams.get("days") === '1' ? 'active':''}`}
+                    >24h</Link>
+                    <Link to={{
+                        pathname: '.',
+                        search: "coinID=" + searchParams.get("coinID") + "&days=7"
+                    }} className={`nav-link ${searchParams.get("days") === '7' ? 'active':''}`}
+                    >1W</Link>
+                    <Link to={{
+                        pathname: '.',
+                        search: "coinID=" + searchParams.get("coinID") + "&days=30"
+                    }} className={`nav-link ${searchParams.get("days") === '30' ? 'active':''}`}
+                    >1M</Link>
                 </ul>
             </div>
             <div id="price_trend_chart" className={"col-8 mt-2"}>

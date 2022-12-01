@@ -11,10 +11,10 @@ export const getCoinData = async (coinID) => {
 }
 
 
-export const getCoinMC = async (coinID) => {
+export const getCoinMC = async (coinID, days) => {
     if (coinID.length === 0) {
         return {}
     }
-    const response = await axios.get(`${CoinMarketChartAPI}${coinID}`)
+    const response = await axios.get(`${CoinMarketChartAPI}${coinID}&days=${days}`)
     return response.data;
 }

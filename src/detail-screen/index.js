@@ -3,7 +3,7 @@ import LineChartArea from "./line-chart-area";
 import CommentArea from "./comment-area";
 import HeadArea from "./head-area";
 import {useSearchParams} from "react-router-dom";
-import {CoinDataThunk, CoinMCThunk} from "../services/detail-thunks";
+import {CoinDataThunk} from "../services/detail-thunks";
 import {useDispatch} from "react-redux";
 import AboutArea from "./about-area";
 
@@ -13,7 +13,6 @@ const Detail = () => {
     const dispatch = useDispatch();
     useEffect(()=>{
         dispatch(CoinDataThunk(searchParams.get("coinID")));
-        dispatch(CoinMCThunk(searchParams.get("coinID")))
     },[dispatch, searchParams])
 
     if (coinID === null || coinID.length === 0) {
