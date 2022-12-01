@@ -108,8 +108,8 @@ const ProfileScreen = () => {
             <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
                 <ul className="mt-4 nav nav-pills nav-fill">
                     <li className={'nav-item'}>
-                        <Link to={'/profile/comments'}
-                              className={`nav-link ${location.pathname.indexOf('comments') >= 0
+                        <Link to={'/profile'}
+                              className={`nav-link ${location.pathname === '/profile' 
                                                      ? 'active' : ''}`}>
                             Comments
                         </Link>
@@ -130,7 +130,7 @@ const ProfileScreen = () => {
                     </li>
                 </ul>
                 <Routes>
-                    <Route path={'/comments'} element={<PostList/>}/>
+                    <Route path={'/'} element={<PostList/>}/>
                     <Route path={'/reactions'} element={''}/>
                     <Route path={'/watchlist'} element={<WatchListTable/>}/>
                 </Routes>

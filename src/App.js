@@ -14,8 +14,8 @@ import usersReducer from "./reducers/users-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
-import WatchlistReducer from "./watchlist-table/reducers/watchlist-reducer";
 import CurrentUser from "./users/current-user";
+import WatchlistReducer from "./reducers/watchlist-reducer";
 
 const store = configureStore({
      reducer: {
