@@ -5,7 +5,7 @@ import {
     logoutThunk,
     registerThunk,
     profileThunk,
-    deleteUserThunk, updateUserThunk
+    deleteUserThunk, updateUserThunk, createUserThunk
 } from "../services/users-thunks";
 
 const initialState = {
@@ -19,6 +19,10 @@ const usersReducer = createSlice({
     name: 'users',
     initialState,
     extraReducers: {
+        [createUserThunk.fulfilled]: (state, {payload}) => {
+            state.loading = false;
+            state.users.push(payload);
+        },
         [registerThunk.pending]: state => {
             state.loading = true;
             state.currentUser = null;
@@ -69,14 +73,14 @@ const usersReducer = createSlice({
             state.loading = false;
             state.currentUser = action.payload;
         },
-        [profileThunk.fulfilled]: (state, action) => {
-            state.loading = false;
-            state.currentUser = action.payload;
-        },
         [profileThunk.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.payload;
             state.currentUser = null;
+        },
+        [profileThunk.fulfilled]: (state, action) => {
+            state.loading = false;
+            state.currentUser = action.payload;
         }
     }
 });

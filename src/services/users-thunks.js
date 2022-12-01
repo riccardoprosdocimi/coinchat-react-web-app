@@ -1,12 +1,16 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import * as service from "./users-service";
 
-export const registerThunk = createAsyncThunk(
+export const createUserThunk = createAsyncThunk(
     'users/createUser',
-    async user => {
-        return await service.createUser(user);
-    }
+    async user => await service.createUser(user)
 );
+export const registerThunk = createAsyncThunk(
+    'users/register',
+    async (user) => {
+        return await service.register(user)
+    }
+)
 export const findAllUsersThunk = createAsyncThunk(
     'users/findAllUsers',
     async () => await service.findAllUsers()

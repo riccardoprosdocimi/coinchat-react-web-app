@@ -21,9 +21,10 @@ let formatPhoneNumber = (str) => {
     return null;
 }
 
-function ProfileComponent() {
-    const location = useLocation()
-    const profile = useSelector(state => state.profile)
+const ProfileScreen = () => {
+    const location = useLocation();
+    const {currentUser} = useSelector(state => state.users);
+    const profile = useSelector(state => state.profile);
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -138,4 +139,4 @@ function ProfileComponent() {
     )
 }
 
-export default ProfileComponent
+export default ProfileScreen
