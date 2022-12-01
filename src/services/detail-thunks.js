@@ -10,5 +10,5 @@ export const CoinDataThunk = createAsyncThunk(
 
 export const CoinMCThunk = createAsyncThunk(
     'getCoinMC',
-    (coinID) => getCoinMC(coinID)
+    (arg) => getCoinMC(arg.coinID, arg.days)
 )
