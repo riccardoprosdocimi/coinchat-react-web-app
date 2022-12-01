@@ -1,5 +1,5 @@
-import {Link, useLocation} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {Link, useLocation, useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,12 +8,19 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Dropdown, DropdownButton} from "react-bootstrap";
+import {logoutThunk} from "../services/users-thunks";
 
 function NavigationBar() {
     const {currentUser} = useSelector(state => state.users);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const active = paths[1];
+    const navigate = useNavigate();
+    const dispatch = useDispatch;
+    const handleLogout = () => {
+        dispatch(logoutThunk());
+        navigate('/')
+    };
 
     if (active === 'login') {
         return null;
@@ -74,17 +81,46 @@ function NavigationBar() {
                                             </NavDropdown.Item>
                                         </NavDropdown>
                                     </Nav>
-                                    <DropdownButton
-                                        className="wd-dropdown-btn"
-                                        align="end"
-                                        title="Avatar"
-                                        id="dropdown-menu-align-end">
-                                        <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                                        <Dropdown.Item eventKey="2">Another action</Dropdown.Item>
-                                        <Dropdown.Item eventKey="3">Something else here</Dropdown.Item>
-                                        <Dropdown.Divider/>
-                                        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-                                    </DropdownButton>
+                                    {
+                                        !currentUser &&
+                                        <Nav>
+                                            <Nav.Link>
+                                                <Link to="login"
+                                                      className="wd-nav-bar">
+                                                    Login
+                                                </Link>
+                                            </Nav.Link>
+                                        </Nav>
+                                    }
+                                    {
+                                        currentUser &&
+                                        <DropdownButton
+                                            className="wd-dropdown-btn"
+                                            align="end"
+                                            title={<img className="{rounded-circle border"
+                                                        height={48}
+                                                        width={48}
+                                                        src={currentUser && currentUser.avatar}
+                                                        alt="user's avatar"/>}
+                                            id="dropdown-menu-align-end">
+                                            <Dropdown.Item eventKey="1">
+                                                <Link to="profile">
+                                                    Profile
+                                                </Link>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="2">
+                                                Another action
+                                            </Dropdown.Item>
+                                            <Dropdown.Item eventKey="3">
+                                                Something else here
+                                            </Dropdown.Item>
+                                            <Dropdown.Divider/>
+                                            <Dropdown.Item eventKey="4"
+                                                           onClick={handleLogout}>
+                                                Logout
+                                            </Dropdown.Item>
+                                        </DropdownButton>
+                                    }
                                     {/*<form className="d-flex">*/}
                                     {/*    <button className={'bg-transparent border-0'}>*/}
                                     {/*        <i style={{'color' : '#ffc300'}}*/}

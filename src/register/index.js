@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/users-thunks";
 import {Navigate} from "react-router-dom";
 
-const RegisterScreen = () => {
+const Register = () => {
     const {currentUser} = useSelector(state => state.users);
     const [error, setError] = useState(null);
     const [banner, setBanner] = useState('');
@@ -83,26 +83,27 @@ const RegisterScreen = () => {
         if (password !== validatePassword) {
             setError('Passwords must match');
             return
+        } else {
+            setError(null);
+            const newUser = {
+                banner,
+                avatar,
+                firstName,
+                lastName,
+                bio,
+                city,
+                address,
+                website,
+                birthday,
+                email,
+                handle,
+                countryCode,
+                number,
+                password,
+                accountType
+            };
+            dispatch(registerThunk(newUser));
         }
-        setError(null);
-        const newUser = {
-            banner,
-            avatar,
-            firstName,
-            lastName,
-            bio,
-            city,
-            address,
-            website,
-            birthday,
-            email,
-            handle,
-            countryCode,
-            number,
-            password,
-            accountType
-        };
-        dispatch(registerThunk(newUser));
     };
 
     if (currentUser) {
@@ -417,4 +418,4 @@ const RegisterScreen = () => {
         );
     }
 };
-export default RegisterScreen;
+export default Register;

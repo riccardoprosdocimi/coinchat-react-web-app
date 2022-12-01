@@ -11,7 +11,7 @@ const search_store = configureStore({
     }
 })
 
-const SearchScreen = () => {
+const Search = () => {
     return(
 
         <Provider store={search_store}>
@@ -27,4 +27,4 @@ const SearchScreen = () => {
 
 }
 
-export default SearchScreen;
+export default Search;
