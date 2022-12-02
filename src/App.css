@@ -27,12 +27,36 @@ h4, h5, h6, p {
   --bs-btn-hover-color: #000814 !important;
   --bs-btn-hover-bg: #ffc300 !important;
   --bs-btn-hover-border-color: #ffc300 !important;
-  --bs-btn-focus-shadow-rgb: 25, 135, 84 !important;
+  --bs-btn-focus-shadow-rgb: rgba(25, 135, 84) !important;
   --bs-btn-active-color: #000814 !important;
   --bs-btn-bg: #ffd60a !important;
   --bs-btn-border-color: #ffc300 !important;
   --bs-btn-active-bg: #ffb224 !important;
   --bs-btn-active-border-color: #ffb224 !important;
+}
+
+
+.wd-btn-style-negative {
+  --bs-btn-color: #001d3d;
+  --bs-btn-hover-color: #000814;
+  --bs-btn-hover-bg: rgba(224, 224, 224, 0.49);
+  --bs-btn-hover-border-color: #f2f2f2;
+  --bs-btn-focus-shadow-rgb: rgba(25, 135, 84) ;
+  --bs-btn-active-color: #000814 ;
+  /*--bs-btn-bg: #ffd60a !important;*/
+  --bs-btn-border-color: #000814 ;
+  /*--bs-btn-active-bg: #ffb224 !important;*/
+  --bs-btn-active-border-color: #000814 ;
+}
+
+
+.wd-btn-lowlight {
+  --bs-btn-color: #001d3d;
+  --bs-btn-border-color: #001d3d;
+  --bs-btn-hover-color: #000814;
+  --bs-btn-hover-bg: #ffc300;
+  --bs-btn-active-color: #000814;
+  --bs-btn-active-bg: #ffb224;
 }
 /*----------------------------------------home----------------------------------------*/
 .wd-body {
