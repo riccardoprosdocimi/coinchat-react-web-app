@@ -16,6 +16,7 @@ import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
 import CurrentUser from "./users/current-user";
 import WatchlistReducer from "./reducers/watchlist-reducer";
+import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
 
 const store = configureStore({
@@ -25,6 +26,7 @@ const store = configureStore({
                                      coinData: CoinDataReducer,
                                      coinMarketChart: CoinMarketChartReducer,
                                      watchlist: WatchlistReducer,
+                                     coins: HomeReducer,
                                  }
                              });
 
