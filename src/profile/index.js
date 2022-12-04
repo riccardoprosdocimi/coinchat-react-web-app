@@ -3,6 +3,8 @@ import {Link, Route, Routes, useLocation} from "react-router-dom";
 import React from "react";
 import PostList from "./posts/post-list";
 import {useSelector} from "react-redux";
+import Tabs from "react-bootstrap/Tabs";
+import Tab from "react-bootstrap/Tab";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -23,14 +25,12 @@ let formatPhoneNumber = (str) => {
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);  // TODO: just keep this one?
-    const location = useLocation();
-    const profile = useSelector(state => state.profile);  // TODO: instead of this one?
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
-                        <img src={`/images/${profile.bannerPicture}`}
+                        <img src={`/images/b${currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
@@ -39,59 +39,59 @@ const Profile = () => {
                                  'bottom': '5%',
                                  'left': '25%'
                              }}
-                             src={`/images/${profile.profilePicture}`} alt=""/>
+                             src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
                     <div className="card-body">
                         <div className="card-title fw-bold fs-3">
-                            {profile.firstName} {profile.lastName}
+                            {currentUser.firstName} {currentUser.lastName}
                             <span className="fw-light text-secondary fs-5 ps-2">
-                                @{profile.username}
+                                @{currentUser.handle}
                             </span>
                         </div>
                         <p className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{profile.following}</span>
+                                    <span className={'fw-bold pe-2'}>{currentUser.following}</span>
                                     <span className={'text-secondary'}>Following</span>
                                 </div>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{profile.followers}</span>
+                                    <span className={'fw-bold pe-2'}>{currentUser.followers}</span>
                                     <span className={'text-secondary'}>Followers</span>
                                 </div>
                             </div>
                             <div className={'pt-2'}>
-                                {profile.bio}
+                                {currentUser.bio}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-geo-fill pe-2'}></i>
-                                {profile.location}
+                                {currentUser.city}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-globe pe-2'}></i>
-                                <a href={`https://www.${profile.website}`}
+                                <a href={`https://www.${currentUser.website}`}
                                    style={{textDecorationLine: 'none'}}>
-                                    {profile.website}
+                                    {currentUser.website}
                                 </a>
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-calendar3 pe-2'}></i>
-                                {profile.dateJoined}
+                                {currentUser.dateJoined}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-balloon-fill pe-2'}></i>
-                                {profile.dateOfBirth}
+                                {currentUser.birthday}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-telephone-fill pe-2'}></i>
-                                {formatPhoneNumber(profile.phoneNumber)}
+                                {formatPhoneNumber(currentUser.phoneNumber)}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-house-fill pe-2'}></i>
-                                {profile.address}
+                                {currentUser.address}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-person-square pe-2'}></i>
-                                {profile.accountType}
+                                {currentUser.type}
                             </div>
                         </p>
 
@@ -106,34 +106,20 @@ const Profile = () => {
                 </div>
             </div>
             <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
-                <ul className="mt-4 nav nav-pills nav-fill">
-                    <li className={'nav-item'}>
-                        <Link to={'/profile'}
-                              className={`nav-link ${location.pathname === '/profile' 
-                                                     ? 'active' : ''}`}>
-                            Comments
-                        </Link>
-                    </li>
-                    <li className={'nav-item'}>
-                        <Link to={'/profile/reactions'}
-                              className={`nav-link ${location.pathname.indexOf('reactions') >= 0
-                                                     ? 'active' : ''}`}>
-                            Likes/Dislikes
-                        </Link>
-                    </li>
-                    <li className={'nav-item'}>
-                        <Link to={'/profile/watchlist'}
-                              className={`nav-link ${location.pathname.indexOf('watchlist') >= 0
-                                                     ? 'active' : ''}`}>
-                            Watchlist
-                        </Link>
-                    </li>
-                </ul>
-                <Routes>
-                    <Route path={'/'} element={<PostList/>}/>
-                    <Route path={'/reactions'} element={''}/>
-                    <Route path={'/watchlist'} element={<WatchListTable/>}/>
-                </Routes>
+                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="first" title="Watchlist">
+                        <WatchListTable uid={currentUser._id}/>
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="second" title="Comments">
+                        <PostList/>
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="third" title="Reactions">
+                        Likes/Dislikes
+                    </Tab>
+                </Tabs>
             </div>
         </div>
     )

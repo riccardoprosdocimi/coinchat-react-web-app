@@ -41,3 +41,7 @@ export const profile = async () => {
     const response = await axios.post(`${USERS_API}/profile`);
     return response.data;
 };
+export const findUserById = async (uid) => {
+    const response = await api.get(`${USERS_API}/${uid}`)
+    return response.data
+}
