@@ -1,5 +1,5 @@
 import WatchListTable from "../watchlist-table/watchlist-table";
-import {Link, Route, Routes, useLocation} from "react-router-dom";
+import {Link} from "react-router-dom";
 import React from "react";
 import PostList from "./posts/post-list";
 import {useSelector} from "react-redux";
@@ -72,10 +72,6 @@ const Profile = () => {
                                    style={{textDecorationLine: 'none'}}>
                                     {currentUser.website}
                                 </a>
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-calendar3 pe-2'}></i>
-                                {currentUser.dateJoined}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-balloon-fill pe-2'}></i>
