@@ -18,7 +18,7 @@ const PublicProfile = () => {
     useEffect(() => {
         findUserById(uid)
     }, [uid])
-    return(
+    return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
@@ -44,11 +44,13 @@ const PublicProfile = () => {
                         <p className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{publicProfile.following}</span>
+                                    <span
+                                        className={'fw-bold pe-2'}>{publicProfile.following}</span>
                                     <span className={'text-secondary'}>Following</span>
                                 </div>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{publicProfile.followers}</span>
+                                    <span
+                                        className={'fw-bold pe-2'}>{publicProfile.followers}</span>
                                     <span className={'text-secondary'}>Followers</span>
                                 </div>
                             </div>
@@ -65,10 +67,6 @@ const PublicProfile = () => {
                                    style={{textDecorationLine: 'none'}}>
                                     {publicProfile.website}
                                 </a>
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-calendar3 pe-2'}></i>
-                                {publicProfile.dateJoined}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-person-square pe-2'}></i>
