@@ -3,12 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {findWatchlistThunk} from "../services/watchlist-thunks";
 
-function WatchListTable() {
+const WatchListTable = ({uid}) => {
     const {watchlist, loading} = useSelector(state => state.watchlist)
     const dispatch = useDispatch()
     useEffect(() => {
-        //TODO: Input correct uid for watchlist
-        dispatch(findWatchlistThunk('1'))
+        dispatch(findWatchlistThunk(uid))
     }, [])
     return (
         <div className="wd-bg-watchlist rounded-3">
