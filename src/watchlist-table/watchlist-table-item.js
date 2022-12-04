@@ -15,7 +15,7 @@ const percentFormat = new Intl.NumberFormat('en-US', {
     maximumFractionDigits: 2
 })
 
-const WatchlistTableItem =({item}) => {
+const WatchlistTableItem =({item, allowedToRemove}) => {
     const dispatch = useDispatch()
     const removeWatchlistItem = (wid) => {
         dispatch(removeWatchlistThunk(wid))
@@ -66,10 +66,13 @@ const WatchlistTableItem =({item}) => {
                 <td className={'text-center'}>
                     {moneyFormat.format(coin.market_data.current_price.usd)}
                 </td>
-                <td className={'text-center'}>
-                    <i className={'bi bi-x-lg'}
-                       onClick={() => removeWatchlistItem(item._id)}></i>
-                </td>
+                {
+                    allowedToRemove &&
+                    <td className={'text-center'}>
+                        <i className={'bi bi-x-lg'}
+                           onClick={() => removeWatchlistItem(item._id)}></i>
+                    </td>
+                }
             </tr>
         )
     }

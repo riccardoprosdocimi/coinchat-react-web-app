@@ -87,7 +87,7 @@ const PublicProfile = () => {
                 <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="first" title="Watchlist">
-                        <WatchListTable uid={uid}/>
+                        <WatchListTable uid={uid} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Comments">

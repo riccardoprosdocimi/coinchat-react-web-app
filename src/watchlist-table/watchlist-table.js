@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {findWatchlistThunk} from "../services/watchlist-thunks";
 
-const WatchListTable = ({uid}) => {
+const WatchListTable = ({uid, allowedToRemove}) => {
     const {watchlist, loading} = useSelector(state => state.watchlist)
     const dispatch = useDispatch()
     useEffect(() => {
@@ -17,10 +17,21 @@ const WatchListTable = ({uid}) => {
             <table className="table table-responsive table-hover border-dark mb-0">
                 <thead>
                 <tr>
-                    <th scope="col" className={'text-center'}>Coin</th>
-                    <th scope="col" className={'text-center'}>24H Change</th>
-                    <th scope="col" className={'text-center'}>Current Price</th>
-                    <th scope="col" className={'text-center'}>Remove</th>
+                    <th scope="col" className={'text-center'}>
+                        Coin
+                    </th>
+                    <th scope="col" className={'text-center'}>
+                        24H Change
+                    </th>
+                    <th scope="col" className={'text-center'}>
+                        Current Price
+                    </th>
+                    {
+                        allowedToRemove &&
+                        <th scope="col" className={'text-center'}>
+                            Remove
+                        </th>
+                    }
                 </tr>
                 </thead>
                 <tbody>
@@ -31,7 +42,11 @@ const WatchListTable = ({uid}) => {
                     </tr>
                 }
                 {
-                    watchlist.map(item => <WatchlistTableItem key={item._id} item={item}/> )
+                    watchlist.map(
+                        item =>
+                            <WatchlistTableItem key={item._id}
+                                                item={item}
+                                                allowedToRemove={allowedToRemove}/> )
                 }
                 </tbody>
             </table>
