@@ -34,9 +34,9 @@ const PublicProfile = () => {
                              src={`/images/p${publicProfile.avatar}.jpg`} alt=""/>
                     </div>
                     <div className="card-body">
-                        <div className="card-title fw-bold fs-3">
+                        <div className="card-title fw-bold fs-5">
                             {publicProfile.firstName} {publicProfile.lastName}
-                            <span className="fw-light text-secondary fs-5 ps-2">
+                            <span className="fw-light text-secondary fs-6 ps-2">
                                 @{publicProfile.handle}
                             </span>
                         </div>
