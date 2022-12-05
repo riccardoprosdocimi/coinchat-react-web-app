@@ -5,18 +5,17 @@ import PostList from "../profile/posts/post-list";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import * as userService from "../services/users-service";
+import {useDispatch, useSelector} from "react-redux";
+import {findUserByIdThunk} from "../services/users-thunks";
 
 const PublicProfile = () => {
     const {uid} = useParams()
-    const [publicProfile, setPublicProfile] = useState({})
-    const findUserById = (uid) =>
-        userService.findUserById(uid)
-            .then(publicProfile => setPublicProfile(publicProfile))
-            .catch(e => alert(e))
+    const {publicProfile} = useSelector(state => state.users)
+    const dispatch = useDispatch()
     const handleFollowBtn = () => {
     }
     useEffect(() => {
-        findUserById(uid)
+        dispatch(findUserByIdThunk(uid))
     }, [uid])
     return (
         <div className={'row'}>
