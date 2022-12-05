@@ -4,11 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {loginEmailThunk, loginThunk} from "../services/users-thunks";
 
 const Login = () => {
-    const {currentUser} = useSelector(state => state.users);
+    const {currentUser, error} = useSelector(state => state.users);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [validUsername, setValidUsername] = useState(false);
-    const [error, setError] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
     const changeEmail = event => {
         const newEmail = event.target.value;
         setEmail(newEmail);
@@ -19,24 +19,27 @@ const Login = () => {
     };
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleContinueBtn = () => {  // TODO: handle error
-        try {
-            setError(null);
-            dispatch(loginEmailThunk(email));
-            //setValidUsername(true);
-        } catch (e) {
-            console.log('here')
-            setError('Invalid username');
+    const handleContinueBtn = () => {
+        if (email === '') {
+            setErrorMessage('Please enter a valid username')
+        } else {
+            try {
+                setErrorMessage(null);
+                dispatch(loginEmailThunk({email}));
+                setValidUsername(true);
+            } catch (e) {
+                setErrorMessage('Invalid username');
+            }
         }
     };
-    const handleLoginBtn = () => {  // TODO: handle error
+    const handleLoginBtn = () => {
+        const loginUser = {email, password};
         try {
-            setError(null);
-            const loginUser = {email, password};
+            setErrorMessage(null);
             dispatch(loginThunk(loginUser));
             navigate('/profile');
         } catch (e) {
-            setError('Invalid password');
+            setErrorMessage('Invalid password');
         }
     };
 
@@ -70,7 +73,7 @@ const Login = () => {
                                     <div>
                                         <label htmlFor="login-fields-username"
                                                className="col-form-label col-form-label-lg mb-0 pb-0">
-                                            Email
+                                            Username
                                         </label>
                                         <input type="email"
                                                className="form-control form-control-lg"
@@ -82,7 +85,7 @@ const Login = () => {
                                     </div>
                                 }
                                 {
-                                    validUsername &&
+                                    !error &&
                                     <div>
                                         <label htmlFor="login-fields-password"
                                                className="col-form-label col-form-label-lg mb-0 pb-0">
@@ -109,6 +112,12 @@ const Login = () => {
                                     </div>
                                 }
                             </form>
+                            {
+                                errorMessage &&
+                                <div className="alert alert-danger mt-1">
+                                    {errorMessage}
+                                </div>
+                            }
                             {
                                 !validUsername &&
                                 <div>

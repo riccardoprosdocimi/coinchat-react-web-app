@@ -16,7 +16,7 @@ function NavigationBar() {
     const paths = pathname.split('/');
     const active = paths[1];
     const navigate = useNavigate();
-    const dispatch = useDispatch;
+    const dispatch = useDispatch();
     const handleLogout = () => {
         dispatch(logoutThunk());
         navigate('/')
@@ -84,11 +84,9 @@ function NavigationBar() {
                                     {
                                         !currentUser &&
                                         <Nav>
-                                            <Nav.Link>
-                                                <Link to="login"
+                                            <Nav.Link href="login"
                                                       className="wd-nav-bar">
                                                     Login
-                                                </Link>
                                             </Nav.Link>
                                         </Nav>
                                     }

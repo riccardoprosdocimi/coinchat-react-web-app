@@ -4,19 +4,17 @@ import New from "./new"
 
 function Home() {
     return(
-        <body className="wd-body">
-            <div className="container">
-                <div className="row">
-                    <div className="col-8">
-                        <MainComponent/>
-                    </div>
-                    <div className="col-4">
-                        <RightComponent/>
-                        <New/>
-                    </div>
-               </div>
+        <div className="container">
+            <div className="row">
+                <div className="col-8">
+                    <MainComponent/>
+                </div>
+                <div className="col-4">
+                    <RightComponent/>
+                    <New/>
+                </div>
            </div>
-        </body>
+       </div>
     );
 }
 export default Home;

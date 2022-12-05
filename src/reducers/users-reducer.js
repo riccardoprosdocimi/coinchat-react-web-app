@@ -15,6 +15,7 @@ const initialState = {
     loading: false,
     users: [],
     currentUser: null,
+    validUsername: false,
     error: null
 }
 
@@ -63,13 +64,14 @@ const UsersReducer = createSlice({
                 ...action.payload
             };
         },
-        [loginEmailThunk.fulfilled]: (state, action) => {
+        [loginEmailThunk.fulfilled]: state => {
             state.loading = false;
-            state.currentUser = action.payload;
+            state.currentUser = null;
+            state.error = null
         },
-        [loginEmailThunk.rejected]: (state, action) => {
+        [loginEmailThunk.rejected]: state => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = 'Invalid email';
             state.currentUser = null;
         },
         [loginThunk.fulfilled]: (state, action) => {
@@ -81,9 +83,9 @@ const UsersReducer = createSlice({
             state.error = action.payload;
             state.currentUser = null;
         },
-        [logoutThunk.fulfilled]: (state, action) => {
+        [logoutThunk.fulfilled]: state => {
             state.loading = false;
-            state.currentUser = action.payload;
+            state.currentUser = null;
         },
         [profileThunk.rejected]: (state, action) => {
             state.loading = false;

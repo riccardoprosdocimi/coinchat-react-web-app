@@ -43,7 +43,7 @@ const Profile = () => {
                     </div>
                     <div className="card-body">
                         <div className="card-title fw-bold fs-3">
-                            {profile.firstName} {profile.lastName}
+                            Welcome {currentUser.email}
                             <span className="fw-light text-secondary fs-5 ps-2">
                                 @{profile.username}
                             </span>
