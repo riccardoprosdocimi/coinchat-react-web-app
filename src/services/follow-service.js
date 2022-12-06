@@ -1,15 +1,16 @@
 import axios from "axios";
 const API_BASE = process.env.REACT_APP_API_BASE
+const FOLLOWS_API = `${API_BASE}/follows`
 const USERS_API = `${API_BASE}/users`
 
 const api = axios.create({withCredentials: true})
 
-export const userFollowsUser = async (uid, ouid) => {
-    const response = await api.post(`${USERS_API}/${uid}/follow/${ouid}`)
+export const userFollowsUser = async (follow) => {
+    const response = await api.post(`${FOLLOWS_API}`, follow)
     return response.data
 }
-export const userUnfollowsUser = async (uid, ouid) => {
-    const response = await api.delete(`${USERS_API}/${uid}/follow/${ouid}`)
+export const userUnfollowsUser = async (fid) => {
+    const response = await api.delete(`${FOLLOWS_API}/${fid}`)
     return response.data
 }
 export const findUsersFollowingUser = async (uid) => {

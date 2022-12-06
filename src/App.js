@@ -14,6 +14,7 @@ import usersReducer from "./reducers/users-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
+import GeneralCommentsReducer from "./reducers/comment-reducer"
 import CurrentUser from "./users/current-user";
 import WatchlistReducer from "./reducers/watchlist-reducer";
 import HomeReducer from "./reducers/home-reducer";
@@ -29,6 +30,7 @@ const store = configureStore({
                                      coinMarketChart: CoinMarketChartReducer,
                                      watchlist: WatchlistReducer,
                                      coins: HomeReducer,
+                                     comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
                                  }
                              });
@@ -36,8 +38,8 @@ const store = configureStore({
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
-                <CurrentUser>
+            <CurrentUser>
+                <BrowserRouter>
                     <NavigationBar/>
                     <div className={'container-fluid'}>
                         <Routes>
@@ -63,8 +65,8 @@ function App() {
                                    element={<Register/>}/>
                         </Routes>
                     </div>
-                </CurrentUser>
-            </BrowserRouter>
+                </BrowserRouter>
+            </CurrentUser>
         </Provider>
     );
 }

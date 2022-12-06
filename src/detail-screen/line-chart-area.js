@@ -16,7 +16,7 @@ import {Line} from 'react-chartjs-2';
 
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useSearchParams} from "react-router-dom";
-import {CoinDataThunk, CoinMCThunk} from "../services/detail-thunks";
+import {CoinMCThunk} from "../services/detail-thunks";
 
 
 ChartJS.register(
@@ -52,6 +52,7 @@ const LineChartArea = () => {
 
     const options = {
         responsive: true,
+        // maintainAspectRatio: false,
         elements: {
             point: {
                 pointStyle: "circle",
@@ -144,8 +145,8 @@ const LineChartArea = () => {
         fetching
             ?<h4>Loading</h4>
             :
-        <div className="d-flex flex-column align-items-center">
-            <div id={"timeRangeNavigation"} className={"d-flex col-8"}>
+        <div className="d-flex flex-column">
+            <div id={"timeRangeNavigation"} className={"d-flex "}>
                 <h3 className={"fw-bold ms-5"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
                 <ul className="nav nav-pills ms-auto">
                     <Link to={{
@@ -165,7 +166,7 @@ const LineChartArea = () => {
                     >1M</Link>
                 </ul>
             </div>
-            <div id="price_trend_chart" className={"col-8 mt-2"}>
+            <div id="price_trend_chart" className={"mt-2"}>
                 <Line options={options} data={data}/>
             </div>
         </div>

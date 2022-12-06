@@ -8,6 +8,8 @@ const HeadArea = () => {
         return state.coinData;
     });
 
+    // TODO: get watch state from database
+    const [watchState, setWatchState] = useState(false)
     const dispatch = useDispatch()
     const addWatchlistItem = () => {
         //TODO: change uid to current user uid
@@ -24,8 +26,6 @@ const HeadArea = () => {
         setWatchState(false);
     }
 
-    // TODO: get watch state from database
-    const [watchState, setWatchState] = useState(false)
 
 
 
@@ -33,8 +33,8 @@ const HeadArea = () => {
         fetching?
             <h4>Loading</h4>
             :
-        <div className="d-flex justify-content-center pt-4 row">
-            <div className="container col-8">
+        <div className="d-flex  pt-4 row">
+            <div className="col-8">
                 <h3 className={"float-start"}><img src={coinData.image.large} width={"36px"} alt={"The icon of this coin"}/> {coinData.name}  {coinData.symbol}</h3>
                 {
                     !watchState ?
