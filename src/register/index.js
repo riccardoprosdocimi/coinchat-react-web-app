@@ -16,7 +16,7 @@ const Register = () => {
     const [website, setWebsite] = useState('');
     const [birthday, setBirthday] = useState(null);
     const [email, setEmail] = useState('');
-    const [handle, setHandle] = useState('');
+    const [username, setUsername] = useState('');
     const [countryCode, setCountryCode] = useState(null);
     const [number, setNumber] = useState(null);
     const [password, setPassword] = useState('');
@@ -54,9 +54,9 @@ const Register = () => {
         const newEmail = event.target.value;
         setEmail(newEmail);
     };
-    const changeHandle = event => {
-        const newHandle = event.target.value;
-        setHandle(newHandle);
+    const changeUsername = event => {
+        const newUsername = event.target.value;
+        setUsername(newUsername);
     };
     const changeCountryCode = event => {
         const newCountryCode = event.target.value;
@@ -82,11 +82,11 @@ const Register = () => {
     const handleRegisterBtn = () => {
         if (password !== validatePassword) {
             setError('Passwords must match');
-            return
+            return;
         } else {
             setError(null);
             const newUser = {
-                "banner": banner,
+                "banner":  banner,
                 "avatar": avatar,
                 "firstName": firstName,
                 "lastName": lastName,
@@ -96,7 +96,7 @@ const Register = () => {
                 "website": website,
                 "birthday": birthday,
                 "email": email,
-                "handle": handle,
+                "handle": username,
                 "countryCode": countryCode,
                 "number": number,
                 "password": password,
@@ -305,8 +305,8 @@ const Register = () => {
                                id="username"
                                placeholder="Username*"
                                title="Please enter your username here"
-                               value={handle}
-                               onChange={changeHandle}/>
+                               value={username}
+                               onChange={changeUsername}/>
                     </div>
                     <br/>
                     <div className="row g-5">
@@ -387,13 +387,13 @@ const Register = () => {
                         <option value={null} selected disabled>
                             Please select the account type
                         </option>
-                        <option value="PRSN">
+                        <option value="PERSONAL">
                             Personal
                         </option>
-                        <option value="PRO">
+                        <option value="PROFESSIONAL">
                             Professional
                         </option>
-                        <option value="ADMIN">
+                        <option value="ADMINISTRATOR">
                             Administrator
                         </option>
                     </select>

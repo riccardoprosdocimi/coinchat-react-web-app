@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
     findAllUsersThunk,
-    loginEmailThunk,
     loginThunk,
     logoutThunk,
     registerThunk,
@@ -15,7 +14,6 @@ const initialState = {
     loading: false,
     users: [],
     currentUser: null,
-    validUsername: false,
     error: null
 }
 
@@ -64,19 +62,15 @@ const UsersReducer = createSlice({
                 ...action.payload
             };
         },
-        [loginEmailThunk.fulfilled]: state => {
-            state.loading = false;
+        [loginThunk.pending]: state => {
+            state.loading = true;
             state.currentUser = null;
-            state.error = null
-        },
-        [loginEmailThunk.rejected]: state => {
-            state.loading = false;
-            state.error = 'Invalid email';
-            state.currentUser = null;
+            state.error = null;
         },
         [loginThunk.fulfilled]: (state, action) => {
             state.loading = false;
             state.currentUser = action.payload;
+            state.error = null;
         },
         [loginThunk.rejected]: (state, action) => {
             state.loading = false;
@@ -95,6 +89,7 @@ const UsersReducer = createSlice({
         [profileThunk.fulfilled]: (state, action) => {
             state.loading = false;
             state.currentUser = action.payload;
+            state.error = null;
         }
     }
 });

@@ -1,9 +1,5 @@
-import WatchListTable from "../watchlist-table/watchlist-table";
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
-import Tab from "react-bootstrap/Tab";
-import PostList from "../profile/posts/post-list";
-import Tabs from "react-bootstrap/Tabs";
 import {useDispatch, useSelector} from "react-redux";
 import {updateProfile} from '../reducers/profile-reducer'
 
@@ -17,7 +13,8 @@ const EditProfile = () => {
     const [location, setLocation] = useState(profile.location)
     const [website, setWebsite] = useState(profile.website)
     const birthdayData = profile.dateOfBirth.split('/')
-    const [birthday, setBirthday] = useState(birthdayData[2] + "-" + birthdayData[0] + '-' + birthdayData[1])
+    const [birthday, setBirthday] = useState(
+        birthdayData[2] + "-" + birthdayData[0] + '-' + birthdayData[1])
     const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber)
     const [address, setAddress] = useState(profile.address)
     const [accountType, setAccountType] = useState(profile.accountType)
@@ -38,8 +35,7 @@ const EditProfile = () => {
         navigate('/profile')
     }
 
-
-    return(
+    return (
         <div className={'row'}>
             <div className={'col-3'}></div>
             <div className="col-6 pt-2">
@@ -48,7 +44,12 @@ const EditProfile = () => {
                         <img src={`/images/${profile.bannerPicture}`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute rounded-circle img-thumbnail"
-                             style={{'height' : '85%', 'width' : '50%', 'bottom' : '5%', 'left' : '25%'}}
+                             style={{
+                                 'height': '85%',
+                                 'width': '50%',
+                                 'bottom': '5%',
+                                 'left': '25%'
+                             }}
                              src={`/images/${profile.profilePicture}`} alt=""/>
                     </div>
                     <div className={'row pt-1'}>
@@ -68,66 +69,85 @@ const EditProfile = () => {
                     <div className="card-body">
                         <p className="card-text">
                             <div className={'form-group pt-0'}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"name-field"}>Name</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"name-field"}>Name</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
                                            id={"name-field"} value={name}
-                                           onChange={event => {setName(event.target.value)}}/>
+                                           onChange={event => {
+                                               setName(event.target.value)
+                                           }}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"bio-field"}>Bio</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"bio-field"}>Bio</label>
                                     <textarea className={"form-control border-0 ps-2"}
                                               id={"bio-field"} value={bio}
                                               onChange={event => setBio(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"location-field"}>Location</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"location-field"}>Location</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
                                            id={"location-field"} value={location}
                                            onChange={event => setLocation(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"website-field"}>Website</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"website-field"}>Website</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
                                            id={"website-field"} value={website}
                                            onChange={event => setWebsite(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"birthday-field"}>Birthday</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"birthday-field"}>Birthday</label>
                                     <input type={"date"} className={"form-control border-0 ps-2"}
                                            id={"birthday-field"} value={birthday}
                                            onChange={event => setBirthday(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"phone-field"}>Phone Number</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"phone-field"}>Phone Number</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
                                            id={"phone-field"} value={phoneNumber}
                                            onChange={event => setPhoneNumber(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"address-field"}>Address</label>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"address-field"}>Address</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
                                            id={"address-field"} value={address}
                                            onChange={event => setAddress(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'} htmlFor={"account-field"}>Account Type</label>
-                                    <select className={"form-control border-0 ps-2"} id={"account-field"}
-                                           onChange={event => setAccountType(event.target.value)}>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"account-field"}>Account Type</label>
+                                    <select className={"form-control border-0 ps-2"}
+                                            id={"account-field"}
+                                            onChange={event => setAccountType(event.target.value)}>
                                         <option value={profile.accountType}>Admin</option>
                                         <option value="Personal">Personal</option>
                                         <option value="Professional">Professional</option>

@@ -25,10 +25,6 @@ export const updateUser = async user => {
     await api.put(`${USERS_API}/${user._id}`, user);
     return user;
 };
-export const loginEmail = async email => {
-    const response = await api.post(`${USERS_API}/loginEmail`, email);
-    return response.status;
-};
 export const login = async user => {
     const response = await api.post(`${USERS_API}/login`, user);
     return response.data;
@@ -41,3 +37,7 @@ export const profile = async () => {
     const response = await api.post(`${USERS_API}/profile`);
     return response.data;
 };
+export const findUserById = async (uid) => {
+    const response = await api.get(`${USERS_API}/${uid}`)
+    return response.data
+}

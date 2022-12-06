@@ -3,12 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {findWatchlistThunk} from "../services/watchlist-thunks";
 
-function WatchListTable() {
+const WatchListTable = ({uid, allowedToRemove}) => {
     const {watchlist, loading} = useSelector(state => state.watchlist)
     const dispatch = useDispatch()
     useEffect(() => {
-        //TODO: Input correct uid for watchlist
-        dispatch(findWatchlistThunk('1'))
+        dispatch(findWatchlistThunk(uid))
     }, [])
     return (
         <div className="wd-bg-watchlist rounded-3">
@@ -18,10 +17,21 @@ function WatchListTable() {
             <table className="table table-responsive table-hover border-dark mb-0">
                 <thead>
                 <tr>
-                    <th scope="col" className={'text-center'}>Coin</th>
-                    <th scope="col" className={'text-center'}>24H Change</th>
-                    <th scope="col" className={'text-center'}>Current Price</th>
-                    <th scope="col" className={'text-center'}>Remove</th>
+                    <th scope="col" className={'text-center'}>
+                        Coin
+                    </th>
+                    <th scope="col" className={'text-center'}>
+                        24H Change
+                    </th>
+                    <th scope="col" className={'text-center'}>
+                        Current Price
+                    </th>
+                    {
+                        allowedToRemove &&
+                        <th scope="col" className={'text-center'}>
+                            Remove
+                        </th>
+                    }
                 </tr>
                 </thead>
                 <tbody>
@@ -32,7 +42,11 @@ function WatchListTable() {
                     </tr>
                 }
                 {
-                    watchlist.map(item => <WatchlistTableItem key={item._id} item={item}/> )
+                    watchlist.map(
+                        item =>
+                            <WatchlistTableItem key={item._id}
+                                                item={item}
+                                                allowedToRemove={allowedToRemove}/> )
                 }
                 </tbody>
             </table>

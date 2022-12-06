@@ -16,7 +16,9 @@ import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
 import CurrentUser from "./users/current-user";
 import WatchlistReducer from "./reducers/watchlist-reducer";
+import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
+import PublicProfile from "./public-profile";
 
 const store = configureStore({
                                  reducer: {
@@ -25,6 +27,7 @@ const store = configureStore({
                                      coinData: CoinDataReducer,
                                      coinMarketChart: CoinMarketChartReducer,
                                      watchlist: WatchlistReducer,
+                                     coins: HomeReducer,
                                  }
                              });
 
@@ -38,12 +41,14 @@ function App() {
                         <Routes>
                             <Route index
                                    element={<Home/>}/>
-                            <Route path={'/profile/*'}
+                            <Route path={'/profile'}
                                    element={
                                        <ProtectedRoute>
                                            <Profile/>
                                        </ProtectedRoute>
                                    }/>
+                            <Route path={'/profile/:uid'}
+                                   element={<PublicProfile/>}/>
                             <Route path={'/edit-profile'}
                                    element={<EditProfile/>}/>
                             <Route path={"/search"}

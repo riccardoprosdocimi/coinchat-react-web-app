@@ -26,10 +26,6 @@ export const updateUserThunk = createAsyncThunk(
     'users/updateUser',
     async user => await service.updateUser(user)
 );
-export const loginEmailThunk = createAsyncThunk(
-    'users/loginEmail',
-    async email => await service.loginEmail(email)
-);
 export const loginThunk = createAsyncThunk(
     'users/login',
     async user => await service.login(user)
