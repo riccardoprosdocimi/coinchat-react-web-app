@@ -21,7 +21,7 @@ const PublicProfile = () => {
     const navigate = useNavigate()
     const handleFollowBtn = () => {
         if (currentUser) {
-            dispatch(userFollowsUserThunk(currentUser._id, uid))
+            dispatch(userFollowsUserThunk({followee: uid}))
         } else {
             navigate('/login')
         }

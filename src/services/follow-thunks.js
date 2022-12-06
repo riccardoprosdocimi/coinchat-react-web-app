@@ -8,14 +8,14 @@ import {
 
 export const userFollowsUserThunk = createAsyncThunk(
     'userFollowsUser',
-    async (uid, ouid) =>
-        await userFollowsUser(uid, ouid)
+    async (follow) =>
+        await userFollowsUser(follow)
 )
 
 export const userUnfollowsUserThunk = createAsyncThunk(
     'userUnfollowsUser',
-    async (uid, ouid) =>
-        await userUnfollowsUser(uid, ouid)
+    async (fid) =>
+        await userUnfollowsUser(fid)
 )
 
 export const findUsersFollowingUserThunk = createAsyncThunk(
