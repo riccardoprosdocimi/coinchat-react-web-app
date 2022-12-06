@@ -125,11 +125,7 @@ const Profile = () => {
                         <PostList/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Reactions">
-                        Likes/Dislikes
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Followers">
+                         eventKey="third" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -157,7 +153,7 @@ const Profile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fifth" title="Following">
+                         eventKey="fourth" title="Following">
                         <div className='list-group'>
                             {
                                 following &&

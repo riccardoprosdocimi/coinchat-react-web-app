@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
+    findFollowId,
     findUsersFollowedByUser,
     findUsersFollowingUser,
     userFollowsUser,
@@ -28,4 +29,9 @@ export const findUsersFollowedByUserThunk = createAsyncThunk(
     'findUsersFollowedByUser',
     async (uid) =>
         await findUsersFollowedByUser(uid)
+)
+export const findFollowIdThunk = createAsyncThunk(
+    'findFollowId',
+    async (ouid) =>
+        await findFollowId(ouid)
 )
