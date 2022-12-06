@@ -1,10 +1,12 @@
 import WatchListTable from "../watchlist-table/watchlist-table";
 import {Link} from "react-router-dom";
-import React from "react";
+import React, {useEffect} from "react";
 import PostList from "./posts/post-list";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
+import {findUserByIdThunk} from "../services/users-thunks";
+import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -25,6 +27,13 @@ let formatPhoneNumber = (str) => {
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);  // TODO: just keep this one?
+    const {followers, following} = useSelector(state => state.follow)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(findUsersFollowingUserThunk(currentUser._id))
+        dispatch(findUsersFollowedByUserThunk(currentUser._id))
+    }, [])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -42,21 +51,23 @@ const Profile = () => {
                              src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
                     <div className="card-body">
-                        <div className="card-title fw-bold fs-3">
+                        <div className="card-title fw-bold fs-5">
                             {currentUser.firstName} {currentUser.lastName}
-                            <span className="fw-light text-secondary fs-5 ps-2">
+                            <span className="fw-light text-secondary fs-6 ps-2">
                                 @{currentUser.handle}
                             </span>
                         </div>
                         <p className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{currentUser.following}</span>
-                                    <span className={'text-secondary'}>Following</span>
+                                    <span
+                                        className={'fw-bold pe-2'}>{followers.length}</span>
+                                    <span className={'text-secondary'}>Followers</span>
                                 </div>
                                 <div className={'col'}>
-                                    <span className={'fw-bold pe-2'}>{currentUser.followers}</span>
-                                    <span className={'text-secondary'}>Followers</span>
+                                    <span
+                                        className={'fw-bold pe-2'}>{following.length}</span>
+                                    <span className={'text-secondary'}>Following</span>
                                 </div>
                             </div>
                             <div className={'pt-2'}>
@@ -114,6 +125,58 @@ const Profile = () => {
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Reactions">
                         Likes/Dislikes
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="fourth" title="Followers">
+                        <div className='list-group'>
+                            {
+                                followers &&
+                                followers.map(follow =>
+                                                  <Link to={`/profile/${follow.follower._id}`}
+                                                        className='list-group-item'>
+                                                      <div className='row'>
+                                                          <div className='col-1'>
+                                                              <img src={`/images/p${follow.follower.avatar}.jpg`}
+                                                                   alt=""
+                                                                   className='rounded-circle pt-2 w-100'/>
+                                                          </div>
+                                                          <div className='col pt-2 fs-3 fw-bold'>
+                                                              {follow.follower.firstName} {follow.follower.lastName}
+                                                              <div className='fs-5 text-secondary fw-normal'>
+                                                                  @{follow.follower.handle}
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </Link>
+                                )
+                            }
+                        </div>
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="fifth" title="Following">
+                        <div className='list-group'>
+                            {
+                                following &&
+                                following.map(follow =>
+                                                  <Link to={`/profile/${follow.followee._id}`}
+                                                        className='list-group-item'>
+                                                      <div className='row'>
+                                                          <div className='col-1'>
+                                                              <img src={`/images/p${follow.followee.avatar}.jpg`}
+                                                                   alt=""
+                                                                   className='rounded-circle pt-2 w-100'/>
+                                                          </div>
+                                                          <div className='col pt-2 fs-3 fw-bold'>
+                                                              {follow.followee.firstName} {follow.followee.lastName}
+                                                              <div className='fs-5 text-secondary fw-normal'>
+                                                                  @{follow.followee.handle}
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </Link>
+                                )
+                            }
+                        </div>
                     </Tab>
                 </Tabs>
             </div>

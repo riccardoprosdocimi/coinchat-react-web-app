@@ -20,6 +20,7 @@ import WatchlistReducer from "./reducers/watchlist-reducer";
 import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
 import PublicProfile from "./public-profile";
+import FollowReducer from "./reducers/follow-reducer";
 
 const store = configureStore({
                                  reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
                                      watchlist: WatchlistReducer,
                                      coins: HomeReducer,
                                      comments: GeneralCommentsReducer,
+                                     follow: FollowReducer,
                                  }
                              });
 
