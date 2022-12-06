@@ -2,6 +2,6 @@ import {createAsyncThunk} from "@reduxjs/toolkit";
 import {getTrendingCoins} from "./home-service";
 
 export const getTrendingCoinsThunk = createAsyncThunk (
-    'getTrendingCoins',
+    'home/getTrendingCoins',
     () => getTrendingCoins()
 )
