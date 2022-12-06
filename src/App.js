@@ -14,11 +14,13 @@ import usersReducer from "./reducers/users-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
+import GeneralCommentsReducer from "./reducers/comment-reducer"
 import CurrentUser from "./users/current-user";
 import WatchlistReducer from "./reducers/watchlist-reducer";
 import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
 import PublicProfile from "./public-profile";
+import FollowReducer from "./reducers/follow-reducer";
 
 const store = configureStore({
                                  reducer: {
@@ -28,6 +30,8 @@ const store = configureStore({
                                      coinMarketChart: CoinMarketChartReducer,
                                      watchlist: WatchlistReducer,
                                      coins: HomeReducer,
+                                     comments: GeneralCommentsReducer,
+                                     follow: FollowReducer,
                                  }
                              });
 

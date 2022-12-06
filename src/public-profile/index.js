@@ -1,22 +1,35 @@
-import {useParams} from "react-router-dom";
-import React, {useEffect, useState} from "react";
+import {Link, useNavigate, useParams} from "react-router-dom";
+import React, {useEffect} from "react";
 import WatchListTable from "../watchlist-table/watchlist-table";
 import PostList from "../profile/posts/post-list";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import * as userService from "../services/users-service";
+import {useDispatch, useSelector} from "react-redux";
+import {findUserByIdThunk} from "../services/users-thunks";
+import {
+    findUsersFollowedByUserThunk,
+    findUsersFollowingUserThunk,
+    userFollowsUserThunk
+} from "../services/follow-thunks";
 
 const PublicProfile = () => {
     const {uid} = useParams()
-    const [publicProfile, setPublicProfile] = useState({})
-    const findUserById = (uid) =>
-        userService.findUserById(uid)
-            .then(publicProfile => setPublicProfile(publicProfile))
-            .catch(e => alert(e))
+    const {currentUser} = useSelector(state => state.users)
+    const {publicProfile} = useSelector(state => state.users)
+    const {followers, following} = useSelector(state => state.follow)
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const handleFollowBtn = () => {
+        if (currentUser) {
+            dispatch(userFollowsUserThunk(currentUser._id, uid))
+        } else {
+            navigate('/login')
+        }
     }
     useEffect(() => {
-        findUserById(uid)
+        dispatch(findUserByIdThunk(uid))
+        dispatch(findUsersFollowingUserThunk(uid))
+        dispatch(findUsersFollowedByUserThunk(uid))
     }, [uid])
     return (
         <div className={'row'}>
@@ -35,9 +48,9 @@ const PublicProfile = () => {
                              src={`/images/p${publicProfile.avatar}.jpg`} alt=""/>
                     </div>
                     <div className="card-body">
-                        <div className="card-title fw-bold fs-3">
+                        <div className="card-title fw-bold fs-5">
                             {publicProfile.firstName} {publicProfile.lastName}
-                            <span className="fw-light text-secondary fs-5 ps-2">
+                            <span className="fw-light text-secondary fs-6 ps-2">
                                 @{publicProfile.handle}
                             </span>
                         </div>
@@ -45,13 +58,13 @@ const PublicProfile = () => {
                             <div className={'row'}>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{publicProfile.following}</span>
-                                    <span className={'text-secondary'}>Following</span>
+                                        className={'fw-bold pe-2'}>{followers.length}</span>
+                                    <span className={'text-secondary'}>Followers</span>
                                 </div>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{publicProfile.followers}</span>
-                                    <span className={'text-secondary'}>Followers</span>
+                                        className={'fw-bold pe-2'}>{following.length}</span>
+                                    <span className={'text-secondary'}>Following</span>
                                 </div>
                             </div>
                             <div className={'pt-2'}>
@@ -76,7 +89,8 @@ const PublicProfile = () => {
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
-                    <button className={'btn btn-success w-100'}>
+                    <button className={'btn btn-success w-100'}
+                            onClick={handleFollowBtn}>
                         Follow
                     </button>
                 </div>
@@ -94,6 +108,62 @@ const PublicProfile = () => {
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Reactions">
                         Likes/Dislikes
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="fourth" title="Followers">
+                        <div className='list-group'>
+                            {
+                                followers &&
+                                followers.map(
+                                    follow =>
+                                        <Link to={`/profile/${follow.follower._id}`}
+                                              className='list-group-item'>
+                                            <div className='row'>
+                                                <div className='col-1'>
+                                                    <img
+                                                        src={`/images/p${follow.follower.avatar}.jpg`}
+                                                        alt=""
+                                                        className='rounded-circle pt-2 w-100'/>
+                                                </div>
+                                                <div className='col pt-2 fs-3 fw-bold'>
+                                                    {follow.follower.firstName} {follow.follower.lastName}
+                                                    <div className='fs-5 text-secondary fw-normal'>
+                                                        @{follow.follower.handle}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                )
+                            }
+                        </div>
+                    </Tab>
+                    <Tab tabClassName={'wd-profile-tabs'}
+                         eventKey="fifth" title="Following">
+                        <div className='list-group'>
+                            {
+                                following &&
+                                following.map(
+                                    follow =>
+                                        <Link to={`/profile/${follow.followee._id}`}
+                                              className='list-group-item'>
+                                            <div className='row'>
+                                                <div className='col-1'>
+                                                    <img
+                                                        src={`/images/p${follow.followee.avatar}.jpg`}
+                                                        alt=""
+                                                        className='rounded-circle pt-2 w-100'/>
+                                                </div>
+                                                <div className='col pt-2 fs-3 fw-bold'>
+                                                    {follow.followee.firstName} {follow.followee.lastName}
+                                                    <div className='fs-5 text-secondary fw-normal'>
+                                                        @{follow.followee.handle}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                )
+                            }
+                        </div>
                     </Tab>
                 </Tabs>
             </div>

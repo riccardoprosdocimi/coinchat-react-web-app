@@ -11,9 +11,9 @@ const Detail = () => {
     let [searchParams] = useSearchParams();
     const coinID = searchParams.get("coinID");
     const dispatch = useDispatch();
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(CoinDataThunk(searchParams.get("coinID")));
-    },[dispatch, searchParams])
+    }, [dispatch, searchParams])
 
     if (coinID === null || coinID.length === 0) {
         return (
@@ -21,13 +21,23 @@ const Detail = () => {
         )
     }
 
-    return(
-        <div className="container">
-            <HeadArea />
-            <LineChartArea />
-            <AboutArea />
-            <CommentArea coinID={coinID}/>
+    return (
+
+        <div className="d-flex">
+            <div className={"col-9 ps-5 pe-4 border-end d-flex justify-content-center"}>
+                <div className={"col-10"}>
+                    <HeadArea/>
+                    <LineChartArea/>
+                    <AboutArea/>
+                </div>
+
+
+            </div>
+            <div className={""}>
+                <CommentArea coinID={coinID}/>
+            </div>
         </div>
+
     );
 }
 export default Detail;

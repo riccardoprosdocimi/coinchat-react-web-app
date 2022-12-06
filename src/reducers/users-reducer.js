@@ -7,13 +7,15 @@ import {
     profileThunk,
     deleteUserThunk,
     updateUserThunk,
-    createUserThunk
+    createUserThunk,
+    findUserByIdThunk
 } from "../services/users-thunks";
 
 const initialState = {
     loading: false,
     users: [],
     currentUser: null,
+    publicProfile: {},
     error: null
 }
 
@@ -90,6 +92,9 @@ const UsersReducer = createSlice({
             state.loading = false;
             state.currentUser = action.payload;
             state.error = null;
+        },
+        [findUserByIdThunk.fulfilled]: (state, action) => {
+            state.publicProfile = action.payload
         }
     }
 });
