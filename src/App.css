@@ -232,3 +232,16 @@ body {
   bottom: 5%;
   left: 25%;
 }
+
+/*----------------------------------------Comment Area----------------------------------------*/
+.wd-rounded-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+.wd-textarea-resize-none {
+  resize: none;
+}
