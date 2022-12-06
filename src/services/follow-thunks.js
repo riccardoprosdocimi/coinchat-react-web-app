@@ -1,5 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
+    findFollowId,
     findUsersFollowedByUser,
     findUsersFollowingUser,
     userFollowsUser,
@@ -8,14 +9,14 @@ import {
 
 export const userFollowsUserThunk = createAsyncThunk(
     'userFollowsUser',
-    async (uid, ouid) =>
-        await userFollowsUser(uid, ouid)
+    async (follow) =>
+        await userFollowsUser(follow)
 )
 
 export const userUnfollowsUserThunk = createAsyncThunk(
     'userUnfollowsUser',
-    async (uid, ouid) =>
-        await userUnfollowsUser(uid, ouid)
+    async (fid) =>
+        await userUnfollowsUser(fid)
 )
 
 export const findUsersFollowingUserThunk = createAsyncThunk(
@@ -28,4 +29,9 @@ export const findUsersFollowedByUserThunk = createAsyncThunk(
     'findUsersFollowedByUser',
     async (uid) =>
         await findUsersFollowedByUser(uid)
+)
+export const findFollowIdThunk = createAsyncThunk(
+    'findFollowId',
+    async (ouid) =>
+        await findFollowId(ouid)
 )

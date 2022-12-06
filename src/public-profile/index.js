@@ -1,5 +1,5 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import WatchListTable from "../watchlist-table/watchlist-table";
 import PostList from "../profile/posts/post-list";
 import Tab from "react-bootstrap/Tab";
@@ -7,9 +7,10 @@ import Tabs from "react-bootstrap/Tabs";
 import {useDispatch, useSelector} from "react-redux";
 import {findUserByIdThunk} from "../services/users-thunks";
 import {
+    findFollowIdThunk,
     findUsersFollowedByUserThunk,
     findUsersFollowingUserThunk,
-    userFollowsUserThunk
+    userFollowsUserThunk, userUnfollowsUserThunk
 } from "../services/follow-thunks";
 
 const PublicProfile = () => {
@@ -17,20 +18,28 @@ const PublicProfile = () => {
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
+    const {followId} = useSelector(state => state.follow)
+    const [followsUser, setFollowsUser] = useState(followId === '')
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleFollowBtn = () => {
         if (currentUser) {
-            dispatch(userFollowsUserThunk(currentUser._id, uid))
+            dispatch(userFollowsUserThunk({followee: uid}))
+            setFollowsUser(true)
         } else {
             navigate('/login')
         }
+    }
+    const handleUnFollowBtn = () => {
+        dispatch(userUnfollowsUserThunk(followId))
+        setFollowsUser(false)
     }
     useEffect(() => {
         dispatch(findUserByIdThunk(uid))
         dispatch(findUsersFollowingUserThunk(uid))
         dispatch(findUsersFollowedByUserThunk(uid))
-    }, [uid])
+        dispatch(findFollowIdThunk(uid))
+    }, [uid, followsUser])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -89,10 +98,20 @@ const PublicProfile = () => {
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
-                    <button className={'btn btn-success w-100'}
-                            onClick={handleFollowBtn}>
-                        Follow
-                    </button>
+                    {
+                        followsUser &&
+                        <button className={'btn btn-danger w-100'}
+                                onClick={handleUnFollowBtn}>
+                            Unfollow {followId} {followsUser.toString()}
+                        </button>
+                    }
+                    {
+                        !followsUser &&
+                        <button className={'btn btn-success w-100'}
+                                onClick={handleFollowBtn}>
+                            Follow {followId} {followsUser.toString()}
+                        </button>
+                    }
                 </div>
             </div>
             <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
@@ -106,11 +125,7 @@ const PublicProfile = () => {
                         <PostList/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Reactions">
-                        Likes/Dislikes
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Followers">
+                         eventKey="third" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -138,7 +153,7 @@ const PublicProfile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fifth" title="Following">
+                         eventKey="fourth" title="Following">
                         <div className='list-group'>
                             {
                                 following &&
