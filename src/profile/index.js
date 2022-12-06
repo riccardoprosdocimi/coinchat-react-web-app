@@ -5,7 +5,6 @@ import PostList from "./posts/post-list";
 import {useDispatch, useSelector} from "react-redux";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import {findUserByIdThunk} from "../services/users-thunks";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
@@ -26,20 +25,20 @@ let formatPhoneNumber = (str) => {
 }
 
 const Profile = () => {
-    const {currentUser} = useSelector(state => state.users);  // TODO: just keep this one?
-    const {followers, following} = useSelector(state => state.follow)
-    const dispatch = useDispatch()
-
+    const {currentUser} = useSelector(state => state.users);
+    const {followers, following} = useSelector(state => state.follow);
+    const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
-    }, [])
+    }, []);
+
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
-                        <img src={`/images/b${currentUser.banner}.jpg`}
+                        <img src={`/images/b${currentUser && currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
@@ -48,13 +47,15 @@ const Profile = () => {
                                  'bottom': '5%',
                                  'left': '25%'
                              }}
-                             src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
+                             src={`/images/p${currentUser && currentUser.avatar}.jpg`}
+                             alt=""/>
                     </div>
                     <div className="card-body">
                         <div className="card-title fw-bold fs-5">
-                            {currentUser.firstName} {currentUser.lastName}
+                            {currentUser && currentUser.firstName} {currentUser
+                                                                    && currentUser.lastName}
                             <span className="fw-light text-secondary fs-6 ps-2">
-                                @{currentUser.handle}
+                                @{currentUser && currentUser.handle}
                             </span>
                         </div>
                         <p className="card-text">
@@ -71,34 +72,34 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className={'pt-2'}>
-                                {currentUser.bio}
+                                {currentUser && currentUser.bio}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-geo-fill pe-2'}></i>
-                                {currentUser.city}
+                                {currentUser && currentUser.city}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-globe pe-2'}></i>
                                 <a href={`https://www.${currentUser.website}`}
                                    style={{textDecorationLine: 'none'}}>
-                                    {currentUser.website}
+                                    {currentUser && currentUser.website}
                                 </a>
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-balloon-fill pe-2'}></i>
-                                {currentUser.birthday}
+                                {currentUser && currentUser.birthday}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-telephone-fill pe-2'}></i>
-                                {formatPhoneNumber(currentUser.phoneNumber)}
+                                {formatPhoneNumber(currentUser && currentUser.phoneNumber)}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-house-fill pe-2'}></i>
-                                {currentUser.address}
+                                {currentUser && currentUser.address}
                             </div>
                             <div className={'pt-2'}>
                                 <i className={'bi bi-person-square pe-2'}></i>
-                                {currentUser.type}
+                                {currentUser && currentUser.type}
                             </div>
                         </p>
 
@@ -116,7 +117,8 @@ const Profile = () => {
                 <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="first" title="Watchlist">
-                        <WatchListTable uid={currentUser._id} allowedToRemove={true}/>
+                        <WatchListTable uid={currentUser && currentUser._id}
+                                        allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Comments">
@@ -136,13 +138,15 @@ const Profile = () => {
                                                         className='list-group-item'>
                                                       <div className='row'>
                                                           <div className='col-1'>
-                                                              <img src={`/images/p${follow.follower.avatar}.jpg`}
-                                                                   alt=""
-                                                                   className='rounded-circle pt-2 w-100'/>
+                                                              <img
+                                                                  src={`/images/p${follow.follower.avatar}.jpg`}
+                                                                  alt=""
+                                                                  className='rounded-circle pt-2 w-100'/>
                                                           </div>
                                                           <div className='col pt-2 fs-3 fw-bold'>
                                                               {follow.follower.firstName} {follow.follower.lastName}
-                                                              <div className='fs-5 text-secondary fw-normal'>
+                                                              <div
+                                                                  className='fs-5 text-secondary fw-normal'>
                                                                   @{follow.follower.handle}
                                                               </div>
                                                           </div>
@@ -162,13 +166,15 @@ const Profile = () => {
                                                         className='list-group-item'>
                                                       <div className='row'>
                                                           <div className='col-1'>
-                                                              <img src={`/images/p${follow.followee.avatar}.jpg`}
-                                                                   alt=""
-                                                                   className='rounded-circle pt-2 w-100'/>
+                                                              <img
+                                                                  src={`/images/p${follow.followee.avatar}.jpg`}
+                                                                  alt=""
+                                                                  className='rounded-circle pt-2 w-100'/>
                                                           </div>
                                                           <div className='col pt-2 fs-3 fw-bold'>
                                                               {follow.followee.firstName} {follow.followee.lastName}
-                                                              <div className='fs-5 text-secondary fw-normal'>
+                                                              <div
+                                                                  className='fs-5 text-secondary fw-normal'>
                                                                   @{follow.followee.handle}
                                                               </div>
                                                           </div>

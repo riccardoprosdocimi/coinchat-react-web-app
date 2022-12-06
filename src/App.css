@@ -108,6 +108,7 @@ h4, h5, h6, p {
   padding: 10px;
   --bs-nav-bar-link-hover-color: #033153;
   text-decoration: none;
+  margin-right: 5px;
 }
 
 .wd-nav-bar:hover {

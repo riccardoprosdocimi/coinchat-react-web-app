@@ -38,8 +38,8 @@ const store = configureStore({
 function App() {
     return (
         <Provider store={store}>
-            <BrowserRouter>
-                <CurrentUser>
+            <CurrentUser>
+                <BrowserRouter>
                     <NavigationBar/>
                     <div className={'container-fluid'}>
                         <Routes>
@@ -65,8 +65,8 @@ function App() {
                                    element={<Register/>}/>
                         </Routes>
                     </div>
-                </CurrentUser>
-            </BrowserRouter>
+                </BrowserRouter>
+            </CurrentUser>
         </Provider>
     );
 }
