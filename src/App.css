@@ -8,15 +8,15 @@ body {
 
 a, a:link, a:hover, a:visited {
   text-decoration: none;
-  /*color: #ffc300;*/
 }
 
-.wd-app-color {
+.wd-app-color-yellow {
   color: #ffc300;
 }
 
 h1, h2, h3 {
   font-family: Audiowide, sans-serif;
+  color: #033153;
 }
 
 h4, h5, h6, p {
