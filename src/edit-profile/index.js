@@ -2,46 +2,55 @@ import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {updateProfile} from '../reducers/profile-reducer'
+import {updateUserThunk} from "../services/users-thunks";
 
 const EditProfile = () => {
-    const profile = useSelector(state => state.profile)
+    const {currentUser} = useSelector(state => state.users);
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const [name, setName] = useState(profile.firstName + ' ' + profile.lastName)
-    const [bio, setBio] = useState(profile.bio)
-    const [location, setLocation] = useState(profile.location)
-    const [website, setWebsite] = useState(profile.website)
-    const birthdayData = profile.dateOfBirth.split('/')
+    const [banner, setBanner] = useState(currentUser.banner)
+    const [avatar, setAvatar] = useState(currentUser.avatar)
+    const [firstName, setFirstName] = useState(currentUser.firstName)
+    const [lastName, setLastName] = useState(currentUser.lastName)
+    const [bio, setBio] = useState(currentUser.bio)
+    const [city, setCity] = useState(currentUser.city)
+    const [website, setWebsite] = useState(currentUser.website)
+    const birthdayData = currentUser.birthday.split('-')
     const [birthday, setBirthday] = useState(
-        birthdayData[2] + "-" + birthdayData[0] + '-' + birthdayData[1])
-    const [phoneNumber, setPhoneNumber] = useState(profile.phoneNumber)
-    const [address, setAddress] = useState(profile.address)
-    const [accountType, setAccountType] = useState(profile.accountType)
+        birthdayData[0] + "-" + birthdayData[1] + '-' + birthdayData[2])
+    const [countryCode, setCountryCode] = useState(currentUser.countryCode)
+    const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
+    const [address, setAddress] = useState(currentUser.address)
+    const [accountType, setAccountType] = useState(currentUser.accountType)
 
     const updateProfileHandler = () => {
-        dispatch(updateProfile(
-            {
-                name,
-                bio,
-                location,
-                website,
-                birthday,
-                phoneNumber,
-                address,
-                accountType
-            })
-        )
+        const newUser = {
+            ...currentUser,
+            banner: banner,
+            avatar: avatar,
+            firstName: firstName,
+            lastName: lastName,
+            bio: bio,
+            city: city,
+            address: address,
+            website: website,
+            birthday: birthday,
+            // email: email,
+            // handle: handle,
+            number: phoneNumber,
+            role: accountType,
+        }
+        dispatch(updateUserThunk(newUser))
         navigate('/profile')
     }
-
     return (
         <div className={'row'}>
             <div className={'col-3'}></div>
             <div className="col-6 pt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
-                        <img src={`/images/${profile.bannerPicture}`}
+                        <img src={`/images/b${currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
@@ -50,33 +59,90 @@ const EditProfile = () => {
                                  'bottom': '5%',
                                  'left': '25%'
                              }}
-                             src={`/images/${profile.profilePicture}`} alt=""/>
-                    </div>
-                    <div className={'row pt-1'}>
-                        <div className={'col text-center'}>
-                            <button className={'btn btn-warning'}>
-                                Profile
-                                <i className={'bi bi-camera-fill ps-2'}></i>
-                            </button>
-                        </div>
-                        <div className={'col text-center'}>
-                            <button className={'btn btn-warning'}>
-                                Banner
-                                <i className={'bi bi-camera-fill ps-2'}></i>
-                            </button>
-                        </div>
+                             src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
                     <div className="card-body">
                         <p className="card-text">
-                            <div className={'form-group pt-0'}>
+                            <div className={'row pt-1'}>
+                                <div className={'col text-center'}>
+                                    <div className='w-100 '>
+                                        <label className={'text-secondary fs-6'}
+                                               htmlFor={"avatar"}>Avatar Image</label>
+                                        <select name="Profile" id="avatar" className='form-select'
+                                                onChange={event => setAvatar(event.target.value)}>
+                                            <option value="" selected disabled hidden>
+                                                Select Avatar
+                                            </option>
+                                            <option value="1">
+                                                Dog 1
+                                            </option>
+                                            <option value="2">
+                                                Cat 1
+                                            </option>
+                                            <option value="3">
+                                                Cat 3
+                                            </option>
+                                            <option value="4">
+                                                Dog 2
+                                            </option>
+                                            <option value="5">
+                                                Abstract Human
+                                            </option>
+                                            <option value="6">
+                                                Spaceman
+                                            </option>
+                                            <option value="7">
+                                                River
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className={'col text-center'}>
+                                    <div className='w-100'>
+                                        <label className={'ps-2 text-secondary fs-6'}
+                                               htmlFor={"banner"}>Banner Image</label>
+                                        <select name="Banner" id="banner" className='form-select'
+                                                onChange={event => setBanner(event.target.value)}>
+                                            <option value="" selected disabled hidden>
+                                                Select Banner
+                                            </option>
+                                            <option value="1">
+                                                Rolling Hills
+                                            </option>
+                                            <option value="2">
+                                                Snowy Mountain
+                                            </option>
+                                            <option value="3">
+                                                Shore
+                                            </option>
+                                            <option value="4">
+                                                Shore 2
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={'form-group pt-2'}>
                                 <div
                                     className={'border border-secondary rounded-2 border-opacity-25'}>
                                     <label className={'ps-2 text-secondary fs-6'}
-                                           htmlFor={"name-field"}>Name</label>
+                                           htmlFor={"firstName-field"}>First Name</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
-                                           id={"name-field"} value={name}
+                                           id={"firstName-field"} value={firstName}
                                            onChange={event => {
-                                               setName(event.target.value)
+                                               setFirstName(event.target.value)
+                                           }}/>
+                                </div>
+                            </div>
+                            <div className={'form-group pt-2'}>
+                                <div
+                                    className={'border border-secondary rounded-2 border-opacity-25'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"lastName-field"}>Last Name</label>
+                                    <input type={"text"} className={"form-control border-0 ps-2"}
+                                           id={"lastName-field"} value={lastName}
+                                           onChange={event => {
+                                               setLastName(event.target.value)
                                            }}/>
                                 </div>
                             </div>
@@ -94,10 +160,10 @@ const EditProfile = () => {
                                 <div
                                     className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
                                     <label className={'ps-2 text-secondary fs-6'}
-                                           htmlFor={"location-field"}>Location</label>
+                                           htmlFor={"city-field"}>City</label>
                                     <input type={"text"} className={"form-control border-0 ps-2"}
-                                           id={"location-field"} value={location}
-                                           onChange={event => setLocation(event.target.value)}/>
+                                           id={"city-field"} value={city}
+                                           onChange={event => setCity(event.target.value)}/>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
@@ -120,14 +186,39 @@ const EditProfile = () => {
                                            onChange={event => setBirthday(event.target.value)}/>
                                 </div>
                             </div>
-                            <div className={"form-group pt-2"}>
-                                <div
-                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                            <div className='row'>
+                                <div className={"form-group pt-2 col-4"}>
                                     <label className={'ps-2 text-secondary fs-6'}
-                                           htmlFor={"phone-field"}>Phone Number</label>
-                                    <input type={"text"} className={"form-control border-0 ps-2"}
-                                           id={"phone-field"} value={phoneNumber}
-                                           onChange={event => setPhoneNumber(event.target.value)}/>
+                                           htmlFor={"countryCode-field"}>Country Code</label>
+                                    <select className={"form-control border-0 ps-2"}
+                                            id={"countryCode-field"}
+                                            onChange={event => setCountryCode(event.target.value)}>
+                                        <option value='' selected disabled>
+                                            Country code
+                                        </option>
+                                        <option value='1'>
+                                            +1 (United States)
+                                        </option>
+                                        <option value='39'>
+                                            +39 (Italy)
+                                        </option>
+                                        <option value='86'>
+                                            +86 (China)
+                                        </option>
+                                        <option value='995'>
+                                            +995 (Georgia)
+                                        </option>
+                                    </select>
+                                </div>
+                                <div className={"form-group pt-2 col"}>
+                                    <div
+                                        className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                        <label className={'ps-2 text-secondary fs-6'}
+                                               htmlFor={"phone-field"}>Phone Number</label>
+                                        <input type={"text"} className={"form-control border-0 ps-2"}
+                                               id={"phone-field"} value={phoneNumber}
+                                               onChange={event => setPhoneNumber(event.target.value)}/>
+                                    </div>
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
@@ -141,16 +232,24 @@ const EditProfile = () => {
                                 </div>
                             </div>
                             <div className={"form-group pt-2"}>
-                                <div
-                                    className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
                                     <label className={'ps-2 text-secondary fs-6'}
                                            htmlFor={"account-field"}>Account Type</label>
                                     <select className={"form-control border-0 ps-2"}
                                             id={"account-field"}
                                             onChange={event => setAccountType(event.target.value)}>
-                                        <option value={profile.accountType}>Admin</option>
-                                        <option value="Personal">Personal</option>
-                                        <option value="Professional">Professional</option>
+                                        <option value='' selected disabled>
+                                            Select the account type
+                                        </option>
+                                        <option value='PERSONAL'>
+                                            Personal
+                                        </option>
+                                        <option value='PROFESSIONAL'>
+                                            Professional
+                                        </option>
+                                        <option value='ADMIN'>
+                                            Administrator
+                                        </option>
                                     </select>
                                 </div>
                             </div>

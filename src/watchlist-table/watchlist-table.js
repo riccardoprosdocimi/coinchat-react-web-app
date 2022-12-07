@@ -8,7 +8,7 @@ const WatchListTable = ({uid, allowedToRemove}) => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findWatchlistThunk(uid))
-    }, [])
+    }, [uid])
     return (
         <div className="wd-bg-watchlist rounded-3">
             <h3 className="text-decoration-underline fw-bold pt-2 text-center">

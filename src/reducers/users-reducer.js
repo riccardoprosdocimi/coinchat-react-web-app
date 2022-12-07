@@ -58,11 +58,7 @@ const UsersReducer = createSlice({
         },
         [updateUserThunk.fulfilled]: (state, action) => {
             state.loading = false;
-            const userIndex = state.users.findIndex(user => user._id === action.payload._id);
-            state.users[userIndex] = {
-                ...state.users[userIndex],
-                ...action.payload
-            };
+            state.currentUser = action.payload
         },
         [loginThunk.pending]: state => {
             state.loading = true;
@@ -94,6 +90,7 @@ const UsersReducer = createSlice({
             state.error = null;
         },
         [findUserByIdThunk.fulfilled]: (state, action) => {
+            state.loading = false
             state.publicProfile = action.payload
         }
     }

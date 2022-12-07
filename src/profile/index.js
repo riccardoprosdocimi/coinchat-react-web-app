@@ -32,7 +32,7 @@ const Profile = () => {
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
-    }, []);
+    }, [currentUser]);
 
     return (
         <div className={'row'}>
@@ -104,7 +104,8 @@ const Profile = () => {
                                 currentUser && currentUser.number &&
                                 <div className={'pt-2'}>
                                     <i className={'bi bi-telephone-fill pe-2'}/>
-                                    {formatPhoneNumber(currentUser.number)}
+                                    {formatPhoneNumber(currentUser.countryCode.toString() +
+                                                       currentUser.number.toString())}
                                 </div>
                             }
                             {
@@ -125,7 +126,7 @@ const Profile = () => {
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
-                    <Link to={'/edit-profile'}>
+                    <Link to={'/profile/edit-profile'}>
                         <button className={'btn btn-warning w-100'}>
                             Edit Profile
                         </button>

@@ -19,27 +19,31 @@ const PublicProfile = () => {
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
     const {followId} = useSelector(state => state.follow)
-    const [followsUser, setFollowsUser] = useState(followId === '')
+    const [followsUser, setFollowsUser] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleFollowBtn = () => {
+    const handleFollowBtn = async () => {
         if (currentUser) {
-            dispatch(userFollowsUserThunk({followee: uid}))
-            setFollowsUser(true)
+            await dispatch(userFollowsUserThunk({followee: uid}))
+            await setFollowsUser(true)
         } else {
             navigate('/login')
         }
     }
-    const handleUnFollowBtn = () => {
-        dispatch(userUnfollowsUserThunk(followId))
-        setFollowsUser(false)
+    const handleUnFollowBtn = async () => {
+        await dispatch(userUnfollowsUserThunk(followId))
+        await setFollowsUser(false)
     }
     useEffect(() => {
-        dispatch(findUserByIdThunk(uid))
-        dispatch(findUsersFollowingUserThunk(uid))
-        dispatch(findUsersFollowedByUserThunk(uid))
-        dispatch(findFollowIdThunk(uid))
-    }, [uid, followsUser])
+        async function fetchData() {
+            await dispatch(findUserByIdThunk(uid))
+            await dispatch(findUsersFollowingUserThunk(uid))
+            await dispatch(findUsersFollowedByUserThunk(uid))
+            await dispatch(findFollowIdThunk(uid))
+            await setFollowsUser(followId !== null)
+        }
+        fetchData()
+    }, [uid, followsUser, followId])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -98,18 +102,22 @@ const PublicProfile = () => {
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
+
+                    {JSON.stringify(followId !== null)}
+                    {followId}
+
                     {
-                        followsUser &&
+                        (followId !== null) &&
                         <button className={'btn btn-danger w-100'}
                                 onClick={handleUnFollowBtn}>
-                            Unfollow {followId} {followsUser.toString()}
+                            Unfollow
                         </button>
                     }
                     {
-                        !followsUser &&
+                        (followId === null) &&
                         <button className={'btn btn-success w-100'}
                                 onClick={handleFollowBtn}>
-                            Follow {followId} {followsUser.toString()}
+                            Follow
                         </button>
                     }
                 </div>
