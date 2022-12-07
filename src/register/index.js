@@ -1,27 +1,30 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/users-thunks";
-import {Navigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
+
+const randomizeBanner = () => Math.floor(Math.random() * 4) + 1;
+const randomizeAvatar = () => Math.floor(Math.random() * 7) + 1;
 
 const Register = () => {
-    const {currentUser} = useSelector(state => state.users);
+    const {currentUser, loading} = useSelector(state => state.users);
     const [error, setError] = useState(null);
-    const [banner, setBanner] = useState('');
-    const [avatar, setAvatar] = useState('');
+    const banner = `${randomizeBanner()}`;
+    const avatar = `${randomizeAvatar()}`;
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [bio, setBio] = useState('');
     const [city, setCity] = useState('');
     const [address, setAddress] = useState('');
     const [website, setWebsite] = useState('');
-    const [birthday, setBirthday] = useState(null);
+    const [birthday, setBirthday] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
-    const [countryCode, setCountryCode] = useState(null);
-    const [number, setNumber] = useState(null);
+    const [countryCode, setCountryCode] = useState('');
+    const [number, setNumber] = useState('');
     const [password, setPassword] = useState('');
     const [validatePassword, setValidatePassword] = useState('');
-    const [accountType, setAccountType] = useState(null);
+    const [accountType, setAccountType] = useState('');
     const changeFirstName = event => {
         const newFirstName = event.target.value;
         setFirstName(newFirstName);
@@ -79,30 +82,49 @@ const Register = () => {
         setAccountType(newAccountType);
     };
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const handleRegisterBtn = () => {
-        if (password !== validatePassword) {
+        if (firstName === '') {
+            setError('Please enter your first name');
+        } else if (lastName === '') {
+            setError('Please enter your last name');
+        } else if (birthday === '') {
+            setError('Please enter your date of birth');
+        } else if (email === '') {
+            setError('Please enter your email address');
+        } else if (username === '') {
+            setError('Please enter your username');
+        } else if (password === '') {
+            setError('Please enter your password');
+        } else if (validatePassword === '') {
+            setError('Please reenter your password');
+        } else if (password !== validatePassword) {
             setError('Passwords must match');
-            return;
+        } else if (accountType === '') {
+            setError('Please select the type of account you want to create');
         } else {
             setError(null);
             const newUser = {
-                "banner":  banner,
-                "avatar": avatar,
-                "firstName": firstName,
-                "lastName": lastName,
-                "bio": bio,
-                "city": city,
-                "address": address,
-                "website": website,
-                "birthday": birthday,
-                "email": email,
+                banner,
+                avatar,
+                firstName,
+                lastName,
+                bio,
+                city,
+                address,
+                website,
+                birthday,
+                email,
                 "handle": username,
-                "countryCode": countryCode,
-                "number": number,
-                "password": password,
-                "accountType": accountType
+                countryCode,
+                number,
+                password,
+                "role": accountType
             };
             dispatch(registerThunk(newUser));
+            if (!loading) {
+                navigate('/profile');
+            }
         }
     };
 
@@ -111,10 +133,9 @@ const Register = () => {
     } else {
         return(
             <div className="container w-50">
-                <h1 className="fw-bolder mt-2">
+                <h1 className="fw-bolder mt-2 text-center">
                     Create your CoinChat account
                 </h1>
-                <br/>
                 {/*<div className="position-relative">*/}
                 {/*    <img src="/images/opacity.jpeg"*/}
                 {/*         className="opacity-50 position-absolute"*/}
@@ -151,20 +172,13 @@ const Register = () => {
                 {/*        <i className="bi bi-x position-absolute wd-x-banner-overlap opacity-75 hstack"/>*/}
                 {/*    </button>*/}
                 {/*</div>*/}
-                <div className="position-relative wd-profile-nudge-down">
+                <div className="position-relative">
                     <hr/>
                     <h6>
                         Required fields have an asterisk: *
                     </h6>
-                    <br/>
-                    {
-                        error &&
-                        <div className="alert alert-danger">
-                            {error}
-                        </div>
-                    }
-                    <div className="row g-5">
-                        <div className="col">
+                    <div className="row g-3">
+                        <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <label htmlFor="first-name"
                                    className="col-form-label col-form-label-lg">
                                 FIRST NAME*
@@ -178,7 +192,7 @@ const Register = () => {
                                    value={firstName}
                                    onChange={changeFirstName}/>
                         </div>
-                        <div className="col">
+                        <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-6">
                             <label htmlFor="last-name"
                                    className="col-form-label col-form-label-lg">
                                 LAST NAME*
@@ -261,7 +275,7 @@ const Register = () => {
                         WEBSITE
                     </label>
                     <input id="website"
-                           type="text"
+                           type="url"
                            className="form-control form-control-lg"
                            placeholder="example.com"
                            title="Please enter your website here"
@@ -309,8 +323,8 @@ const Register = () => {
                                onChange={changeUsername}/>
                     </div>
                     <br/>
-                    <div className="row g-5">
-                        <div className="col">
+                    <div className="row g-3">
+                        <div className="col-xxl-5 col-xl-5 col-lg-5 col-md-5 col-sm-5">
                             <label htmlFor="country-code"
                                    className="visually-hidden">
                                 COUNTRY CODE
@@ -320,27 +334,24 @@ const Register = () => {
                                     title="Please select your phone number's country code"
                                     value={countryCode}
                                     onChange={changeCountryCode}>
-                                <option value={null} selected disabled>
-                                    Select the country code
+                                <option value='' selected disabled>
+                                    Country code
                                 </option>
-                                <option value="UNITED-STATES-CODE">
+                                <option value='1'>
                                     +1 (United States)
                                 </option>
-                                <option value="ITALY-CODE">
+                                <option value='39'>
                                     +39 (Italy)
                                 </option>
-                                <option value="EGYPT-CODE">
-                                    +20 (Egypt)
+                                <option value='86'>
+                                    +86 (China)
                                 </option>
-                                <option value="AUSTRALIA-CODE">
-                                    +61 (Australia)
-                                </option>
-                                <option value="CHINA-CODE">
-                                    +86 (China Mainland)
+                                <option value='995'>
+                                    +995 (Georgia)
                                 </option>
                             </select>
                         </div>
-                        <div className="col">
+                        <div className="col-xxl-7 col-xl-7 col-lg-7 col-md-7 col-sm-7">
                             <label htmlFor="phone-number"
                                    className="visually-hidden">
                                 PHONE NUMBER
@@ -384,22 +395,28 @@ const Register = () => {
                             title="Please select which account type you want to create"
                             value={accountType}
                             onChange={changeAccountType}>
-                        <option value={null} selected disabled>
-                            Please select the account type
+                        <option value='' selected disabled>
+                            Select the account type
                         </option>
-                        <option value="PERSONAL">
+                        <option value='PERSONAL'>
                             Personal
                         </option>
-                        <option value="PROFESSIONAL">
+                        <option value='PROFESSIONAL'>
                             Professional
                         </option>
-                        <option value="ADMINISTRATOR">
+                        <option value='ADMINISTRATOR'>
                             Administrator
                         </option>
                     </select>
                     <br/>
+                    {
+                        error &&
+                        <div className="alert alert-danger">
+                            {error}
+                        </div>
+                    }
                     <div className="d-flex justify-content-center">
-                        <button type="submit"
+                        <button type="button"
                                 className="btn btn-lg wd-btn-style rounded-pill mt-2 w-75 wd-font mb-5"
                                 onClick={handleRegisterBtn}>
                             Create free account

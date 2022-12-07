@@ -41,4 +41,4 @@ export const profileThunk = createAsyncThunk(
 export const findUserByIdThunk = createAsyncThunk(
     'users/findUserById',
     async (uid) => await service.findUserById(uid)
-)
+);

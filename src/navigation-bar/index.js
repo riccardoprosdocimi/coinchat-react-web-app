@@ -1,8 +1,6 @@
 import {useLocation, useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -82,6 +80,11 @@ function NavigationBar() {
                                     {
                                         !currentUser &&
                                         <Nav>
+                                            <LinkContainer to="register">
+                                                <Nav.Link className="wd-nav-bar">
+                                                    Register
+                                                </Nav.Link>
+                                            </LinkContainer>
                                             <LinkContainer to="login">
                                                 <Nav.Link className="wd-nav-bar">
                                                     Login
@@ -95,8 +98,8 @@ function NavigationBar() {
                                             className="wd-dropdown-btn"
                                             align="end"
                                             title={<img className="rounded-circle border"
-                                                        height={48}
-                                                        width={48}
+                                                        height={30}
+                                                        width={30}
                                                         src={currentUser && `/images/p${currentUser.avatar}.jpg`}
                                                         alt="user's avatar"/>}
                                             id="dropdown-menu-align-end">
