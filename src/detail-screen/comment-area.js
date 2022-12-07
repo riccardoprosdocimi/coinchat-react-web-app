@@ -7,7 +7,7 @@ import {useSearchParams} from "react-router-dom";
 
 
 const CommentArea = () => {
-    const {comments, fetching} = useSelector((state) => state.comments)
+    const {comments, fetching, updateFlag} = useSelector((state) => state.comments)
     let [searchParams] = useSearchParams();
 
     const dispatch = useDispatch();
@@ -16,7 +16,7 @@ const CommentArea = () => {
             objID: searchParams.get("coinID"),
             objType: "Coin"
     }))
-    },[fetching])
+    },[updateFlag])
 
     return (
         <section id="comments" className={"border-top vh-100 container justify-content-center pe-0"}>
