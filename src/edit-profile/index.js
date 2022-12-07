@@ -22,7 +22,7 @@ const EditProfile = () => {
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)
-    const [accountType, setAccountType] = useState(currentUser.accountType)
+    const [accountType, setAccountType] = useState(currentUser.role)
 
     const updateProfileHandler = () => {
         const newUser = {
@@ -38,6 +38,7 @@ const EditProfile = () => {
             birthday: birthday,
             // email: email,
             // handle: handle,
+            countryCode: countryCode,
             number: phoneNumber,
             role: accountType,
         }
@@ -187,32 +188,33 @@ const EditProfile = () => {
                                 </div>
                             </div>
                             <div className='row'>
-                                <div className={"form-group pt-2 col-4"}>
-                                    <label className={'ps-2 text-secondary fs-6'}
-                                           htmlFor={"countryCode-field"}>Country Code</label>
-                                    <select className={"form-control border-0 ps-2"}
-                                            id={"countryCode-field"}
-                                            onChange={event => setCountryCode(event.target.value)}>
-                                        <option value='' selected disabled>
-                                            Country code
-                                        </option>
-                                        <option value='1'>
-                                            +1 (United States)
-                                        </option>
-                                        <option value='39'>
-                                            +39 (Italy)
-                                        </option>
-                                        <option value='86'>
-                                            +86 (China)
-                                        </option>
-                                        <option value='995'>
-                                            +995 (Georgia)
-                                        </option>
-                                    </select>
+                                <div className={"form-group pt-2 col-5"}>
+                                    <div className='border border-secondary rounded-2 border-opacity-25 p-1'>
+                                        <label className={'ps-2 text-secondary fs-6'}
+                                               htmlFor={"countryCode-field"}>Country Code</label>
+                                        <select className={"form-control border-0 ps-2"}
+                                                id={"countryCode-field"}
+                                                onChange={event => setCountryCode(event.target.value)}>
+                                            <option selected disabled>
+                                                Country code
+                                            </option>
+                                            <option value='1'>
+                                                +1 (United States)
+                                            </option>
+                                            <option value='39'>
+                                                +39 (Italy)
+                                            </option>
+                                            <option value='86'>
+                                                +86 (China)
+                                            </option>
+                                            <option value='995'>
+                                                +995 (Georgia)
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div className={"form-group pt-2 col"}>
-                                    <div
-                                        className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
                                         <label className={'ps-2 text-secondary fs-6'}
                                                htmlFor={"phone-field"}>Phone Number</label>
                                         <input type={"text"} className={"form-control border-0 ps-2"}
@@ -238,7 +240,7 @@ const EditProfile = () => {
                                     <select className={"form-control border-0 ps-2"}
                                             id={"account-field"}
                                             onChange={event => setAccountType(event.target.value)}>
-                                        <option value='' selected disabled>
+                                        <option selected disabled>
                                             Select the account type
                                         </option>
                                         <option value='PERSONAL'>

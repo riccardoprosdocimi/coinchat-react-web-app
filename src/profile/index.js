@@ -104,8 +104,7 @@ const Profile = () => {
                                 currentUser && currentUser.number &&
                                 <div className={'pt-2'}>
                                     <i className={'bi bi-telephone-fill pe-2'}/>
-                                    {formatPhoneNumber(currentUser.countryCode.toString() +
-                                                       currentUser.number.toString())}
+                                    +{currentUser.countryCode} {formatPhoneNumber(currentUser.number)}
                                 </div>
                             }
                             {

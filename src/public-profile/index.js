@@ -102,10 +102,6 @@ const PublicProfile = () => {
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
-
-                    {JSON.stringify(followId !== null)}
-                    {followId}
-
                     {
                         (followId !== null) &&
                         <button className={'btn btn-danger w-100'}
