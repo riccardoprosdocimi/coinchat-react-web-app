@@ -19,7 +19,7 @@ const PublicProfile = () => {
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
     const {followId} = useSelector(state => state.follow)
-    const [followsUser, setFollowsUser] = useState(false)
+    const [followsUser, setFollowsUser] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const handleFollowBtn = async () => {
@@ -103,14 +103,14 @@ const PublicProfile = () => {
                 </div>
                 <div className={'text-center pt-3'}>
                     {
-                        (followId !== null) &&
+                        followsUser &&
                         <button className={'btn btn-danger w-100'}
                                 onClick={handleUnFollowBtn}>
                             Unfollow
                         </button>
                     }
                     {
-                        (followId === null) &&
+                        !followsUser &&
                         <button className={'btn btn-success w-100'}
                                 onClick={handleFollowBtn}>
                             Follow
