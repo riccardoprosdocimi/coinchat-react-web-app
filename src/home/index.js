@@ -12,10 +12,7 @@ function Home() {
                 </div>
                 <div className="row">
 
-
                     <MainComponent/>
-
-
            </div>
 
 
