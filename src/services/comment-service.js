@@ -22,3 +22,16 @@ export const getCommentsByObjectID = async (objID, objType) => {
 
 
 export const getCommentsByAuthorID = async (authorID) => {}
+
+
+export const deleteGivenComment = async (commentID) => {
+    if (commentID.length === 0) {
+        console.log("deleteGivenComment receive empty comment id");
+        return {}
+    }
+
+    const requestBody = {
+        commentID
+    }
+    return (await axios.delete(Comment_API, {params: requestBody})).data
+}

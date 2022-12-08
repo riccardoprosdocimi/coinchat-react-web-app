@@ -11,18 +11,16 @@ const CoinMarketChartReducer = createSlice({
     name: 'CoinMarketChartReducer',
     initialState,
     extraReducers: {
-        [CoinMCThunk.pending]: (s, a) => {
-            console.log("CoinMCThunk pending")
+        [CoinMCThunk.pending]: (s) => {
             s.fetching = true;
         },
 
-        [CoinMCThunk.rejected]: (s, a) => {
+        [CoinMCThunk.rejected]: (s) => {
             s.fetching = false;
             console.log("CoinMCThunk Rejected")
         },
 
         [CoinMCThunk.fulfilled]: (state, action) => {
-            console.log("CoinMCThunk fulfilled")
             state.marketData = action.payload;
             state.fetching = false;
         }
