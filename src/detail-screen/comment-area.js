@@ -7,7 +7,7 @@ import {useSearchParams} from "react-router-dom";
 
 
 const CommentArea = () => {
-    const {comments, fetching, updateFlag} = useSelector((state) => state.comments)
+    const {comments, updateFlag} = useSelector((state) => state.comments)
     let [searchParams] = useSearchParams();
 
     const dispatch = useDispatch();
