@@ -1,9 +1,11 @@
 import React from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {deleteGivenCommentThunk} from "../services/comment-thunk";
 import Moment from 'react-moment';
+import currentUser from "../users/current-user";
 
 const CommentItem = ({comment}) => {
+    const {currentUser} = useSelector(state => state.users);
 
     const dispatch = useDispatch();
     function deleteTuitHandler(commentID) {
@@ -15,15 +17,19 @@ const CommentItem = ({comment}) => {
         <div className="d-flex flex-column border-bottom mt-2">
             <div className="d-flex pb-2">
                 <div className="">
-                    <a href="/#"><img className="wd-rounded-image" src="https://bootdey.com/img/Content/avatar/avatar4.png"
+                    <a href="/#"><img className="wd-rounded-image" src={`/images/p${comment.authorID.avatar}.jpg`}
                                      alt="avatar" /></a>
                 </div>
                 <div className="mt-2 ms-3">
-                    <h6 className="">John Doe</h6>
+                    <h6 className="">{comment.authorID.firstName} {comment.authorID.lastName}</h6>
                 </div>
                 <div id={"delete button"} className={"ms-auto"}>
-                    <i className="bi bi-trash "
-                       onClick={() => deleteTuitHandler(comment._id)}></i>
+                    {currentUser && (currentUser.role === "ADMIN" || currentUser._id === comment.authorID)
+                        &&
+
+                        <i className="bi bi-trash text-danger"
+                           onClick={() => deleteTuitHandler(comment._id)}></i>
+                    }
                 </div>
             </div>
             <div className="">

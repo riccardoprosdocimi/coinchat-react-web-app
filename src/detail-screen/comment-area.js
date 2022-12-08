@@ -18,13 +18,16 @@ const CommentArea = () => {
     }))
     },[updateFlag])
 
+    const reverseComment = [...comments];
+    reverseComment.reverse();
+
     return (
         <section id="comments" className={"border-top vh-100 container justify-content-center pe-0"}>
             <h3>{Object.keys(comments).length} Comments</h3>
             <ComposeComment />
             <div className={"list-group border-top overflow-auto h-100 pe-0"}>
                 {
-                    comments.map(
+                    reverseComment.map(
                         comment => <CommentItem key={comment.commentID} comment={comment}/>
                     )
                 }

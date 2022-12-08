@@ -33,7 +33,7 @@ const Detail = () => {
 
 
             </div>
-            <div className={""}>
+            <div className={"w-100"}>
                 <CommentArea coinID={coinID}/>
             </div>
         </div>

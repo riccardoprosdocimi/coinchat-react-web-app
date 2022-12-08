@@ -33,7 +33,7 @@ const ComposeComment = () => {
                 <div className="d-flex pb-2">
                     <div className="">
                         <img className="wd-rounded-image"
-                             src={`/images/b${currentUser.avatar}.jpg`} alt="myAvatar"
+                             src={`/images/p${currentUser.avatar}.jpg`} alt="myAvatar"
                         />
                     </div>
                     <div className="mt-2 ms-3">
