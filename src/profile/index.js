@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from "react-redux";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
+import moment from "moment";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -52,8 +53,7 @@ const Profile = () => {
                     </div>
                     <div className="card-body">
                         <div className="card-title fw-bold fs-5">
-                            {currentUser && currentUser.firstName} {currentUser
-                                                                    && currentUser.lastName}
+                            {currentUser && currentUser.firstName} {currentUser && currentUser.lastName}
                             <span className="fw-light text-secondary fs-6 ps-2">
                                 @{currentUser && currentUser.handle}
                             </span>
@@ -71,38 +71,57 @@ const Profile = () => {
                                     <span className={'text-secondary'}>Following</span>
                                 </div>
                             </div>
+                            {
+                                currentUser && currentUser.bio &&
+                                <div className={`row`}>
+                                    <div className={`col-1`}>
+                                        <i className={`bi bi-person-vcard-fill pe-2`}/>
+                                    </div>
+                                    <div className={`col-11`}>
+                                        {currentUser.bio}
+                                    </div>
+                                </div>
+                            }
+                            {
+                                currentUser && currentUser.city &&
+                                <div className={'pt-2'}>
+                                    <i className={'bi bi-geo-fill pe-2'}/>
+                                    {currentUser.city}
+                                </div>
+                            }
+                            {
+                                currentUser && currentUser.address &&
+                                <div className={'pt-2'}>
+                                    <i className={'bi bi-house-fill pe-2'}/>
+                                    {currentUser.address}
+                                </div>
+                            }
                             <div className={'pt-2'}>
-                                {currentUser && currentUser.bio}
+                                <i className={'bi bi-balloon-fill pe-2'}/>
+                                {currentUser && moment(currentUser.birthday).format('MMMM Do[,] YYYY')}
                             </div>
+                            {
+                                currentUser && currentUser.number &&
+                                <div className={'pt-2'}>
+                                    <i className={'bi bi-telephone-fill pe-2'}/>
+                                    {formatPhoneNumber(currentUser.number)}
+                                </div>
+                            }
+                            {
+                                currentUser && currentUser.website &&
+                                <div className={'pt-2'}>
+                                    <i className={'bi bi-globe pe-2'}></i>
+                                    <a href={`https://www.${currentUser.website}`}
+                                       style={{textDecorationLine: 'none'}}>
+                                        {currentUser.website}
+                                    </a>
+                                </div>
+                            }
                             <div className={'pt-2'}>
-                                <i className={'bi bi-geo-fill pe-2'}></i>
-                                {currentUser && currentUser.city}
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-globe pe-2'}></i>
-                                <a href={`https://www.${currentUser.website}`}
-                                   style={{textDecorationLine: 'none'}}>
-                                    {currentUser && currentUser.website}
-                                </a>
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-balloon-fill pe-2'}></i>
-                                {currentUser && currentUser.birthday}
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-telephone-fill pe-2'}></i>
-                                {formatPhoneNumber(currentUser && currentUser.phoneNumber)}
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-house-fill pe-2'}></i>
-                                {currentUser && currentUser.address}
-                            </div>
-                            <div className={'pt-2'}>
-                                <i className={'bi bi-person-square pe-2'}></i>
-                                {currentUser && currentUser.type}
+                                <i className={'bi bi-person-square pe-2'}/>
+                                {currentUser && currentUser.role}
                             </div>
                         </p>
-
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
@@ -125,11 +144,7 @@ const Profile = () => {
                         <PostList/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Reactions">
-                        Likes/Dislikes
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Followers">
+                         eventKey="third" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -157,7 +172,7 @@ const Profile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fifth" title="Following">
+                         eventKey="fourth" title="Following">
                         <div className='list-group'>
                             {
                                 following &&
@@ -188,6 +203,5 @@ const Profile = () => {
             </div>
         </div>
     )
-}
-
-export default Profile
+};
+export default Profile;

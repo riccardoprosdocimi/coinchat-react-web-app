@@ -21,3 +21,7 @@ export const findUsersFollowedByUser = async (uid) => {
     const response = await api.get(`${USERS_API}/${uid}/following`)
     return response.data
 }
+export const findFollowId = async (ouid) => {
+    const response = await api.get(`${USERS_API}/${ouid}/followed`)
+    return response.data
+}
