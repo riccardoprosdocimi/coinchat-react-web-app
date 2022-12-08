@@ -53,7 +53,7 @@ function App() {
                                    }/>
                             <Route path={'/profile/:uid'}
                                    element={<PublicProfile/>}/>
-                            <Route path={'/edit-profile'}
+                            <Route path={'/profile/edit-profile'}
                                    element={<EditProfile/>}/>
                             <Route path={"/search"}
                                    element={<Search/>}/>

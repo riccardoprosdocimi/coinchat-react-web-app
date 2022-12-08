@@ -10,7 +10,7 @@ import {
 const initialState = {
     following: [],
     followers: [],
-    followId: ''
+    followId: null
 }
 
 const followReducer = createSlice(
