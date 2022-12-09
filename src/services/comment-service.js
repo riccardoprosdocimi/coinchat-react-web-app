@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Comment_API} from "../util/global-variables";
+import {Comment_API, User_API} from "../util/global-variables";
 
 export const createNewComment = async (newComment) => {
     return await axios.post(Comment_API, newComment)
@@ -21,8 +21,11 @@ export const getCommentsByObjectID = async (objID, objType) => {
 }
 
 
-export const getCommentsByAuthorID = async (authorID) => {}
+export const getCommentsByAuthorID = async (uid) => {
+    const response = await axios.get(`${User_API}/${uid}/comments`)
+    return response.data
 
+}
 
 export const deleteGivenComment = async (commentID) => {
     if (commentID.length === 0) {

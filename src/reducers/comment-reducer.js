@@ -1,5 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {createNewCommentThunk, deleteGivenCommentThunk, getCommentsByObjectIDThunk} from "../services/comment-thunk";
+import {
+    createNewCommentThunk,
+    deleteGivenCommentThunk,
+    getCommentsByAuthorIDThunk,
+    getCommentsByObjectIDThunk
+} from "../services/comment-thunk";
 
 
 const initialState = {
@@ -40,6 +45,14 @@ const GeneralCommentsReducer = createSlice({
 
         [deleteGivenCommentThunk.fulfilled]: (state) => {
             state.updateFlag = !state.updateFlag;
+        },
+        [getCommentsByAuthorIDThunk.pending]: (state) => {
+            state.fetching = true
+            state.comments = []
+        },
+        [getCommentsByAuthorIDThunk.fulfilled]: (state, {payload}) => {
+            state.fetching = false
+            state.comments = payload
         }
     }
 
