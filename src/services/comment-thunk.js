@@ -1,9 +1,9 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import {
-    createNewComment,
-    deleteGivenComment,
+    createNewComment, createNewUCRecord,
+    deleteGivenComment, deleteUCRecord, findUCRecordByUserID,
     getCommentsByAuthorID,
-    getCommentsByObjectID
+    getCommentsByObjectID, updateUCRecord
 } from "./comment-service";
 
 
@@ -26,4 +26,25 @@ export const deleteGivenCommentThunk = createAsyncThunk(
 export const getCommentsByAuthorIDThunk = createAsyncThunk(
     'getCommentsByAuthorID',
     async (uid) => await getCommentsByAuthorID(uid)
+)
+
+export const createNewUCRecordThunk = createAsyncThunk(
+    "createNewUCRecord",
+    async (newUCRecord) => await createNewUCRecord(newUCRecord)
+)
+
+export const findUCRecordByUserIDThunk = createAsyncThunk(
+    "findUCRecordByUserID",
+    async (userID) => await findUCRecordByUserID(userID)
+)
+
+export const deleteUCRecordThunk = createAsyncThunk(
+    "deleteUCRecord",
+    async (targetRecord) => await deleteUCRecord(targetRecord)
+)
+
+export const updateUCRecordThunk = createAsyncThunk(
+    "updateUCRecord",
+    (originalReaction) => updateUCRecord(originalReaction)
+
 )

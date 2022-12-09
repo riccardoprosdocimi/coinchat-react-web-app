@@ -2,11 +2,12 @@ import React, {useEffect} from "react";
 import CommentItem from "./comment-item";
 import ComposeComment from "./compose-comment";
 import {useDispatch, useSelector} from "react-redux";
-import {getCommentsByObjectIDThunk} from "../services/comment-thunk";
+import {findUCRecordByUserIDThunk, getCommentsByObjectIDThunk} from "../services/comment-thunk";
 import {useSearchParams} from "react-router-dom";
 
 
 const CommentArea = () => {
+    const {currentUser} = useSelector(state => state.users);
     const {comments, updateFlag} = useSelector((state) => state.comments)
     let [searchParams] = useSearchParams();
 
@@ -15,7 +16,8 @@ const CommentArea = () => {
         dispatch(getCommentsByObjectIDThunk({
             objID: searchParams.get("coinID"),
             objType: "Coin"
-    }))
+    }));
+        currentUser && dispatch(findUCRecordByUserIDThunk(currentUser._id))
     },[updateFlag])
 
     const reverseComment = [...comments];

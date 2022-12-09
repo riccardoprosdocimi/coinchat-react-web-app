@@ -6,6 +6,14 @@ import currentUser from "../users/current-user";
 
 const CommentItem = ({comment}) => {
     const {currentUser} = useSelector(state => state.users);
+    const {userReactions} = useSelector(state => state.comments)
+    let currentReactionType = 0;  // initially neutral reaction
+    for (const thisRC of userReactions) {
+        if (thisRC.commentID === comment._id) {
+            currentReactionType = thisRC.reactionType;
+            break;
+        }
+    }
 
     const dispatch = useDispatch();
     function deleteTuitHandler(commentID) {
@@ -35,11 +43,15 @@ const CommentItem = ({comment}) => {
 
                 <p>{comment.detailContent}</p>
                 <ul className="list-unstyled list-inline d-flex justify-content-between">
-                    <li><i className="fa fa-calendar"></i>  <Moment fromNow ago>{comment.createdAt}</Moment></li>
-                    <li><button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"}>
-                        <i className="fa fa-thumbs-up "></i></button> {comment.likes}</li>
-                    <li><button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"}>
-                        <i className="fa fa-thumbs-down "></i></button> {comment.dislikes}</li>
+                    <li><i className="fa fa-calendar wd-app-color-yellow"></i>  <Moment fromNow ago>{comment.createdAt}</Moment></li>
+                    <li>
+                        <button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"}>
+                        <i className="fa fa-thumbs-up "></i></button> {comment.likes}
+                    </li>
+                    <li>
+                        <button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"}>
+                        <i className="fa fa-thumbs-down "></i></button> {comment.dislikes}
+                    </li>
                 </ul>
             </div>
         </div>

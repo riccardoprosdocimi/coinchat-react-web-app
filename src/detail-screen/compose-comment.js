@@ -27,7 +27,7 @@ const ComposeComment = () => {
 
     return (
         !currentUser
-        ? <h2>nobody login</h2>
+        ? <h3>login to Comment</h3>
         : <fieldset className={"py-2"}>
             <div className="d-flex flex-column">
                 <div className="d-flex pb-2">
