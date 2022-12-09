@@ -2,11 +2,12 @@ import React, {useEffect} from "react";
 import CommentItem from "./comment-item";
 import ComposeComment from "./compose-comment";
 import {useDispatch, useSelector} from "react-redux";
-import {getCommentsByObjectIDThunk} from "../services/comment-thunk";
+import {findUCRecordByUserIDThunk, getCommentsByObjectIDThunk} from "../services/comment-thunk";
 import {useSearchParams} from "react-router-dom";
 
 
 const CommentArea = () => {
+    const {currentUser} = useSelector(state => state.users);
     const {comments, updateFlag} = useSelector((state) => state.comments)
     let [searchParams] = useSearchParams();
 
@@ -15,8 +16,12 @@ const CommentArea = () => {
         dispatch(getCommentsByObjectIDThunk({
             objID: searchParams.get("coinID"),
             objType: "Coin"
-    }))
+    }));
+        currentUser && dispatch(findUCRecordByUserIDThunk(currentUser._id))
     },[updateFlag])
+
+    const reverseComment = [...comments];
+    reverseComment.reverse();
 
     return (
         <section id="comments" className={"border-top vh-100 container justify-content-center pe-0"}>
@@ -24,7 +29,7 @@ const CommentArea = () => {
             <ComposeComment />
             <div className={"list-group border-top overflow-auto h-100 pe-0"}>
                 {
-                    comments.map(
+                    reverseComment.map(
                         comment => <CommentItem key={comment.commentID} comment={comment}/>
                     )
                 }

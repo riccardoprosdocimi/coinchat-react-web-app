@@ -27,13 +27,13 @@ const ComposeComment = () => {
 
     return (
         !currentUser
-        ? <h2>nobody login</h2>
+        ? <h3>login to Comment</h3>
         : <fieldset className={"py-2"}>
             <div className="d-flex flex-column">
                 <div className="d-flex pb-2">
                     <div className="">
                         <img className="wd-rounded-image"
-                             src={`/images/b${currentUser.avatar}.jpg`} alt="myAvatar"
+                             src={`/images/p${currentUser.avatar}.jpg`} alt="myAvatar"
                         />
                     </div>
                     <div className="mt-2 ms-3">
