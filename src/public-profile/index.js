@@ -12,34 +12,41 @@ import {
     findUsersFollowingUserThunk,
     userFollowsUserThunk, userUnfollowsUserThunk
 } from "../services/follow-thunks";
+import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
 
 const PublicProfile = () => {
     const {uid} = useParams()
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
+    const {comments} = useSelector(state => state.comments)
     const {followId} = useSelector(state => state.follow)
-    const [followsUser, setFollowsUser] = useState(followId === '')
+    const [followsUser, setFollowsUser] = useState()
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const handleFollowBtn = () => {
+    const handleFollowBtn = async () => {
         if (currentUser) {
-            dispatch(userFollowsUserThunk({followee: uid}))
-            setFollowsUser(true)
+            await dispatch(userFollowsUserThunk({followee: uid}))
+            await setFollowsUser(true)
         } else {
             navigate('/login')
         }
     }
-    const handleUnFollowBtn = () => {
-        dispatch(userUnfollowsUserThunk(followId))
-        setFollowsUser(false)
+    const handleUnFollowBtn = async () => {
+        await dispatch(userUnfollowsUserThunk(followId))
+        await setFollowsUser(false)
     }
     useEffect(() => {
-        dispatch(findUserByIdThunk(uid))
-        dispatch(findUsersFollowingUserThunk(uid))
-        dispatch(findUsersFollowedByUserThunk(uid))
-        dispatch(findFollowIdThunk(uid))
-    }, [uid, followsUser])
+        async function fetchData() {
+            await dispatch(findUserByIdThunk(uid))
+            await dispatch(getCommentsByAuthorIDThunk(uid))
+            await dispatch(findUsersFollowingUserThunk(uid))
+            await dispatch(findUsersFollowedByUserThunk(uid))
+            await dispatch(findFollowIdThunk(uid))
+            await setFollowsUser(followId !== null)
+        }
+        fetchData()
+    }, [uid, followsUser, followId])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -63,7 +70,7 @@ const PublicProfile = () => {
                                 @{publicProfile.handle}
                             </span>
                         </div>
-                        <p className="card-text">
+                        <div className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
                                     <span
@@ -94,7 +101,7 @@ const PublicProfile = () => {
                                 <i className={'bi bi-person-square pe-2'}></i>
                                 {publicProfile.type}
                             </div>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
@@ -102,14 +109,14 @@ const PublicProfile = () => {
                         followsUser &&
                         <button className={'btn btn-danger w-100'}
                                 onClick={handleUnFollowBtn}>
-                            Unfollow {followId} {followsUser.toString()}
+                            Unfollow
                         </button>
                     }
                     {
                         !followsUser &&
                         <button className={'btn btn-success w-100'}
                                 onClick={handleFollowBtn}>
-                            Follow {followId} {followsUser.toString()}
+                            Follow
                         </button>
                     }
                 </div>
@@ -121,8 +128,8 @@ const PublicProfile = () => {
                         <WatchListTable uid={uid} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Comments">
-                        <PostList/>
+                         eventKey="second" title="Posts/Comments">
+                        <PostList comments={comments} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">
@@ -132,7 +139,7 @@ const PublicProfile = () => {
                                 followers.map(
                                     follow =>
                                         <Link to={`/profile/${follow.follower._id}`}
-                                              className='list-group-item'>
+                                              className='list-group-item' key={follow.follower._id}>
                                             <div className='row'>
                                                 <div className='col-1'>
                                                     <img
@@ -160,7 +167,7 @@ const PublicProfile = () => {
                                 following.map(
                                     follow =>
                                         <Link to={`/profile/${follow.followee._id}`}
-                                              className='list-group-item'>
+                                              className='list-group-item' key={follow.followee._id}>
                                             <div className='row'>
                                                 <div className='col-1'>
                                                     <img

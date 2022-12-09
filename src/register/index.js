@@ -404,7 +404,7 @@ const Register = () => {
                         <option value='PROFESSIONAL'>
                             Professional
                         </option>
-                        <option value='ADMINISTRATOR'>
+                        <option value='ADMIN'>
                             Administrator
                         </option>
                     </select>
