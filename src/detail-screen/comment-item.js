@@ -26,7 +26,6 @@ const CommentItem = ({comment}) => {
                 <div id={"delete button"} className={"ms-auto"}>
                     {currentUser && (currentUser.role === "ADMIN" || currentUser._id === comment.authorID)
                         &&
-
                         <i className="bi bi-trash text-danger"
                            onClick={() => deleteTuitHandler(comment._id)}></i>
                     }
