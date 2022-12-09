@@ -16,9 +16,7 @@ const EditProfile = () => {
     const [bio, setBio] = useState(currentUser.bio)
     const [city, setCity] = useState(currentUser.city)
     const [website, setWebsite] = useState(currentUser.website)
-    const birthdayData = currentUser.birthday.split('-')
-    const [birthday, setBirthday] = useState(
-        birthdayData[0] + "-" + birthdayData[1] + '-' + birthdayData[2])
+    const [birthday, setBirthday] = useState(currentUser.birthday)
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)

@@ -12,12 +12,14 @@ import {
     findUsersFollowingUserThunk,
     userFollowsUserThunk, userUnfollowsUserThunk
 } from "../services/follow-thunks";
+import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
 
 const PublicProfile = () => {
     const {uid} = useParams()
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
+    const {comments} = useSelector(state => state.comments)
     const {followId} = useSelector(state => state.follow)
     const [followsUser, setFollowsUser] = useState()
     const dispatch = useDispatch()
@@ -37,6 +39,7 @@ const PublicProfile = () => {
     useEffect(() => {
         async function fetchData() {
             await dispatch(findUserByIdThunk(uid))
+            await dispatch(getCommentsByAuthorIDThunk(uid))
             await dispatch(findUsersFollowingUserThunk(uid))
             await dispatch(findUsersFollowedByUserThunk(uid))
             await dispatch(findFollowIdThunk(uid))
@@ -67,7 +70,7 @@ const PublicProfile = () => {
                                 @{publicProfile.handle}
                             </span>
                         </div>
-                        <p className="card-text">
+                        <div className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
                                     <span
@@ -98,7 +101,7 @@ const PublicProfile = () => {
                                 <i className={'bi bi-person-square pe-2'}></i>
                                 {publicProfile.type}
                             </div>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
@@ -125,8 +128,8 @@ const PublicProfile = () => {
                         <WatchListTable uid={uid} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Comments">
-                        <PostList/>
+                         eventKey="second" title="Posts/Comments">
+                        <PostList comments={comments} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">
@@ -136,7 +139,7 @@ const PublicProfile = () => {
                                 followers.map(
                                     follow =>
                                         <Link to={`/profile/${follow.follower._id}`}
-                                              className='list-group-item'>
+                                              className='list-group-item' key={follow.follower._id}>
                                             <div className='row'>
                                                 <div className='col-1'>
                                                     <img
@@ -164,7 +167,7 @@ const PublicProfile = () => {
                                 following.map(
                                     follow =>
                                         <Link to={`/profile/${follow.followee._id}`}
-                                              className='list-group-item'>
+                                              className='list-group-item' key={follow.followee._id}>
                                             <div className='row'>
                                                 <div className='col-1'>
                                                     <img
