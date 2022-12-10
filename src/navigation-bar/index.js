@@ -54,6 +54,11 @@ function NavigationBar() {
                                                 Home
                                             </Nav.Link>
                                         </LinkContainer>
+                                        <LinkContainer to="blog">
+                                            <Nav.Link className={`wd-nav-bar ${active === 'blog' ? 'active' : ''}`}>
+                                                Blog
+                                            </Nav.Link>
+                                        </LinkContainer>
                                         <LinkContainer to="profile">
                                             <Nav.Link className={`wd-nav-bar ${active === 'profile' || active === 'edit-profile' ? 'active' : ''}`}>
                                                 Profile

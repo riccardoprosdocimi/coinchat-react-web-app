@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {createNewCommentThunk} from "../services/comment-thunk";
 
 
-const ComposeComment = () => {
+const ComposeComment = ({objectType}) => {
     
     const {currentUser} = useSelector(state => state.users);
     const {coinData} = useSelector((state) => {
@@ -17,7 +17,7 @@ const ComposeComment = () => {
         const newComment = {
             authorID: currentUser._id,
             objectID: coinData.id,
-            objectType: "Coin",
+            objectType: objectType,
             detailContent: myComment
         }
         dispatch(createNewCommentThunk(newComment));

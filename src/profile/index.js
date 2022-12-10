@@ -44,12 +44,14 @@ const Profile = () => {
                     <div className="card-img-top position-relative">
                         <img src={`/images/b${currentUser && currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
-                        <img className="position-absolute rounded-circle img-thumbnail"
+                        <img className="position-absolute  img-thumbnail"
                              style={{
                                  'height': '85%',
-                                 'width': '50%',
+                                 'width': '56%',
                                  'bottom': '5%',
-                                 'left': '25%'
+                                 'left': '25%',
+                                 'object-fit': 'cover',
+                                 'border-radius': '50%'
                              }}
                              src={`/images/p${currentUser && currentUser.avatar}.jpg`}
                              alt=""/>

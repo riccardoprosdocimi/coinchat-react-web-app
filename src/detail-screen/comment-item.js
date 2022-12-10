@@ -7,6 +7,7 @@ import {
     updateUCRecordThunk
 } from "../services/comment-thunk";
 import Moment from 'react-moment';
+import {Link} from "react-router-dom";
 
 const CommentItem = ({comment}) => {
 
@@ -23,7 +24,7 @@ const CommentItem = ({comment}) => {
     }
 
     const dispatch = useDispatch();
-    function deleteTuitHandler(commentID) {
+    function deleteCommentHandler(commentID) {
         console.log("delete me");
         dispatch(deleteGivenCommentThunk(commentID));
     }
@@ -75,10 +76,12 @@ const CommentItem = ({comment}) => {
     return(
         <div className="d-flex flex-column border-bottom mt-2">
             <div className="d-flex pb-2">
-                <div className="">
-                    <a href="/#"><img className="wd-rounded-image" src={`/images/p${comment.authorID.avatar}.jpg`}
-                                     alt="avatar" /></a>
-                </div>
+                <Link to={`/profile/${comment.authorID._id}`}>
+                    <div className="">
+                        <a href="/#"><img className="wd-rounded-image" src={`/images/p${comment.authorID.avatar}.jpg`}
+                                         alt="avatar" /></a>
+                    </div>
+                </Link>
                 <div className="mt-2 ms-3">
                     <h6 className="">{comment.authorID.firstName} {comment.authorID.lastName}</h6>
                 </div>
@@ -86,7 +89,7 @@ const CommentItem = ({comment}) => {
                     {currentUser && (currentUser.role === "ADMIN" || currentUser._id === comment.authorID)
                         &&
                         <i className="bi bi-trash text-danger"
-                           onClick={() => deleteTuitHandler(comment._id)}></i>
+                           onClick={() => deleteCommentHandler(comment._id)}></i>
                     }
                 </div>
             </div>
