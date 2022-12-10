@@ -44,9 +44,12 @@ const GeneralCommentsReducer = createSlice({
             console.log(payload);
         },
 
-        [deleteGivenCommentThunk.fulfilled]: (state) => {
-            state.updateFlag = !state.updateFlag;
-        },
+        [deleteGivenCommentThunk.fulfilled]:
+            (state, {payload}) => {
+                state.fetching = false
+                state.comments = state.comments
+                    .filter(comment => comment._id !== payload)
+            },
 
 
         [getCommentsByAuthorIDThunk.pending]: (state) => {

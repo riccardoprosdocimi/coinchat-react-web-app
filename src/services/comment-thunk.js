@@ -20,7 +20,10 @@ export const getCommentsByObjectIDThunk = createAsyncThunk(
 
 export const deleteGivenCommentThunk = createAsyncThunk(
     "deleteGivenComment",
-    (commentID) => deleteGivenComment(commentID)
+    async (commentID) => {
+        await deleteGivenComment(commentID)
+        return commentID
+    }
 )
 
 export const getCommentsByAuthorIDThunk = createAsyncThunk(

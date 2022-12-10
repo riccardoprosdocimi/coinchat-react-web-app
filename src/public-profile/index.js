@@ -19,7 +19,6 @@ const PublicProfile = () => {
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {followers, following} = useSelector(state => state.follow)
-    const {comments} = useSelector(state => state.comments)
     const {followId} = useSelector(state => state.follow)
     const [followsUser, setFollowsUser] = useState()
     const dispatch = useDispatch()
@@ -37,6 +36,9 @@ const PublicProfile = () => {
         await setFollowsUser(false)
     }
     useEffect(() => {
+        if (currentUser && uid === currentUser._id) {
+            navigate('/profile')
+        }
         async function fetchData() {
             await dispatch(findUserByIdThunk(uid))
             await dispatch(getCommentsByAuthorIDThunk(uid))
@@ -46,7 +48,7 @@ const PublicProfile = () => {
             await setFollowsUser(followId !== null)
         }
         fetchData()
-    }, [uid, followsUser, followId])
+    }, [dispatch, currentUser, navigate, uid, followsUser, followId])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -131,7 +133,7 @@ const PublicProfile = () => {
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Posts/Comments">
-                        <PostList comments={comments} allowedToRemove={false}/>
+                        <PostList uid={uid} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">
@@ -158,6 +160,18 @@ const PublicProfile = () => {
                                             </div>
                                         </Link>
                                 )
+                            }
+                            {
+                                followers.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            No one follows this user yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </Tab>
@@ -186,6 +200,18 @@ const PublicProfile = () => {
                                             </div>
                                         </Link>
                                 )
+                            }
+                            {
+                                following.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            This user follows no one yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </Tab>
