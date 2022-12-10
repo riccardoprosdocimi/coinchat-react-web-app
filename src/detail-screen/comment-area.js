@@ -6,7 +6,7 @@ import {findUCRecordByUserIDThunk, getCommentsByObjectIDThunk} from "../services
 import {useSearchParams} from "react-router-dom";
 
 
-const CommentArea = () => {
+const CommentArea = ({objectType}) => {
     const {currentUser} = useSelector(state => state.users);
     const {comments, updateFlag} = useSelector((state) => state.comments)
     let [searchParams] = useSearchParams();
@@ -26,7 +26,7 @@ const CommentArea = () => {
     return (
         <section id="comments" className={"border-top vh-100 container justify-content-center pe-0"}>
             <h3>{Object.keys(comments).length} Comments</h3>
-            <ComposeComment />
+            <ComposeComment objectType={objectType}/>
             <div className={"list-group border-top overflow-auto h-100 pe-0"}>
                 {
                     reverseComment.map(

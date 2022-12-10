@@ -61,5 +61,5 @@ export const deleteUCRecord = async (targetRecord) => {
 }
 
 export const updateUCRecord = async (originalReaction) => {
-    return (await axios.post(`${Comment_API}/react`, originalReaction)).data;
+    return (await axios.put(`${Comment_API}/react`, originalReaction)).data;
 }
