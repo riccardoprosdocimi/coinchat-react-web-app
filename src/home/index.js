@@ -1,12 +1,20 @@
 import MainComponent from "./main";
+import {useSelector} from "react-redux";
+
 
 
 
 function Home() {
+    const {currentUser} = useSelector((state)=> state.users)
     return (
             <div className="container">
+
                 <div className={"row pt-3"}> <h2 className={"text-center"}>Welcome to CoinChat</h2></div>
-                <div className={"row pt-3"}> <h3 className={"text-center wd-app-color-yellow"}>Explore the Cryptoeconomy</h3></div>
+                <div className={"row pt-3"}> <h2 className={"text-center "}>Explore the Cryptoeconomy</h2></div>
+                {
+                    currentUser &&
+                    <h3> Welcome {currentUser.firstName}   </h3>
+                }
                 <div className={"row pt-3"}>
                     <div className={"col-3"}> <h3> Trending Now! </h3></div>
                 </div>

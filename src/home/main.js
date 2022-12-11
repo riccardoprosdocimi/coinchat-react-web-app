@@ -4,6 +4,7 @@ import {getTrendingCoinsThunk} from "../services/home-thunk";
 
 
 const MainComponent =() => {
+
     const coins = useSelector(
         state => state.coins)
     const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const MainComponent =() => {
 
                                       <div className="col-xxl-7 col-xl-5 col-lg-5">
                                           <div className="fw-bolder pe-2" > {coin.item.name} -- {coin.item.symbol}
-                                              <img src={coin.item.thumb} className="rounded ps-3" width="30px" height={"30px"}/>
+
                                           </div>
                                           <div className="text-secondary"> <span> price: {coin.item.price_btc}</span></div>
 
