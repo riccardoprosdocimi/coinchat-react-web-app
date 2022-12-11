@@ -18,8 +18,7 @@ export const getCommentsByObjectIDThunk = createAsyncThunk(
 
 )
 
-export const deleteGivenCommentThunk =
-    createAsyncThunk(
+export const deleteGivenCommentThunk = createAsyncThunk(
     "deleteGivenComment",
     (commentID) => deleteGivenComment(commentID)
 )
