@@ -1,19 +1,52 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
+import {addWatchlistThunk, findWatchlistThunk, removeWatchlistThunk} from "../services/watchlist-thunks";
 
 const SearchResultItem = ({result}) => {
-    const [watchState, setWatchState] = useState(false)
+    const {currentUser} = useSelector(state => state.users);
+    const {watchlist} = useSelector(state => state.watchlist);
 
-    const addWatchlistItem = (event) => {
-        event.preventDefault();
-        //TODO: change uid to current user uid
-        setWatchState(true);
+    const [watchStateFlag, setWatchStateFlag] = useState(false)
+
+    const dispatch = useDispatch()
+    // if user is login, get all related watchlist records
+    useEffect(
+        () => {
+            currentUser && dispatch(findWatchlistThunk(currentUser._id))
+        },
+        [watchStateFlag]
+    )
+
+    let watchState = false;
+    let watchlistID = null;
+
+    for (const wl of watchlist) {
+        if (wl.coinID === result.id) {
+            watchState = true;
+            watchlistID = wl._id;
+        }
     }
 
-    function removeWatchlistItem(event) {
-        event.preventDefault();
-        // TODO:
-        setWatchState(false);
+
+    const addWatchlistItem = (e) => {
+        e.preventDefault();
+        if (!currentUser) {
+            alert("Please login before add to watchlist")
+            return
+        }
+        const watchlistItem = {
+            uid: currentUser._id,
+            coinID: result.id
+        }
+        dispatch(addWatchlistThunk(watchlistItem))
+        setWatchStateFlag(true);
+    }
+
+    function removeWatchlistItem(e) {
+        e.preventDefault();
+        dispatch(removeWatchlistThunk(watchlistID))
+        setWatchStateFlag(false);
     }
 
     return(
