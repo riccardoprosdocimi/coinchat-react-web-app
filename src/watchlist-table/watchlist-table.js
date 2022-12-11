@@ -8,49 +8,66 @@ const WatchListTable = ({uid, allowedToRemove}) => {
     const dispatch = useDispatch()
     useEffect(() => {
         dispatch(findWatchlistThunk(uid))
-    }, [uid])
+    }, [dispatch, uid])
     return (
-        <div className="wd-bg-watchlist rounded-3">
-            <h3 className="text-decoration-underline fw-bold pt-2 text-center">
-                WatchList
-            </h3>
-            <table className="table table-responsive table-hover border-dark mb-0">
-                <thead>
-                <tr>
-                    <th scope="col" className={'text-center'}>
-                        Coin
-                    </th>
-                    <th scope="col" className={'text-center'}>
-                        24H Change
-                    </th>
-                    <th scope="col" className={'text-center'}>
-                        Current Price
-                    </th>
-                    {
-                        allowedToRemove &&
-                        <th scope="col" className={'text-center'}>
-                            Remove
-                        </th>
-                    }
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    loading &&
-                    <tr>
-                        <td>Loading...</td>
-                    </tr>
-                }
-                {
-                    watchlist.map(
-                        item =>
-                            <WatchlistTableItem key={item._id}
-                                                item={item}
-                                                allowedToRemove={allowedToRemove}/> )
-                }
-                </tbody>
-            </table>
-        </div>
+        <>
+            {
+                watchlist.length > 0 &&
+                <div className="wd-bg-watchlist rounded-3">
+                    <h3 className="text-decoration-underline fw-bold pt-2 text-center">
+                        WatchList
+                    </h3>
+                    <table className="table table-responsive table-hover border-dark mb-0">
+                        <thead>
+                        <tr>
+                            <th scope="col" className={'text-center'}>
+                                Coin
+                            </th>
+                            <th scope="col" className={'text-center'}>
+                                24H Change
+                            </th>
+                            <th scope="col" className={'text-center'}>
+                                Current Price
+                            </th>
+                            {
+                                allowedToRemove &&
+                                <th scope="col" className={'text-center'}>
+                                    Remove
+                                </th>
+                            }
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            loading &&
+                            <tr>
+                                <td>Loading...</td>
+                            </tr>
+                        }
+                        {
+                            watchlist.map(
+                                item =>
+                                    <WatchlistTableItem key={item._id}
+                                                        item={item}
+                                                        allowedToRemove={allowedToRemove}/> )
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            {
+                watchlist.length === 0 &&
+                <div className='list-group'>
+                    <div className='list-group-item'>
+                        <br/><br/>
+                        <h4 className='text-center text-secondary'>
+                            No coins added to watchlist yet!
+                        </h4>
+                        <br/><br/>
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 

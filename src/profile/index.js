@@ -29,14 +29,13 @@ let formatPhoneNumber = (str) => {
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);
     const {followers, following} = useSelector(state => state.follow);
-    const {comments} = useSelector(state => state.comments)
+    const {comments, updateFlag} = useSelector(state => state.comments)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
         dispatch(getCommentsByAuthorIDThunk(currentUser._id))
-    }, [currentUser]);
-
+    }, [dispatch, currentUser, updateFlag]);
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -67,12 +66,12 @@ const Profile = () => {
                             <div className={'row'}>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{followers.length}</span>
+                                        className={'fw-bold pe-2'}>{followers.length.toLocaleString('en-US')}</span>
                                     <span className={'text-secondary'}>Followers</span>
                                 </div>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{following.length}</span>
+                                        className={'fw-bold pe-2'}>{following.length.toLocaleString('en-US')}</span>
                                     <span className={'text-secondary'}>Following</span>
                                 </div>
                             </div>
@@ -146,7 +145,8 @@ const Profile = () => {
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Posts/Comments">
-                        <PostList comments={comments} allowedToRemove={true}/>
+                        <PostList comments={comments}
+                                  allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">
