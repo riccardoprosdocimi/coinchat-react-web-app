@@ -21,6 +21,7 @@ import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
 import PublicProfile from "./public-profile";
 import FollowReducer from "./reducers/follow-reducer";
+import BlogListScreen from "./blog-list-screen";
 
 const store = configureStore({
                                  reducer: {
@@ -63,6 +64,8 @@ function App() {
                                    element={<Login/>}/>
                             <Route path={"/register"}
                                    element={<Register/>}/>
+                            <Route path={"/blog"}
+                                   element={<BlogListScreen/>}/>
                         </Routes>
                     </div>
                 </BrowserRouter>
