@@ -1,6 +1,9 @@
 import React, {useEffect}  from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getTrendingCoinsThunk} from "../services/home-thunk";
+import {Link} from "react-router-dom";
+import HomeWatchlistItem from "./home-watchlist_item";
+
 
 
 const MainComponent =() => {
@@ -20,7 +23,6 @@ const MainComponent =() => {
 
 
             {
-
                 coins.map (coin =>
                               <li key={coin.item.coin_id}  className={"list-group-item"}>
                                   <div className="row">
@@ -35,6 +37,16 @@ const MainComponent =() => {
 
                                           </div>
                                           <div className="text-secondary"> <span> price: {coin.item.price_btc}</span></div>
+
+                                      </div>
+
+                                      <div className="col-xxl-3 col-xl-4 col-lg-4">
+                                          <Link to={`/detail?coinID=${coin.item.name}`}>
+
+                                              <button className="wd-button-follow btn btn-warning wd-navbar-text float-end d-flex align-items-center"> View
+
+                                              </button>
+                                          </Link>
 
                                       </div>
 

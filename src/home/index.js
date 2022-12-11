@@ -1,11 +1,14 @@
 import MainComponent from "./main";
 import {useSelector} from "react-redux";
+import HomeWatchListTable from "./home-watchlist-table"
 
+import React from "react";
 
 
 
 function Home() {
     const {currentUser} = useSelector((state)=> state.users)
+
     return (
             <div className="container">
 
@@ -13,19 +16,42 @@ function Home() {
                 <div className={"row pt-3"}> <h2 className={"text-center "}>Explore the Cryptoeconomy</h2></div>
                 {
                     currentUser &&
-                    <h3> Welcome {currentUser.firstName}   </h3>
+                    <h3> Welcome {currentUser.firstName}
+                    </h3>
+
+
                 }
+
+                {
+                    currentUser &&
+                    <h5> you have been watching following coins: </h5>
+
+
+
+                }
+
+                {
+                    currentUser &&
+                    <HomeWatchListTable uid={currentUser && currentUser._id}/>
+                }
+
+
+
+
+
+
+
+
                 <div className={"row pt-3"}>
                     <div className={"col-3"}> <h3> Trending Now! </h3></div>
                 </div>
                 <div className="row">
 
                     <MainComponent/>
+                </div>
+
            </div>
 
-
-
-       </div>
 
     );
 }
