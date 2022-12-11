@@ -7,6 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 import moment from "moment";
+import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -28,11 +29,13 @@ let formatPhoneNumber = (str) => {
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);
     const {followers, following} = useSelector(state => state.follow);
+    const {comments, updateFlag} = useSelector(state => state.comments)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
-    }, [dispatch, currentUser]);
+        dispatch(getCommentsByAuthorIDThunk(currentUser._id))
+    }, [dispatch, currentUser, updateFlag]);
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -142,7 +145,7 @@ const Profile = () => {
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Posts/Comments">
-                        <PostList uid={currentUser && currentUser._id}
+                        <PostList comments={comments}
                                   allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}

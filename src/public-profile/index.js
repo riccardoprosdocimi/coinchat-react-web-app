@@ -18,6 +18,7 @@ const PublicProfile = () => {
     const {uid} = useParams()
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
+    const {comments, updateFlag} = useSelector(state => state.comments)
     const {followers, following} = useSelector(state => state.follow)
     const {followId} = useSelector(state => state.follow)
     const [followsUser, setFollowsUser] = useState()
@@ -48,7 +49,7 @@ const PublicProfile = () => {
             await setFollowsUser(followId !== null)
         }
         fetchData()
-    }, [dispatch, currentUser, navigate, uid, followsUser, followId])
+    }, [dispatch, currentUser, navigate, uid, updateFlag, followsUser, followId])
     return (
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -133,7 +134,7 @@ const PublicProfile = () => {
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="second" title="Posts/Comments">
-                        <PostList uid={uid} allowedToRemove={false}/>
+                        <PostList comments={comments} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">

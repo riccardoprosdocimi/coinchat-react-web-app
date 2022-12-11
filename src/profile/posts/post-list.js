@@ -1,19 +1,8 @@
 import PostListItem from "./post-list-item";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {getCommentsByAuthorIDThunk} from "../../services/comment-thunk";
 
-const PostList = ({uid, allowedToRemove}) => {
-    const {comments} = useSelector(state => state.comments)
-    const dispatch = useDispatch()
-
+const PostList = ({comments, allowedToRemove}) => {
     // Source: https://stackoverflow.com/questions/10123953/how-to-sort-an-object-array-by-date-property
     const sortedComments = comments.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
-
-    useEffect(() => {
-        dispatch(getCommentsByAuthorIDThunk(uid))
-    }, [dispatch, uid])
     return(
         <ul className={'list-group'}>
             {

@@ -45,10 +45,8 @@ const GeneralCommentsReducer = createSlice({
         },
 
         [deleteGivenCommentThunk.fulfilled]:
-            (state, {payload}) => {
-                state.fetching = false
-                state.comments = state.comments
-                    .filter(comment => comment._id !== payload)
+            (state) => {
+                state.updateFlag = !state.updateFlag;
             },
 
 
