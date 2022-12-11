@@ -45,7 +45,6 @@ const HeadArea = () => {
     }
 
     function removeWatchlistItem() {
-        // TODO:
         dispatch(removeWatchlistThunk(watchlistID))
         setWatchStateFlag(false);
     }

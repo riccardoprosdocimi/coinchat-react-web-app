@@ -22,6 +22,7 @@ import ProtectedRoute from "./login/protected-route";
 import PublicProfile from "./public-profile";
 import FollowReducer from "./reducers/follow-reducer";
 import BlogListScreen from "./blog-list-screen";
+import SearchReducer from "./reducers/search-reducer";
 
 const store = configureStore({
                                  reducer: {
@@ -33,6 +34,7 @@ const store = configureStore({
                                      coins: HomeReducer,
                                      comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
+                                     resList: SearchReducer,
                                  }
                              });
 
