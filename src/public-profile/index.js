@@ -52,19 +52,19 @@ const PublicProfile = () => {
     }, [dispatch, currentUser, navigate, uid, updateFlag, followsUser, followId])
     return (
         <div className={'row'}>
-            <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
+            <div className="col-xl-3 col-lg-3 col-md-4 mt-2">
                 <div className="card">
-                    <div className="card-img-top position-relative d-flex d-md-block d-none">
+                    <div className="card-img-top position-relative d-flex d-lg-block d-none">
                         <img src={`/images/b${publicProfile.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute  img-thumbnail"
                              style={{
-                                 'height': '85%',
-                                 'width': '56%',
-                                 'bottom': '5%',
-                                 'left': '25%',
-                                 'object-fit': 'cover',
-                                 'border-radius': '50%'
+                                 height: '85%',
+                                 width: '55%',
+                                 bottom: '7%',
+                                 left: '24%',
+                                 objectFit: 'cover',
+                                 borderRadius: '50%'
                              }}
                              src={`/images/p${publicProfile.avatar}.jpg`} alt=""/>
                     </div>
@@ -126,7 +126,7 @@ const PublicProfile = () => {
                     }
                 </div>
             </div>
-            <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
+            <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
                 <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="first" title="Watchlist">
