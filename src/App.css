@@ -86,9 +86,19 @@ h4, h5, h6, p {
 }
 
 .dropdown-item {
-  --bs-dropdown-link-active-color: #033153 !important;
+  --bs-dropdown-link-active-color: #ffc300 !important;
   --bs-dropdown-link-hover-color: #ffc300 !important;
   --bs-dropdown-link-hover-bg: #033153 !important;
+}
+
+.dropdown-item.active {
+  color: #ffc300 !important;
+  background-color: #033153 !important;
+}
+
+.dropdown-menu {
+  --bs-dropdown-link-active-color: #ffc300 !important;
+  --bs-dropdown-link-active-bg: #033153 !important;
 }
 
 /*.navbar-nav {*/

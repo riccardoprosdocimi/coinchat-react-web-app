@@ -1,14 +1,12 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from '../reducers/profile-reducer'
 import {updateUserThunk} from "../services/users-thunks";
 
 const EditProfile = () => {
     const {currentUser} = useSelector(state => state.users);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const [banner, setBanner] = useState(currentUser.banner)
     const [avatar, setAvatar] = useState(currentUser.avatar)
     const [firstName, setFirstName] = useState(currentUser.firstName)
@@ -16,31 +14,30 @@ const EditProfile = () => {
     const [bio, setBio] = useState(currentUser.bio)
     const [city, setCity] = useState(currentUser.city)
     const [website, setWebsite] = useState(currentUser.website)
-    const birthdayData = currentUser.birthday.split('-')
-    const [birthday, setBirthday] = useState(
-        birthdayData[0] + "-" + birthdayData[1] + '-' + birthdayData[2])
+    const birthdayData = currentUser.birthday.slice(0, 10)
+    const [birthday, setBirthday] = useState(birthdayData)
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)
-    const [accountType, setAccountType] = useState(currentUser.role)
+    // const [accountType, setAccountType] = useState(currentUser.role)
 
     const updateProfileHandler = () => {
         const newUser = {
             ...currentUser,
-            banner: banner,
-            avatar: avatar,
-            firstName: firstName,
-            lastName: lastName,
-            bio: bio,
-            city: city,
-            address: address,
-            website: website,
-            birthday: birthday,
-            // email: email,
+            banner,
+            avatar,
+            firstName,
+            lastName,
+            bio,
+            city,
+            address,
+            website,
+            birthday,
+            // email,
             // handle: handle,
-            countryCode: countryCode,
+            countryCode,
             number: phoneNumber,
-            role: accountType,
+            // role: accountType,
         }
         dispatch(updateUserThunk(newUser))
         navigate('/profile')
@@ -194,7 +191,8 @@ const EditProfile = () => {
                                                htmlFor={"countryCode-field"}>Country Code</label>
                                         <select className={"form-control border-0 ps-2"}
                                                 id={"countryCode-field"}
-                                                onChange={event => setCountryCode(event.target.value)}>
+                                                onChange={event => setCountryCode(event.target.value)}
+                                                value={countryCode}>
                                             <option selected disabled>
                                                 Country code
                                             </option>
@@ -233,28 +231,29 @@ const EditProfile = () => {
                                            onChange={event => setAddress(event.target.value)}/>
                                 </div>
                             </div>
-                            <div className={"form-group pt-2"}>
-                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
-                                    <label className={'ps-2 text-secondary fs-6'}
-                                           htmlFor={"account-field"}>Account Type</label>
-                                    <select className={"form-control border-0 ps-2"}
-                                            id={"account-field"}
-                                            onChange={event => setAccountType(event.target.value)}>
-                                        <option selected disabled>
-                                            Select the account type
-                                        </option>
-                                        <option value='PERSONAL'>
-                                            Personal
-                                        </option>
-                                        <option value='PROFESSIONAL'>
-                                            Professional
-                                        </option>
-                                        <option value='ADMIN'>
-                                            Administrator
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
+                            {/*<div className={"form-group pt-2"}>*/}
+                            {/*    <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>*/}
+                            {/*        <label className={'ps-2 text-secondary fs-6'}*/}
+                            {/*               htmlFor={"account-field"}>Account Type</label>*/}
+                            {/*        <select className={"form-control border-0 ps-2"}*/}
+                            {/*                id={"account-field"}*/}
+                            {/*                onChange={event => setAccountType(event.target.value)}*/}
+                            {/*                value={accountType}>*/}
+                            {/*            <option selected disabled>*/}
+                            {/*                Select the account type*/}
+                            {/*            </option>*/}
+                            {/*            <option value='PERSONAL'>*/}
+                            {/*                Personal*/}
+                            {/*            </option>*/}
+                            {/*            <option value='PROFESSIONAL'>*/}
+                            {/*                Professional*/}
+                            {/*            </option>*/}
+                            {/*            <option value='ADMIN'>*/}
+                            {/*                Administrator*/}
+                            {/*            </option>*/}
+                            {/*        </select>*/}
+                            {/*    </div>*/}
+                            {/*</div>*/}
                         </p>
                         <div className={'text-center row'}>
                             <div className={'col'}>

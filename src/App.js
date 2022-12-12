@@ -10,7 +10,7 @@ import EditProfile from "./edit-profile";
 import Search from "./search";
 import Detail from "./detail-screen";
 import {configureStore} from "@reduxjs/toolkit";
-import usersReducer from "./reducers/users-reducer";
+import UsersReducer from "./reducers/users-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
@@ -24,7 +24,7 @@ import FollowReducer from "./reducers/follow-reducer";
 
 const store = configureStore({
                                  reducer: {
-                                     users: usersReducer,
+                                     users: UsersReducer,
                                      profile: profileReducer,
                                      coinData: CoinDataReducer,
                                      coinMarketChart: CoinMarketChartReducer,
@@ -70,5 +70,4 @@ function App() {
         </Provider>
     );
 }
-
 export default App;

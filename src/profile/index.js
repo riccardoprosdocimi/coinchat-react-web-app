@@ -35,7 +35,7 @@ const Profile = () => {
     }, [currentUser]);
 
     return (
-        <div className={'row'}>
+        <div className={'row mb-5'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
@@ -98,7 +98,8 @@ const Profile = () => {
                             }
                             <div className={'pt-2'}>
                                 <i className={'bi bi-balloon-fill pe-2'}/>
-                                {currentUser && moment(currentUser.birthday).format('MMMM Do[,] YYYY')}
+                                {currentUser && moment.utc(currentUser.birthday)
+                                    .format('MMMM Do[,] YYYY')}
                             </div>
                             {
                                 currentUser && currentUser.number &&
