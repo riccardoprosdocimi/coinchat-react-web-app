@@ -23,20 +23,24 @@ const PostListItem = ({comment, allowedToRemove}) => {
     const [coin, setCoin] = useState(null);
     // const [previousCoin, setPreviousCoin] = useState(null)
     useEffect(() => {
-        fetch(`${COINGECKO_API_BASE_URL}/${comment.objectID}`)
-            .then(res => res.json())
-            .then((result) => {
-                      setIsLoaded(true);
-                      setCoin(result);
-                  },
-                  // Note: it's important to handle errors here
-                  // instead of a catch() block so that we don't swallow
-                  // exceptions from actual bugs in components.
-                  (error) => {
-                      setIsLoaded(true);
-                      setError(error);
-                  }
-            )
+        if (comment.objectType === 'Coin') {
+            fetch(`${COINGECKO_API_BASE_URL}/${comment.objectID}`)
+                .then(res => res.json())
+                .then((result) => {
+                          setIsLoaded(true);
+                          setCoin(result);
+                      },
+                      // Note: it's important to handle errors here
+                      // instead of a catch() block so that we don't swallow
+                      // exceptions from actual bugs in components.
+                      (error) => {
+                          setIsLoaded(true);
+                          setError(error);
+                      }
+                )
+        } else {
+            setIsLoaded(true)
+        }
         /*
         Used to fetch snapshot of coin when comment was made.
          */
@@ -53,7 +57,7 @@ const PostListItem = ({comment, allowedToRemove}) => {
         //               setError(error);
         //           }
         //     )
-    }, [comment.objectID])
+    }, [comment.objectID, comment.objectType])
     if (error) {
         return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -66,10 +70,12 @@ const PostListItem = ({comment, allowedToRemove}) => {
                     <Link to={`/detail?coinID=${comment.objectID}`} style={{textDecoration: 'none', color: 'black'}}>
                         <span>
                             <img className={'pe-2 pb-2'}
-                                 src={coin.image.thumb} alt=""/>
+                                 src={coin !== null ?
+                                      coin.image.thumb : null} alt=""/>
                         </span>
                         <span className='fs-4 pt-1'>
-                            {coin.name}
+                            {coin !== null ?
+                             coin.name : "Blog Comment"}
                         </span>
                         <i className='bi bi-dot text-secondary'></i>
                         <span className='text-secondary'>
