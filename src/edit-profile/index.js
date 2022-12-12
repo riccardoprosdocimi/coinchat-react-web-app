@@ -54,9 +54,9 @@ const EditProfile = () => {
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
                                  'height': '85%',
-                                 'width': '50%',
-                                 'bottom': '5%',
-                                 'left': '25%'
+                                 'width': '30%',
+                                 'bottom': '10%',
+                                 'left': '35%'
                              }}
                              src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
