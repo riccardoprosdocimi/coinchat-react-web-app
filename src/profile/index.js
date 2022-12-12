@@ -40,7 +40,7 @@ const Profile = () => {
         <div className={'row'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
                 <div className="card">
-                    <div className="card-img-top position-relative">
+                    <div className="card-img-top position-relative d-flex d-md-block d-none">
                         <img src={`/images/b${currentUser && currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute  img-thumbnail"
