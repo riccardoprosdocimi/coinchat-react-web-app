@@ -174,6 +174,18 @@ const Profile = () => {
                                                   </Link>
                                 )
                             }
+                            {
+                                followers.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            No one follows this user yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
@@ -201,6 +213,18 @@ const Profile = () => {
                                                       </div>
                                                   </Link>
                                 )
+                            }
+                            {
+                                following.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            This user follows no one yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </Tab>
