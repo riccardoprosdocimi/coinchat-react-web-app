@@ -14,7 +14,9 @@ export const createNewCommentThunk = createAsyncThunk(
 
 export const getCommentsByObjectIDThunk = createAsyncThunk(
     "getCommentsByObjectID",
-    (arg) => getCommentsByObjectID(arg.objID, arg.objType)
+    (arg) => {
+        return getCommentsByObjectID(arg.objID, arg.objType)
+    }
 
 )
 

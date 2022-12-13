@@ -14,8 +14,8 @@ const CommentArea = ({objectType}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCommentsByObjectIDThunk({
-            objID: searchParams.get("coinID"),
-            objType: "Coin"
+            objID: searchParams.get(objectType === "Coin"?"coinID":"blogID"),
+            objType: objectType
     }));
         currentUser && dispatch(findUCRecordByUserIDThunk(currentUser._id))
     },[updateFlag])
