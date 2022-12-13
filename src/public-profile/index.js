@@ -13,12 +13,15 @@ import {
     userFollowsUserThunk, userUnfollowsUserThunk
 } from "../services/follow-thunks";
 import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
+import {findBlogByAuthorIDThunk} from "../services/blog-thunk";
+import BlogListItem from "../blog-list-screen/blog-list-item";
 
 const PublicProfile = () => {
     const {uid} = useParams()
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {comments, updateFlag} = useSelector(state => state.comments)
+    const {blogList} = useSelector(state => state.blogs);
     const {followers, following} = useSelector(state => state.follow)
     const {followId} = useSelector(state => state.follow)
     const [followsUser, setFollowsUser] = useState()
@@ -43,6 +46,7 @@ const PublicProfile = () => {
         async function fetchData() {
             await dispatch(findUserByIdThunk(uid))
             await dispatch(getCommentsByAuthorIDThunk(uid))
+            await dispatch(findBlogByAuthorIDThunk(uid))
             await dispatch(findUsersFollowingUserThunk(uid))
             await dispatch(findUsersFollowedByUserThunk(uid))
             await dispatch(findFollowIdThunk(uid))
@@ -127,17 +131,29 @@ const PublicProfile = () => {
                 </div>
             </div>
             <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
-                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
+                <Tabs defaultActiveKey="watchlist" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="first" title="Watchlist">
+                         eventKey="watchlist" title="Watchlist">
                         <WatchListTable uid={uid} allowedToRemove={false}/>
                     </Tab>
+                    {
+                        (publicProfile.role === 'PROFESSIONAL' || publicProfile.role === 'ADMIN') &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="blog" title="Blog Posts">
+                            {blogList.map(
+                                blog =>
+                                    <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
+                                        <BlogListItem blog={blog}/>
+                                    </div>
+                            )}
+                        </Tab>
+                    }
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Posts/Comments">
+                         eventKey="comments" title="Comments">
                         <PostList comments={comments} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Followers">
+                         eventKey="followers" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -177,7 +193,7 @@ const PublicProfile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Following">
+                         eventKey="following" title="Following">
                         <div className='list-group'>
                             {
                                 following &&

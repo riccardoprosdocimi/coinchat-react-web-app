@@ -1,7 +1,6 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from '../reducers/profile-reducer'
 import {updateUserThunk} from "../services/users-thunks";
 
 const EditProfile = () => {
