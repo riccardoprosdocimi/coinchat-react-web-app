@@ -244,6 +244,12 @@ body {
   left: 25%;
 }
 
+.card-img-top {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}
+
 /*----------------------------------------Comment Area----------------------------------------*/
 .wd-rounded-image {
   width: 40px;

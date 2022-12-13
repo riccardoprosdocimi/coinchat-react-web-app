@@ -7,6 +7,7 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 import moment from "moment";
+import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -28,12 +29,13 @@ let formatPhoneNumber = (str) => {
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);
     const {followers, following} = useSelector(state => state.follow);
+    const {comments, updateFlag} = useSelector(state => state.comments)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
-    }, [currentUser]);
-
+        dispatch(getCommentsByAuthorIDThunk(currentUser._id))
+    }, [dispatch, currentUser, updateFlag]);
     return (
         <div className={'row mb-5'}>
             <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
@@ -41,12 +43,14 @@ const Profile = () => {
                     <div className="card-img-top position-relative">
                         <img src={`/images/b${currentUser && currentUser.banner}.jpg`}
                              className="card-img-top" alt="..."/>
-                        <img className="position-absolute rounded-circle img-thumbnail"
+                        <img className="position-absolute  img-thumbnail"
                              style={{
                                  'height': '85%',
-                                 'width': '50%',
+                                 'width': '56%',
                                  'bottom': '5%',
-                                 'left': '25%'
+                                 'left': '25%',
+                                 'object-fit': 'cover',
+                                 'border-radius': '50%'
                              }}
                              src={`/images/p${currentUser && currentUser.avatar}.jpg`}
                              alt=""/>
@@ -58,16 +62,16 @@ const Profile = () => {
                                 @{currentUser && currentUser.handle}
                             </span>
                         </div>
-                        <p className="card-text">
+                        <div className="card-text">
                             <div className={'row'}>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{followers.length}</span>
+                                        className={'fw-bold pe-2'}>{followers.length.toLocaleString('en-US')}</span>
                                     <span className={'text-secondary'}>Followers</span>
                                 </div>
                                 <div className={'col'}>
                                     <span
-                                        className={'fw-bold pe-2'}>{following.length}</span>
+                                        className={'fw-bold pe-2'}>{following.length.toLocaleString('en-US')}</span>
                                     <span className={'text-secondary'}>Following</span>
                                 </div>
                             </div>
@@ -122,7 +126,7 @@ const Profile = () => {
                                 <i className={'bi bi-person-square pe-2'}/>
                                 {currentUser && currentUser.role}
                             </div>
-                        </p>
+                        </div>
                     </div>
                 </div>
                 <div className={'text-center pt-3'}>
@@ -141,8 +145,9 @@ const Profile = () => {
                                         allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Comments">
-                        <PostList/>
+                         eventKey="second" title="Posts/Comments">
+                        <PostList comments={comments}
+                                  allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
                          eventKey="third" title="Followers">
@@ -151,7 +156,7 @@ const Profile = () => {
                                 followers &&
                                 followers.map(follow =>
                                                   <Link to={`/profile/${follow.follower._id}`}
-                                                        className='list-group-item'>
+                                                        className='list-group-item' key={follow.follower._id}>
                                                       <div className='row'>
                                                           <div className='col-1'>
                                                               <img
@@ -179,7 +184,7 @@ const Profile = () => {
                                 following &&
                                 following.map(follow =>
                                                   <Link to={`/profile/${follow.followee._id}`}
-                                                        className='list-group-item'>
+                                                        className='list-group-item' key={follow.followee._id}>
                                                       <div className='row'>
                                                           <div className='col-1'>
                                                               <img

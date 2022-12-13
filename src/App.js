@@ -21,6 +21,9 @@ import HomeReducer from "./reducers/home-reducer";
 import ProtectedRoute from "./login/protected-route";
 import PublicProfile from "./public-profile";
 import FollowReducer from "./reducers/follow-reducer";
+import BlogListScreen from "./blog-list-screen";
+import SearchReducer from "./reducers/search-reducer";
+import EditUsers from "./users/edit-users";
 
 const store = configureStore({
                                  reducer: {
@@ -32,6 +35,7 @@ const store = configureStore({
                                      coins: HomeReducer,
                                      comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
+                                     resList: SearchReducer,
                                  }
                              });
 
@@ -54,7 +58,13 @@ function App() {
                             <Route path={'/profile/:uid'}
                                    element={<PublicProfile/>}/>
                             <Route path={'/profile/edit-profile'}
-                                   element={<EditProfile/>}/>
+                                   element={
+                                <ProtectedRoute>
+                                    <EditProfile/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path={'/edit-users'}
+                                   element={<EditUsers/>}/>
                             <Route path={"/search"}
                                    element={<Search/>}/>
                             <Route path={"/detail/*"}
@@ -63,6 +73,8 @@ function App() {
                                    element={<Login/>}/>
                             <Route path={"/register"}
                                    element={<Register/>}/>
+                            <Route path={"/blog"}
+                                   element={<BlogListScreen/>}/>
                         </Routes>
                     </div>
                 </BrowserRouter>

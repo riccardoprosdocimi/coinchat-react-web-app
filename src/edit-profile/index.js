@@ -19,7 +19,7 @@ const EditProfile = () => {
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)
-    // const [accountType, setAccountType] = useState(currentUser.role)
+    const [accountType, setAccountType] = useState(currentUser.role)
 
     const updateProfileHandler = () => {
         const newUser = {
@@ -37,7 +37,7 @@ const EditProfile = () => {
             // handle: handle,
             countryCode,
             number: phoneNumber,
-            // role: accountType,
+            role: accountType,
         }
         dispatch(updateUserThunk(newUser))
         navigate('/profile')
@@ -231,29 +231,29 @@ const EditProfile = () => {
                                            onChange={event => setAddress(event.target.value)}/>
                                 </div>
                             </div>
-                            {/*<div className={"form-group pt-2"}>*/}
-                            {/*    <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>*/}
-                            {/*        <label className={'ps-2 text-secondary fs-6'}*/}
-                            {/*               htmlFor={"account-field"}>Account Type</label>*/}
-                            {/*        <select className={"form-control border-0 ps-2"}*/}
-                            {/*                id={"account-field"}*/}
-                            {/*                onChange={event => setAccountType(event.target.value)}*/}
-                            {/*                value={accountType}>*/}
-                            {/*            <option selected disabled>*/}
-                            {/*                Select the account type*/}
-                            {/*            </option>*/}
-                            {/*            <option value='PERSONAL'>*/}
-                            {/*                Personal*/}
-                            {/*            </option>*/}
-                            {/*            <option value='PROFESSIONAL'>*/}
-                            {/*                Professional*/}
-                            {/*            </option>*/}
-                            {/*            <option value='ADMIN'>*/}
-                            {/*                Administrator*/}
-                            {/*            </option>*/}
-                            {/*        </select>*/}
-                            {/*    </div>*/}
-                            {/*</div>*/}
+                            <div className={"form-group pt-2"}>
+                                <div className={'border border-secondary rounded-2 border-opacity-25 p-1'}>
+                                    <label className={'ps-2 text-secondary fs-6'}
+                                           htmlFor={"account-field"}>Account Type</label>
+                                    <select className={"form-control border-0 ps-2"}
+                                            id={"account-field"}
+                                            onChange={event => setAccountType(event.target.value)}
+                                            value={accountType}>
+                                        <option selected disabled>
+                                            Select the account type
+                                        </option>
+                                        <option value='PERSONAL'>
+                                            Personal
+                                        </option>
+                                        <option value='PROFESSIONAL'>
+                                            Professional
+                                        </option>
+                                        <option value='ADMIN'>
+                                            Administrator
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
                         </p>
                         <div className={'text-center row'}>
                             <div className={'col'}>

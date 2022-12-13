@@ -54,6 +54,11 @@ function NavigationBar() {
                                                 Home
                                             </Nav.Link>
                                         </LinkContainer>
+                                        <LinkContainer to="blog">
+                                            <Nav.Link className={`wd-nav-bar ${active === 'blog' ? 'active' : ''}`}>
+                                                Blog
+                                            </Nav.Link>
+                                        </LinkContainer>
                                         <LinkContainer to="profile">
                                             <Nav.Link className={`wd-nav-bar ${active === 'profile' || active === 'edit-profile' ? 'active' : ''}`}>
                                                 Profile
@@ -103,19 +108,24 @@ function NavigationBar() {
                                                         src={currentUser && `/images/p${currentUser.avatar}.jpg`}
                                                         alt="user's avatar"/>}
                                             id="dropdown-menu-align-end">
-                                            <LinkContainer to="">
-                                                <Dropdown.Item eventKey="1">
-                                                    Link 1
-                                                </Dropdown.Item>
-                                            </LinkContainer>
-                                            <LinkContainer to="">
-                                                <Dropdown.Item eventKey="2">
-                                                    Link 2
+                                            {
+                                                currentUser.role === 'ADMIN' &&
+                                                <LinkContainer to="edit-users">
+                                                    <Dropdown.Item className={`wd-nav-bar ${active === 'edit-users' ? 'active' : ''}`}
+                                                                   eventKey="1">
+                                                        Edit users
+                                                    </Dropdown.Item>
+                                                </LinkContainer>
+                                            }
+                                            <LinkContainer to="blog">
+                                                <Dropdown.Item className={`wd-nav-bar ${active === 'blog' ? 'active' : ''}`}
+                                                               eventKey="2">
+                                                    Blog
                                                 </Dropdown.Item>
                                             </LinkContainer>
                                             <LinkContainer to="">
                                                 <Dropdown.Item eventKey="3">
-                                                    Link 3
+                                                    Link 2
                                                 </Dropdown.Item>
                                             </LinkContainer>
                                             <Dropdown.Divider/>
