@@ -76,13 +76,11 @@ const CommentItem = ({key, comment}) => {
     return(
         <div className="d-flex flex-column border-bottom mt-2" key={key}>
             <div className="d-flex pb-2">
-                <Link to={`/profile/${comment.authorID._id}`}>
-                    <div className="">
-                        <a href="/#"><img className="wd-rounded-image" src={`/images/p${comment.authorID.avatar}.jpg`}
-                                         alt="avatar" /></a>
-                    </div>
+                <Link to={`/profile/${comment.authorID._id}`} className={"col-1"}>
+                    <img className="wd-rounded-image" width={"32px"} height={"32px"}  src={`/images/p${comment.authorID.avatar}.jpg`}
+                                     alt="avatar" />
                 </Link>
-                <div className="mt-2 ms-3">
+                <div className="mt-1 ms-3">
                     <h6 className="">{comment.authorID.firstName} {comment.authorID.lastName}</h6>
                 </div>
                 <div id={"delete button"} className={"ms-auto"}>

@@ -242,8 +242,6 @@ body {
 
 /*----------------------------------------Comment Area----------------------------------------*/
 .wd-rounded-image {
-  width: 40px;
-  height: 40px;
   object-fit: cover;
   border-radius: 50%;
 
@@ -251,4 +249,9 @@ body {
 
 .wd-textarea-resize-none {
   resize: none;
+}
+
+/*---------------------------------------Blog List--------------------------------------------------*/
+.card-footer {
+  background-color: #fdfdfe;
 }

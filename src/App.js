@@ -23,7 +23,7 @@ import PublicProfile from "./public-profile";
 import FollowReducer from "./reducers/follow-reducer";
 import BlogListScreen from "./blog-list-screen";
 import SearchReducer from "./reducers/search-reducer";
-import BlogReducer from "./reducers/blog-reducer";
+import BlogsReducer from "./reducers/blog-reducer";
 import BlogScreen from "./blog-detail-screen";
 import BlogPostEditScreen from "./blog-post-edit-screen";
 
@@ -38,7 +38,7 @@ const store = configureStore({
                                      comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
                                      resList: SearchReducer,
-                                     blogs: BlogReducer,
+                                     blogs: BlogsReducer,
                                  }
                              });
 

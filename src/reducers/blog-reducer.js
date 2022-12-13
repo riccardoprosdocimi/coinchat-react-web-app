@@ -8,6 +8,7 @@ import {
 
 const initialState = {
     blogList:[],
+    curBlog: null,
     fetching: true,
     updateFlag: true
 }
@@ -65,8 +66,8 @@ const BlogsReducer = createSlice({
         },
         [findBlogByBlogIDThunk.fulfilled]: (state, {payload}) => {
             state.fetching = false;
-            state.blogList = [];
-            state.blogList.push(payload);
+            // state.blogList = [];
+            state.curBlog = payload;
         },
 
         [updateABlogThunk.rejected]: () => {
