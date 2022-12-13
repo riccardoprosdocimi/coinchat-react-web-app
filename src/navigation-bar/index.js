@@ -49,12 +49,12 @@ function NavigationBar() {
                                 </Offcanvas.Header>
                                 <Offcanvas.Body>
                                     <Nav className="justify-content-start flex-grow-1 pe-3 my-auto">
-                                        <LinkContainer to="/">
-                                            <Nav.Link className={`wd-nav-bar ${active === '' ? 'active' : ''}`}>
+                                        <LinkContainer to="/home">
+                                            <Nav.Link className={`wd-nav-bar ${active === 'home' ? 'active' : ''}`}>
                                                 Home
                                             </Nav.Link>
                                         </LinkContainer>
-                                        <LinkContainer to="blog">
+                                        <LinkContainer to="bloglist">
                                             <Nav.Link className={`wd-nav-bar ${active === 'blog' ? 'active' : ''}`}>
                                                 Blog
                                             </Nav.Link>

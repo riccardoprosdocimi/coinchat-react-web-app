@@ -8,6 +8,8 @@ import Tab from "react-bootstrap/Tab";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 import moment from "moment";
 import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
+import BlogListItem from "../blog-list-screen/blog-list-item";
+import {findBlogByAuthorIDThunk} from "../services/blog-thunk";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -28,29 +30,33 @@ let formatPhoneNumber = (str) => {
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);
+    const {blogList} = useSelector(state => state.blogs);
     const {followers, following} = useSelector(state => state.follow);
     const {comments, updateFlag} = useSelector(state => state.comments)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
+        dispatch(findBlogByAuthorIDThunk(currentUser._id))
         dispatch(getCommentsByAuthorIDThunk(currentUser._id))
     }, [dispatch, currentUser, updateFlag]);
     return (
         <div className={'row mb-5'}>
-            <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
+            <div className="col-xl-3 col-lg-3 col-md-4 mt-2">
                 <div className="card">
-                    <div className="card-img-top position-relative">
+                    <div className="card-img-top position-relative d-flex d-lg-block d-none">
                         <img src={`/images/b${currentUser && currentUser.banner}.jpg`}
-                             className="card-img-top" alt="..."/>
+                             className="card-img-top"
+                             style={{}}
+                             alt="..."/>
                         <img className="position-absolute  img-thumbnail"
                              style={{
-                                 'height': '85%',
-                                 'width': '56%',
-                                 'bottom': '5%',
-                                 'left': '25%',
-                                 'object-fit': 'cover',
-                                 'border-radius': '50%'
+                                 height: '85%',
+                                 width: '55%',
+                                 bottom: '7%',
+                                 left: '24%',
+                                 objectFit: 'cover',
+                                 borderRadius: '50%'
                              }}
                              src={`/images/p${currentUser && currentUser.avatar}.jpg`}
                              alt=""/>
@@ -137,20 +143,32 @@ const Profile = () => {
                     </Link>
                 </div>
             </div>
-            <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
-                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
+            <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
+                <Tabs defaultActiveKey="watchlist" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="first" title="Watchlist">
+                         eventKey="watchlist" title="Watchlist">
                         <WatchListTable uid={currentUser && currentUser._id}
                                         allowedToRemove={true}/>
                     </Tab>
+                    {
+                        (currentUser.role === 'PROFESSIONAL' || currentUser.role === 'ADMIN') &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="blog" title="Blog Posts">
+                            {blogList.map(
+                                blog =>
+                                    <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
+                                        <BlogListItem blog={blog}/>
+                                    </div>
+                            )}
+                        </Tab>
+                    }
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Posts/Comments">
+                         eventKey="comments" title="Comments">
                         <PostList comments={comments}
                                   allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Followers">
+                         eventKey="followers" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -175,10 +193,22 @@ const Profile = () => {
                                                   </Link>
                                 )
                             }
+                            {
+                                followers.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            No one follows this user yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                            }
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Following">
+                         eventKey="following" title="Following">
                         <div className='list-group'>
                             {
                                 following &&
@@ -202,6 +232,18 @@ const Profile = () => {
                                                       </div>
                                                   </Link>
                                 )
+                            }
+                            {
+                                following.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            This user follows no one yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
                             }
                         </div>
                     </Tab>

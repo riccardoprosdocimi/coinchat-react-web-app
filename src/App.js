@@ -24,6 +24,9 @@ import FollowReducer from "./reducers/follow-reducer";
 import BlogListScreen from "./blog-list-screen";
 import SearchReducer from "./reducers/search-reducer";
 import EditUsers from "./users/edit-users";
+import BlogReducer from "./reducers/blog-reducer";
+import BlogScreen from "./blog-detail-screen";
+import BlogPostEditScreen from "./blog-post-edit-screen";
 
 const store = configureStore({
                                  reducer: {
@@ -36,6 +39,7 @@ const store = configureStore({
                                      comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
                                      resList: SearchReducer,
+                                     blogs: BlogReducer,
                                  }
                              });
 
@@ -48,6 +52,8 @@ function App() {
                     <div className={'container-fluid'}>
                         <Routes>
                             <Route index
+                                   element={<Home/>}/>
+                            <Route path={'/home'}
                                    element={<Home/>}/>
                             <Route path={'/profile'}
                                    element={
@@ -73,8 +79,12 @@ function App() {
                                    element={<Login/>}/>
                             <Route path={"/register"}
                                    element={<Register/>}/>
-                            <Route path={"/blog"}
+                            <Route path={"/bloglist"}
                                    element={<BlogListScreen/>}/>
+                            <Route path={"/blog/*"}
+                                   element={<BlogScreen/>}/>
+                            <Route path={"/blog-edit/:type"}
+                                   element={<BlogPostEditScreen/>}/>
                         </Routes>
                     </div>
                 </BrowserRouter>
