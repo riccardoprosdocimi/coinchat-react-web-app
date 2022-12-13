@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createNewCommentThunk} from "../services/comment-thunk";
+import {useSearchParams} from "react-router-dom";
 
 
 const ComposeComment = ({objectType}) => {
     
     const {currentUser} = useSelector(state => state.users);
-    const {coinData} = useSelector((state) => {
-        return state.coinData;
-    });
+    let [searchParams] = useSearchParams();
 
     let [myComment, setMyComment] = useState('');
 
@@ -16,7 +15,7 @@ const ComposeComment = ({objectType}) => {
     function CommentSubmitClickHandler() {
         const newComment = {
             authorID: currentUser._id,
-            objectID: coinData.id,
+            objectID: searchParams.get(objectType === "Coin"?"coinID":"blogID"),
             objectType: objectType,
             detailContent: myComment
         }

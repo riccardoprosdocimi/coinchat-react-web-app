@@ -9,7 +9,7 @@ import {
 import Moment from 'react-moment';
 import {Link} from "react-router-dom";
 
-const CommentItem = ({comment}) => {
+const CommentItem = ({key, comment}) => {
 
     const {currentUser} = useSelector(state => state.users);
     const {userReactions} = useSelector(state => state.comments)
@@ -25,7 +25,7 @@ const CommentItem = ({comment}) => {
 
     const dispatch = useDispatch();
     function deleteCommentHandler(commentID) {
-        console.log("delete me");
+        // console.log("delete me");
         dispatch(deleteGivenCommentThunk(commentID));
     }
 
@@ -74,7 +74,7 @@ const CommentItem = ({comment}) => {
     }
 
     return(
-        <div className="d-flex flex-column border-bottom mt-2">
+        <div className="d-flex flex-column border-bottom mt-2" key={key}>
             <div className="d-flex pb-2">
                 <Link to={`/profile/${comment.authorID._id}`}>
                     <div className="">
@@ -86,7 +86,7 @@ const CommentItem = ({comment}) => {
                     <h6 className="">{comment.authorID.firstName} {comment.authorID.lastName}</h6>
                 </div>
                 <div id={"delete button"} className={"ms-auto"}>
-                    {currentUser && (currentUser.role === "ADMIN" || currentUser._id === comment.authorID)
+                    {currentUser && (currentUser.role === "ADMIN" || currentUser._id === comment.authorID._id)
                         &&
                         <i className="bi bi-trash text-danger"
                            onClick={() => deleteCommentHandler(comment._id)}></i>
@@ -97,7 +97,7 @@ const CommentItem = ({comment}) => {
 
                 <p>{comment.detailContent}</p>
                 <ul className="list-unstyled list-inline d-flex justify-content-between">
-                    <li><i className="fa fa-calendar wd-app-color-yellow"></i>  <Moment fromNow ago>{comment.createdAt}</Moment></li>
+                    <li><i className="fa fa-calendar wd-app-color-yellow"></i>  <Moment fromNow>{comment.createdAt}</Moment></li>
                     <li>
                         <button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"} onClick={() => thumbsUpClickHandler()}>
                             {
