@@ -25,7 +25,7 @@ const Detail = () => {
     return (
 
         <div className="d-xxl-flex d-xl-flex d-lg-flex">
-            <div className={"col-xxl-9 col-xl-8 col-lg-8 col-12 ps-5 pe-3 border-end d-flex justify-content-center"}>
+            <div className={"col-xxl-9 col-xl-8 col-lg-8 col-12 px-xxl-4 px-xl-2 px-lg-1 border-end d-flex justify-content-center"}>
                 <div className={"col-xxl-10 col-xl-10 col-lg-11 col-md-10 col-sm-11 col-12"}>
                     <HeadArea/>
                     <LineChartArea/>

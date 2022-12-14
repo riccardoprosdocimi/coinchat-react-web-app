@@ -82,7 +82,6 @@ const BlogScreen = () => {
         )
     }
 
-
     return(
         <div className="d-xxl-flex d-xl-flex d-lg-flex mt-3">
             <div className={"col-xxl-9 col-xl-8 col-lg-8 col-12 ps-5 pe-3 border-end d-flex justify-content-center"}>
