@@ -35,6 +35,7 @@ const HeadArea = () => {
     const addWatchlistItem = () => {
         if (!currentUser) {
             alert("Please login before add to watchlist")
+            return
         }
         const watchlistItem = {
             uid: currentUser._id,
