@@ -6,7 +6,7 @@ const PostList = ({comments, allowedToRemove}) => {
     return(
         <ul className={'list-group'}>
             {
-                sortedComments.length > 0 && sortedComments.map(
+                sortedComments.length > 0 && sortedComments.filter(c => c.authorID !== null).map(
                     comment => <PostListItem
                         key={comment._id}
                         comment={comment}
