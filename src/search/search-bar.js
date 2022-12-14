@@ -18,7 +18,7 @@ const SearchBar = () => {
             <div className="container text-center">
                 <h2>Explore the cryptoeconomy</h2>
             </div>
-            <div className="container pt-3 col-4">
+            <div className="container pt-3 col-8">
                 <div className="input-group">
                     <input
                         onKeyDown={(e) => {

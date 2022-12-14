@@ -258,3 +258,42 @@ body {
 .card-footer {
   background-color: #fdfdfe;
 }
+
+/*---------------------------------------Detail Page---------------------------------------------------*/
+
+.wd-paragraph-fine-wrapped {
+  white-space: pre-line;
+}
+
+.nav-pills .nav-link.active {
+  color: #212529;
+  background-color: #ffd60a;
+}
+
+.nav {
+  --bs-nav-link-color: #212529;
+  --bs-nav-link-hover-color: #000814;
+}
+
+/*.active>.page-link, .page-link.active {*/
+/*  color: #212529;*/
+/*  background-color: #ffd60a;*/
+/*  border-color: #ffd60a;*/
+/*}*/
+
+.pagination {
+  --bs-pagination-color: #212529;
+  --bs-pagination-bg: #fff;
+  --bs-pagination-border-color: #dee2e6;
+  --bs-pagination-hover-color: #000814;
+  --bs-pagination-hover-bg: #e9ecef;
+  --bs-pagination-hover-border-color: #dee2e6;
+  --bs-pagination-focus-color: #000814;
+  --bs-pagination-focus-bg: #e9ecef;
+  --bs-pagination-active-color: #212529;
+  --bs-pagination-active-bg: #ffd60a;
+  --bs-pagination-active-border-color: #ffd60a;
+  --bs-pagination-disabled-color: #6c757d;
+  --bs-pagination-disabled-bg: #fff;
+  --bs-pagination-disabled-border-color: #dee2e6;
+}

@@ -38,7 +38,7 @@ const BlogListScreen = () => {
         fetching ?
             <h1>Loading...</h1>
             :
-            <section id="blog-list" className="container col-6 mt-5">
+            <section id="blog-list" className="container col-xxl-6 col-xl-8 col-lg-8 col-md-10 col-sm-12 col-12 mt-5">
                 <div className={"d-flex mb-2"}>
                     <h3 className={""}>Newest Coin Blogs</h3>
                     <button type={"button"} className={"btn ms-auto wd-btn-style"} onClick={(e) => handleNewBlogButton(e)}>

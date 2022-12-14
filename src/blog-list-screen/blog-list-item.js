@@ -33,7 +33,7 @@ const BlogListItem = ({blog}) => {
                 <h5>
                     {blog.title}
                 </h5>
-                <img className={"ms-auto me-1"} src={coin.image.large} width={"4%"} height={"4%"} alt={"The icon of this coin"}/>
+                <img className={"ms-auto me-1"} src={coin.image.large} width={"25px"} height={"25px"} alt={"The icon of this coin"}/>
                 {coin.symbol.toUpperCase()}
             </div>
             <div className="card-body d-flex">

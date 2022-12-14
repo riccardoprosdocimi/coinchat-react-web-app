@@ -6,6 +6,7 @@ import {useSearchParams} from "react-router-dom";
 import {CoinDataThunk} from "../services/detail-thunks";
 import {useDispatch} from "react-redux";
 import AboutArea from "./about-area";
+import BlogArea from "./blog-area";
 
 const Detail = () => {
     let [searchParams] = useSearchParams();
@@ -23,18 +24,21 @@ const Detail = () => {
 
     return (
 
-        <div className="d-flex">
-            <div className={"col-9 ps-5 pe-4 border-end d-flex justify-content-center"}>
-                <div className={"col-10"}>
+        <div className="d-xxl-flex d-xl-flex d-lg-flex">
+            <div className={"col-xxl-9 col-xl-8 col-lg-8 col-12 ps-5 pe-3 border-end d-flex justify-content-center"}>
+                <div className={"col-xxl-10 col-xl-10 col-lg-11 col-md-10 col-sm-11 col-12"}>
                     <HeadArea/>
                     <LineChartArea/>
                     <AboutArea/>
+                    <BlogArea/>
                 </div>
 
 
             </div>
-            <div className={"w-100"}>
-                <CommentArea objectType={"Coin"}/>
+            <div className={"col-xxl-3 col-xl-4 col-lg-4 col-12 d-flex justify-content-center"}>
+                <div className={"col-lg-12 col-md-7 col-sm-8 col-10 mt-3"}>
+                    <CommentArea objectType={"Coin"}/>
+                </div>
             </div>
         </div>
 

@@ -84,9 +84,9 @@ const BlogScreen = () => {
 
 
     return(
-        <div className="d-flex mt-3">
-            <div className={"col-9 ps-5 pe-3 border-end d-flex justify-content-center"}>
-                <div className={"col-8"}>
+        <div className="d-xxl-flex d-xl-flex d-lg-flex mt-3">
+            <div className={"col-xxl-9 col-xl-8 col-lg-8 col-12 ps-5 pe-3 border-end d-flex justify-content-center"}>
+                <div className={"col-xxl-7 col-xl-10 col-lg-11 col-md-8 col-sm-9 col-12"}>
                     <h1 className={"mb-4"}>{curBlog.title}</h1>
                     <div id={"additional information"} className={"d-flex mb-2"}>
                         <Link to={`/profile/${curBlog.authorID._id}`} className={""}>
@@ -118,7 +118,7 @@ const BlogScreen = () => {
                             </div>
                         }
                     </div>
-                    <div style={{whiteSpace: "pre-line"}}>{curBlog.content}</div>
+                    <div className={"wd-paragraph-fine-wrapped"} >{curBlog.content}</div>
                     <div className={"mt-4 d-flex"}>
                         {
                             currentUser && (currentUser._id === curBlog.authorID._id)
@@ -139,8 +139,10 @@ const BlogScreen = () => {
                 </div>
 
             </div>
-            <div className={"w-100"}>
-                <CommentArea objectType={"Blog"}/>
+            <div className={"col-xxl-3 col-xl-4 col-lg-4 col-12 d-flex justify-content-center"}>
+                <div className={"col-lg-12 col-md-6 col-sm-6 col-10 mt-xxl-0 mt-xl-0 mt-lg-0 mt-md-3 mt-sm-3 mt-3"}>
+                    <CommentArea objectType={"Blog"}/>
+                </div>
             </div>
 
         </div>

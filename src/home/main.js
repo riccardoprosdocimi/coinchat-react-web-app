@@ -14,7 +14,6 @@ const MainComponent =() => {
         dispatch(getTrendingCoinsThunk())
     }, [])
 
-    console.log(coins)
     return (
 
         <ul className="list-group pt-4">
