@@ -8,6 +8,8 @@ import Tab from "react-bootstrap/Tab";
 import {findUsersFollowedByUserThunk, findUsersFollowingUserThunk} from "../services/follow-thunks";
 import moment from "moment";
 import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
+import BlogListItem from "../blog-list-screen/blog-list-item";
+import {findBlogByAuthorIDThunk} from "../services/blog-thunk";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
@@ -28,12 +30,14 @@ let formatPhoneNumber = (str) => {
 
 const Profile = () => {
     const {currentUser} = useSelector(state => state.users);
+    const {blogList} = useSelector(state => state.blogs);
     const {followers, following} = useSelector(state => state.follow);
     const {comments, updateFlag} = useSelector(state => state.comments)
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findUsersFollowingUserThunk(currentUser._id))
         dispatch(findUsersFollowedByUserThunk(currentUser._id))
+        dispatch(findBlogByAuthorIDThunk(currentUser._id))
         dispatch(getCommentsByAuthorIDThunk(currentUser._id))
     }, [dispatch, currentUser, updateFlag]);
     return (
@@ -139,19 +143,31 @@ const Profile = () => {
                 </div>
             </div>
             <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
-                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
+                <Tabs defaultActiveKey="watchlist" variant={'pills'} fill={true}>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="first" title="Watchlist">
+                         eventKey="watchlist" title="Watchlist">
                         <WatchListTable uid={currentUser && currentUser._id}
                                         allowedToRemove={true}/>
                     </Tab>
+                    {
+                        (currentUser.role === 'PROFESSIONAL' || currentUser.role === 'ADMIN') &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="blog" title="Blog Posts">
+                            {blogList.map(
+                                blog =>
+                                    <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
+                                        <BlogListItem blog={blog}/>
+                                    </div>
+                            )}
+                        </Tab>
+                    }
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Posts/Comments">
+                         eventKey="comments" title="Comments">
                         <PostList comments={comments}
                                   allowedToRemove={true}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Followers">
+                         eventKey="followers" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
@@ -191,7 +207,7 @@ const Profile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Following">
+                         eventKey="following" title="Following">
                         <div className='list-group'>
                             {
                                 following &&
