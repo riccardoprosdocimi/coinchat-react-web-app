@@ -140,7 +140,7 @@ const PublicProfile = () => {
                         (publicProfile.role === 'PROFESSIONAL' || publicProfile.role === 'ADMIN') &&
                         <Tab tabClassName={'wd-profile-tabs'}
                              eventKey="blog" title="Blog Posts">
-                            {blogList.map(
+                            {blogList.filter(b => b.authorID !== null).map(
                                 blog =>
                                     <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
                                         <BlogListItem blog={blog}/>
@@ -157,7 +157,7 @@ const PublicProfile = () => {
                         <div className='list-group'>
                             {
                                 followers &&
-                                followers.map(
+                                followers.filter(f => f.follower !== null).map(
                                     follow =>
                                         <Link to={`/profile/${follow.follower._id}`}
                                               className='list-group-item' key={follow.follower._id}>
@@ -197,7 +197,7 @@ const PublicProfile = () => {
                         <div className='list-group'>
                             {
                                 following &&
-                                following.map(
+                                following.filter(f => f.followee !== null).map(
                                     follow =>
                                         <Link to={`/profile/${follow.followee._id}`}
                                               className='list-group-item' key={follow.followee._id}>
