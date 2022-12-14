@@ -41,7 +41,7 @@ const Profile = () => {
         dispatch(getCommentsByAuthorIDThunk(currentUser._id))
     }, [dispatch, currentUser, updateFlag]);
     return (
-        <div className={'row'}>
+        <div className={'row mb-5'}>
             <div className="col-xl-3 col-lg-3 col-md-4 mt-2">
                 <div className="card">
                     <div className="card-img-top position-relative d-flex d-lg-block d-none">
@@ -108,7 +108,8 @@ const Profile = () => {
                             }
                             <div className={'pt-2'}>
                                 <i className={'bi bi-balloon-fill pe-2'}/>
-                                {currentUser && moment(currentUser.birthday).format('MMMM Do[,] YYYY')}
+                                {currentUser && moment.utc(currentUser.birthday)
+                                    .format('MMMM Do[,] YYYY')}
                             </div>
                             {
                                 currentUser && currentUser.number &&

@@ -64,11 +64,11 @@ const HeadArea = () => {
 
                         <button onClick={() => addWatchlistItem()}
                                 className="btn ms-3 float-start wd-btn-style">
-                            Add Watchlist
+                            Add to Watchlist
                         </button>
                         : <button onClick={() => removeWatchlistItem()}
                             className="btn ms-3 float-start wd-btn-style-negative">
-                        Remove Watchlist
+                        Remove from Watchlist
                         </button>
                 }
 

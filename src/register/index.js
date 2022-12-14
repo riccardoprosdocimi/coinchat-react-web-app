@@ -132,7 +132,7 @@ const Register = () => {
         return(<Navigate to={'/profile'}/>);
     } else {
         return(
-            <div className="container w-50">
+            <div className="container w-50 mb-5">
                 <h1 className="fw-bolder mt-2 text-center">
                     Create your CoinChat account
                 </h1>
@@ -417,7 +417,7 @@ const Register = () => {
                     }
                     <div className="d-flex justify-content-center">
                         <button type="button"
-                                className="btn btn-lg wd-btn-style rounded-pill mt-2 w-75 wd-font mb-5"
+                                className="btn btn-lg wd-btn-style rounded-pill mt-2 w-75 wd-font"
                                 onClick={handleRegisterBtn}>
                             Create free account
                         </button>
