@@ -61,14 +61,28 @@ const BlogScreen = () => {
         maximumFractionDigits: 2
     })
 
+    function handleEditClick(e) {
+        e.preventDefault();
+
+        if (!currentUser) {
+            alert('Please login before edit a blog.')
+
+        } else if (currentUser._id !== curBlog.authorID._id) {
+            alert("Only writer could edit the blog.")
+
+        } else (
+            navigate('/blog-edit/Edit')
+        )
+    }
 
 
-
-    if (fetching) {
+    if (fetching || !curBlog) {
         return (
             <h1>Loading....</h1>
         )
     }
+
+
     return(
         <div className="d-flex mt-3">
             <div className={"col-9 ps-5 pe-3 border-end d-flex justify-content-center"}>
@@ -85,8 +99,11 @@ const BlogScreen = () => {
                         {
                             isLoaded &&
                             <div className={"ms-auto d-flex"}>
-                                <img className={"me-1"} src={coin.image.large} width={"32px"} height={"32px"} alt={"The icon of this coin"}/>
-                                <div className={"mt-1"}>
+                                <Link to={{ pathname: '../detail',
+                                    search: "coinID="+curBlog.coinID}}>
+                                    <img className={""} src={coin.image.large} width={"32px"} height={"32px"} alt={"The icon of this coin"}/>
+                                </Link>
+                                <div className={"ms-1 mt-1"}>
                                     {coin.symbol.toUpperCase()}
                                 </div>
                                 <div className={`mt-1 ms-3 ${coin.market_data.price_change_percentage_24h > 0 ?
@@ -101,15 +118,24 @@ const BlogScreen = () => {
                             </div>
                         }
                     </div>
-                    <p>{curBlog.content}</p>
-                    {
-                        currentUser && (currentUser.role === "ADMIN" || currentUser._id === curBlog.authorID._id)
-                        &&
-                        <button type={"submit"} className={"btn btn-danger"}
-                                onClick={() => deleteBlogHandler(curBlog._id)}>
-                            Delete Blog
-                        </button>
-                    }
+                    <div style={{whiteSpace: "pre-line"}}>{curBlog.content}</div>
+                    <div className={"mt-4 d-flex"}>
+                        {
+                            currentUser && (currentUser._id === curBlog.authorID._id)
+                            &&
+                            <button type={"button"} className={"btn wd-btn-lowlight me-2"} onClick={(e) => handleEditClick(e)}>
+                                Edit
+                            </button>
+                        }
+                        {
+                            currentUser && (currentUser.role === "ADMIN" || currentUser._id === curBlog.authorID._id)
+                            &&
+                            <button type={"submit"} className={"btn btn-danger"}
+                                    onClick={() => deleteBlogHandler(curBlog._id)}>
+                                Delete Blog
+                            </button>
+                        }
+                    </div>
                 </div>
 
             </div>
