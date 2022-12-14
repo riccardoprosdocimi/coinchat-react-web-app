@@ -154,12 +154,25 @@ const Profile = () => {
                         (currentUser.role === 'PROFESSIONAL' || currentUser.role === 'ADMIN') &&
                         <Tab tabClassName={'wd-profile-tabs'}
                              eventKey="blog" title="Blog Posts">
-                            {blogList.filter(b => b.authorID !== null).map(
+                            {
+                                blogList.filter(b => b.authorID !== null).map(
                                 blog =>
                                     <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
                                         <BlogListItem blog={blog}/>
                                     </div>
                             )}
+                            {
+                                blogList.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            You haven't made a post yet
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                     }
                     <Tab tabClassName={'wd-profile-tabs'}
@@ -200,7 +213,7 @@ const Profile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            No one follows this user yet!
+                                            You have no followers yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
@@ -241,7 +254,7 @@ const Profile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            This user follows no one yet!
+                                            You don't follow anyone yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
