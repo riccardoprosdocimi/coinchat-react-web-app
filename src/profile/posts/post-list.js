@@ -18,7 +18,7 @@ const PostList = ({comments, allowedToRemove}) => {
                 <li className='list-group-item'>
                     <br/><br/>
                     <h4 className='text-center text-secondary'>
-                        No posts/comments from this user yet!
+                        No comments yet!
                     </h4>
                     <br/><br/>
                 </li>
