@@ -28,6 +28,8 @@ export const updateABlog = async (blogID, blogData) => {
     const requestBody = {
         blogID
     }
+    console.log(blogID)
+    console.log(blogData)
     return (await axios.put(Blog_API, blogData, {params: requestBody})).data
 }
 

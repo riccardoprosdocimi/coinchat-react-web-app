@@ -1,5 +1,6 @@
 import BlogPostScreen from "./blog-post-screen";
 import {useParams} from "react-router-dom";
+import BlogEditScreen from "./blog-edit-screen";
 
 const BlogPostEditScreen = () => {
     const { type } = useParams();
@@ -9,7 +10,7 @@ const BlogPostEditScreen = () => {
         )
     } else if (type === "Edit") {
         return (
-            <h1>Edit blog</h1>
+            <BlogEditScreen/>
         )
     }
     return (
