@@ -7,7 +7,6 @@ const EditProfile = () => {
     const {currentUser} = useSelector(state => state.users);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const [banner, setBanner] = useState(currentUser.banner)
     const [avatar, setAvatar] = useState(currentUser.avatar)
     const [firstName, setFirstName] = useState(currentUser.firstName)
@@ -15,7 +14,8 @@ const EditProfile = () => {
     const [bio, setBio] = useState(currentUser.bio)
     const [city, setCity] = useState(currentUser.city)
     const [website, setWebsite] = useState(currentUser.website)
-    const [birthday, setBirthday] = useState(currentUser.birthday)
+    const birthdayData = currentUser.birthday.slice(0, 10)
+    const [birthday, setBirthday] = useState(birthdayData)
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)
@@ -24,18 +24,18 @@ const EditProfile = () => {
     const updateProfileHandler = () => {
         const newUser = {
             ...currentUser,
-            banner: banner,
-            avatar: avatar,
-            firstName: firstName,
-            lastName: lastName,
-            bio: bio,
-            city: city,
-            address: address,
-            website: website,
-            birthday: birthday,
-            // email: email,
+            banner,
+            avatar,
+            firstName,
+            lastName,
+            bio,
+            city,
+            address,
+            website,
+            birthday,
+            // email,
             // handle: handle,
-            countryCode: countryCode,
+            countryCode,
             number: phoneNumber,
             role: accountType,
         }
@@ -191,7 +191,8 @@ const EditProfile = () => {
                                                htmlFor={"countryCode-field"}>Country Code</label>
                                         <select className={"form-control border-0 ps-2"}
                                                 id={"countryCode-field"}
-                                                onChange={event => setCountryCode(event.target.value)}>
+                                                onChange={event => setCountryCode(event.target.value)}
+                                                value={countryCode}>
                                             <option selected disabled>
                                                 Country code
                                             </option>
@@ -236,7 +237,8 @@ const EditProfile = () => {
                                            htmlFor={"account-field"}>Account Type</label>
                                     <select className={"form-control border-0 ps-2"}
                                             id={"account-field"}
-                                            onChange={event => setAccountType(event.target.value)}>
+                                            onChange={event => setAccountType(event.target.value)}
+                                            value={accountType}>
                                         <option selected disabled>
                                             Select the account type
                                         </option>
