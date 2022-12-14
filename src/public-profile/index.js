@@ -132,20 +132,51 @@ const PublicProfile = () => {
             </div>
             <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
                 <Tabs defaultActiveKey="watchlist" variant={'pills'} fill={true}>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="watchlist" title="Watchlist">
-                        <WatchListTable uid={uid} allowedToRemove={false}/>
-                    </Tab>
+                    {
+                        currentUser &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="watchlist" title="Watchlist">
+                            <WatchListTable uid={uid} allowedToRemove={false}/>
+                        </Tab>
+                    }
+                    {
+                        !currentUser &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="watchlist" title="Watchlist">
+                            <div className='list-group'>
+                                <div className='list-group-item'>
+                                    <br/><br/>
+                                    <h4 className='text-center text-secondary'>
+                                        Login to view {publicProfile.firstName} {publicProfile.lastName}'s Watchlist
+                                    </h4>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </Tab>
+                    }
                     {
                         (publicProfile.role === 'PROFESSIONAL' || publicProfile.role === 'ADMIN') &&
                         <Tab tabClassName={'wd-profile-tabs'}
                              eventKey="blog" title="Blog Posts">
-                            {blogList.filter(b => b.authorID !== null).map(
-                                blog =>
-                                    <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
-                                        <BlogListItem blog={blog}/>
+                            {
+                                blogList.filter(b => b.authorID !== null).map(
+                                    blog =>
+                                        <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
+                                            <BlogListItem blog={blog}/>
+                                        </div>)
+                            }
+                            {
+                                blogList.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            {publicProfile.firstName} {publicProfile.lastName} has no posts yet!
+                                        </h4>
+                                        <br/><br/>
                                     </div>
-                            )}
+                                </div>
+                            }
                         </Tab>
                     }
                     <Tab tabClassName={'wd-profile-tabs'}
@@ -184,7 +215,7 @@ const PublicProfile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            No one follows this user yet!
+                                            No one follows {publicProfile.firstName} {publicProfile.lastName} yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
@@ -224,7 +255,7 @@ const PublicProfile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            This user follows no one yet!
+                                            {publicProfile.firstName} {publicProfile.lastName} follows no one yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
