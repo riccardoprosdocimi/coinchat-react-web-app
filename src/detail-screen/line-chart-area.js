@@ -146,7 +146,7 @@ const LineChartArea = () => {
             ?<h4>Loading</h4>
             :
         <div className="d-flex flex-column">
-            <div id={"timeRangeNavigation"} className={"d-flex "}>
+            <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
                 <h3 className={"fw-bold ms-5"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
                 <ul className="nav nav-pills ms-auto">
                     <Link to={{

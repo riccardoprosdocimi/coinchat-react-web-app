@@ -59,14 +59,7 @@ h4, h5, h6, p {
   --bs-btn-active-bg: #ffb224;
 }
 /*----------------------------------------home----------------------------------------*/
-.wd-body {
-  font-family: "Open Sans", monospace;
-  background-color: #f2f2f2;
-}
 
-.wd-button-follow {
-  background-color: #E0BE36;
-}
 /*----------------------------------------navigation bar----------------------------------------*/
 .wd-nav-bar-bg-font {
   background-color: #033153;

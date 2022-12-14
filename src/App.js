@@ -27,6 +27,7 @@ import EditUsers from "./users/edit-users";
 import BlogReducer from "./reducers/blog-reducer";
 import BlogScreen from "./blog-detail-screen";
 import BlogPostEditScreen from "./blog-post-edit-screen";
+import CreateUser from "./users/create-user";
 
 const store = configureStore({
                                  reducer: {
@@ -70,7 +71,17 @@ function App() {
                                 </ProtectedRoute>
                             }/>
                             <Route path={'/edit-users'}
-                                   element={<EditUsers/>}/>
+                                   element={
+                                <ProtectedRoute>
+                                    <EditUsers/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path={'/create-user'}
+                                   element={
+                                       <ProtectedRoute>
+                                           <CreateUser/>
+                                       </ProtectedRoute>
+                                   }/>
                             <Route path={"/search"}
                                    element={<Search/>}/>
                             <Route path={"/detail/*"}
