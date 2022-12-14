@@ -59,7 +59,7 @@ const BlogEditScreen = () => {
 
     return (
 
-        <form className={"container col-6"} onSubmit={handleSubmit}>
+        <form className={"container col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-sm-12 col-12"} onSubmit={handleSubmit}>
             <div className={"form-group"}>
                 <label htmlFor={"title"}>
                     Title:

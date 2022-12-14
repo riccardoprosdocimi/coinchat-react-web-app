@@ -145,7 +145,7 @@ const LineChartArea = () => {
         fetching
             ?<h4>Loading</h4>
             :
-        <div className="d-flex flex-column">
+        <div className="d-flex flex-column mt-2">
             <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
                 <h3 className={"fw-bold ms-5"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
                 <ul className="nav nav-pills ms-auto">
@@ -166,7 +166,7 @@ const LineChartArea = () => {
                     >1M</Link>
                 </ul>
             </div>
-            <div id="price_trend_chart" className={"mt-2"}>
+            <div id="price_trend_chart" className={"mt-2 d-none d-md-block"}>
                 <Line options={options} data={data}/>
             </div>
         </div>
