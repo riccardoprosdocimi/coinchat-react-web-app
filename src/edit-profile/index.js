@@ -43,9 +43,8 @@ const EditProfile = () => {
         navigate('/profile')
     }
     return (
-        <div className={'row'}>
-            <div className={'col-3'}></div>
-            <div className="col-6 pt-2">
+        <div className={'container-fluid'}>
+            <div className="pt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
                         <img src={`/images/b${currentUser.banner}.jpg`}
@@ -53,9 +52,9 @@ const EditProfile = () => {
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
                                  'height': '85%',
-                                 'width': '30%',
+                                 'width': '15%',
                                  'bottom': '10%',
-                                 'left': '35%'
+                                 'left': '43%'
                              }}
                              src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
@@ -273,7 +272,6 @@ const EditProfile = () => {
                     </div>
                 </div>
             </div>
-            <div className={'col-3'}></div>
         </div>
     )
 }
