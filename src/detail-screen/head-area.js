@@ -35,6 +35,7 @@ const HeadArea = () => {
     const addWatchlistItem = () => {
         if (!currentUser) {
             alert("Please login before add to watchlist")
+            return
         }
         const watchlistItem = {
             uid: currentUser._id,
@@ -56,24 +57,23 @@ const HeadArea = () => {
         fetching?
             <h4>Loading</h4>
             :
-        <div className="d-flex  pt-4 row">
-            <div className="col-8">
-                <h3 className={"float-start"}><img src={coinData.image.large} width={"36px"} alt={"The icon of this coin"}/> {coinData.name}  {coinData.symbol}</h3>
+        <div className="pt-4 ">
+            <div className="d-flex col-12">
+                <h3 className={""}><img src={coinData.image.large} width={"36px"} alt={"The icon of this coin"}/> {coinData.name}  {coinData.symbol}</h3>
                 {
                     !watchState ?
 
                         <button onClick={() => addWatchlistItem()}
-                                className="btn ms-3 float-start wd-btn-style">
-                            Add Watchlist
+                                className="btn ms-3 wd-btn-style">
+                            Add to Watchlist
                         </button>
                         : <button onClick={() => removeWatchlistItem()}
-                            className="btn ms-3 float-start wd-btn-style-negative">
-                        Remove Watchlist
+                            className="btn ms-3 wd-btn-style-negative">
+                        Remove from Watchlist
                         </button>
                 }
 
             </div>
-            <div className={"float-end"}></div>
         </div>
 
     );

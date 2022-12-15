@@ -45,7 +45,7 @@ const WatchListTable = ({uid, allowedToRemove}) => {
                             </tr>
                         }
                         {
-                            watchlist.map(
+                            watchlist.filter(w => w.uid !== null).map(
                                 item =>
                                     <WatchlistTableItem key={item._id}
                                                         item={item}

@@ -38,7 +38,8 @@ const LineChartArea = () => {
     const {marketData, fetching} = useSelector((state) => {
         return state.coinMarketChart;
     });
-    let [coinPrice, setCoinPrice] = useState(marketData.prices[marketData.prices.length - 1][1])
+    let [coinPrice, setCoinPrice] = useState(null)
+    let [coinGradient, setCoinGradient] = useState(null)
 
     const dispatch = useDispatch();
     useEffect(
@@ -48,7 +49,8 @@ const LineChartArea = () => {
     )
     useEffect(() => {
         setCoinPrice(marketData.prices[marketData.prices.length - 1][1])
-    }, [marketData.prices[marketData.prices.length - 1][1]])
+        setCoinGradient(marketData.prices[marketData.prices.length - 1][1]/marketData.prices[0][1] - 1)
+    }, [marketData.prices[0][1]])
 
     const options = {
         responsive: true,
@@ -98,6 +100,7 @@ const LineChartArea = () => {
         onHover: function(evt, item) {
             if (item.length) {
                 setCoinPrice(item[0].element.$context.raw)
+                setCoinGradient(item[0].element.$context.raw/marketData.prices[0][1] - 1)
             }
         }
     };
@@ -139,16 +142,44 @@ const LineChartArea = () => {
         }
     }
 
+    const percentFormat = new Intl.NumberFormat('en-US', {
+        style: 'percent',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })
     const roundDigit = getRoundDigit(coinPrice);
+    const roundDigit1 = getRoundDigit(coinGradient);
+    const displayedCoinGradient = Math.round((coinGradient + Number.EPSILON) * roundDigit1) / roundDigit1
 
     return (
         fetching
             ?<h4>Loading</h4>
             :
-        <div className="d-flex flex-column">
-            <div id={"timeRangeNavigation"} className={"d-flex "}>
-                <h3 className={"fw-bold ms-5"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
-                <ul className="nav nav-pills ms-auto">
+        <div className="d-flex flex-column mt-2">
+            <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
+                    <h3 className={"fw-bold ms-5 d-none d-sm-block"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
+                    <h3 className={`ms-3 d-none d-sm-block ${displayedCoinGradient > 0 ?
+                        'text-success' : ''
+                        || displayedCoinGradient < 0 ?
+                            'text-danger' : ''
+                            || displayedCoinGradient === 0 ?
+                                'text-secondary' : ''}`}>
+                                                            {displayedCoinGradient > 0 ? '+' : ''}
+                                                            {percentFormat.format(displayedCoinGradient)}
+                                                            </h3>
+                <div id={"small-figures"} className={"d-flex flex-column d-block d-sm-none"}>
+                    <h3 className={"fw-bold ms-3"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
+                    <h3 className={`ms-3 ${displayedCoinGradient > 0 ?
+                        'text-success' : ''
+                        || displayedCoinGradient < 0 ?
+                            'text-danger' : ''
+                            || displayedCoinGradient === 0 ?
+                                'text-secondary' : ''}`}>
+                        {displayedCoinGradient > 0 ? '+' : ''}
+                        {percentFormat.format(displayedCoinGradient)}
+                    </h3>
+                </div>
+                <ul className="nav nav-pills ms-auto h-sm-100 h-50">
                     <Link to={{
                         pathname: '.',
                         search: "coinID=" + searchParams.get("coinID") + "&days=1"
@@ -166,7 +197,7 @@ const LineChartArea = () => {
                     >1M</Link>
                 </ul>
             </div>
-            <div id="price_trend_chart" className={"mt-2"}>
+            <div id="price_trend_chart" className={"mt-2 d-none d-md-block"}>
                 <Line options={options} data={data}/>
             </div>
         </div>

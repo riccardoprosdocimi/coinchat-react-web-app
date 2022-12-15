@@ -5,7 +5,7 @@ import SearchResultItem from "./search-result-item";
 const SearchResultList = ({ resList }) => {
 
     return(
-        <section id="search-result" className="container col-6">
+        <section id="search-result" className="container">
             <div className="list-group">
                 {
                     resList.map(

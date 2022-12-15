@@ -13,12 +13,15 @@ import {
     userFollowsUserThunk, userUnfollowsUserThunk
 } from "../services/follow-thunks";
 import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
+import {findBlogByAuthorIDThunk} from "../services/blog-thunk";
+import BlogListItem from "../blog-list-screen/blog-list-item";
 
 const PublicProfile = () => {
     const {uid} = useParams()
     const {currentUser} = useSelector(state => state.users)
     const {publicProfile} = useSelector(state => state.users)
     const {comments, updateFlag} = useSelector(state => state.comments)
+    const {blogList} = useSelector(state => state.blogs);
     const {followers, following} = useSelector(state => state.follow)
     const {followId} = useSelector(state => state.follow)
     const [followsUser, setFollowsUser] = useState()
@@ -43,6 +46,7 @@ const PublicProfile = () => {
         async function fetchData() {
             await dispatch(findUserByIdThunk(uid))
             await dispatch(getCommentsByAuthorIDThunk(uid))
+            await dispatch(findBlogByAuthorIDThunk(uid))
             await dispatch(findUsersFollowingUserThunk(uid))
             await dispatch(findUsersFollowedByUserThunk(uid))
             await dispatch(findFollowIdThunk(uid))
@@ -52,19 +56,19 @@ const PublicProfile = () => {
     }, [dispatch, currentUser, navigate, uid, updateFlag, followsUser, followId])
     return (
         <div className={'row'}>
-            <div className="col-xl-3 col-lg-4 col-md-5 mt-2">
+            <div className="col-xl-3 col-lg-3 col-md-4 mt-2">
                 <div className="card">
-                    <div className="card-img-top position-relative">
+                    <div className="card-img-top position-relative d-flex d-lg-block d-none">
                         <img src={`/images/b${publicProfile.banner}.jpg`}
                              className="card-img-top" alt="..."/>
                         <img className="position-absolute  img-thumbnail"
                              style={{
-                                 'height': '85%',
-                                 'width': '56%',
-                                 'bottom': '5%',
-                                 'left': '25%',
-                                 'object-fit': 'cover',
-                                 'border-radius': '50%'
+                                 height: '85%',
+                                 width: '55%',
+                                 bottom: '7%',
+                                 left: '24%',
+                                 objectFit: 'cover',
+                                 borderRadius: '50%'
                              }}
                              src={`/images/p${publicProfile.avatar}.jpg`} alt=""/>
                     </div>
@@ -126,22 +130,65 @@ const PublicProfile = () => {
                     }
                 </div>
             </div>
-            <div className="col-xl-9 col-lg-8 col-md-7 col-sm mt-2">
-                <Tabs defaultActiveKey="first" variant={'pills'} fill={true}>
+            <div className="col-xl-9 col-lg-9 col-md-8 col-sm mt-2">
+                <Tabs defaultActiveKey="watchlist" variant={'pills'} fill={true}>
+                    {
+                        currentUser &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="watchlist" title="Watchlist">
+                            <WatchListTable uid={uid} allowedToRemove={false}/>
+                        </Tab>
+                    }
+                    {
+                        !currentUser &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="watchlist" title="Watchlist">
+                            <div className='list-group'>
+                                <div className='list-group-item'>
+                                    <br/><br/>
+                                    <h4 className='text-center text-secondary'>
+                                        Login to view {publicProfile.firstName} {publicProfile.lastName}'s Watchlist
+                                    </h4>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </Tab>
+                    }
+                    {
+                        (publicProfile.role === 'PROFESSIONAL' || publicProfile.role === 'ADMIN') &&
+                        <Tab tabClassName={'wd-profile-tabs'}
+                             eventKey="blog" title="Blog Posts">
+                            {
+                                blogList.filter(b => b.authorID !== null).map(
+                                    blog =>
+                                        <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
+                                            <BlogListItem blog={blog}/>
+                                        </div>)
+                            }
+                            {
+                                blogList.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            {publicProfile.firstName} {publicProfile.lastName} has no posts yet!
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                            }
+                        </Tab>
+                    }
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="first" title="Watchlist">
-                        <WatchListTable uid={uid} allowedToRemove={false}/>
-                    </Tab>
-                    <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="second" title="Posts/Comments">
+                         eventKey="comments" title="Comments">
                         <PostList comments={comments} allowedToRemove={false}/>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="third" title="Followers">
+                         eventKey="followers" title="Followers">
                         <div className='list-group'>
                             {
                                 followers &&
-                                followers.map(
+                                followers.filter(f => f.follower !== null).map(
                                     follow =>
                                         <Link to={`/profile/${follow.follower._id}`}
                                               className='list-group-item' key={follow.follower._id}>
@@ -168,7 +215,7 @@ const PublicProfile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            No one follows this user yet!
+                                            No one follows {publicProfile.firstName} {publicProfile.lastName} yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
@@ -177,11 +224,11 @@ const PublicProfile = () => {
                         </div>
                     </Tab>
                     <Tab tabClassName={'wd-profile-tabs'}
-                         eventKey="fourth" title="Following">
+                         eventKey="following" title="Following">
                         <div className='list-group'>
                             {
                                 following &&
-                                following.map(
+                                following.filter(f => f.followee !== null).map(
                                     follow =>
                                         <Link to={`/profile/${follow.followee._id}`}
                                               className='list-group-item' key={follow.followee._id}>
@@ -208,7 +255,7 @@ const PublicProfile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            This user follows no one yet!
+                                            {publicProfile.firstName} {publicProfile.lastName} follows no one yet!
                                         </h4>
                                         <br/><br/>
                                     </div>

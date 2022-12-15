@@ -1,14 +1,12 @@
 import {Link, useNavigate} from "react-router-dom";
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {updateProfile} from '../reducers/profile-reducer'
 import {updateUserThunk} from "../services/users-thunks";
 
 const EditProfile = () => {
     const {currentUser} = useSelector(state => state.users);
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
     const [banner, setBanner] = useState(currentUser.banner)
     const [avatar, setAvatar] = useState(currentUser.avatar)
     const [firstName, setFirstName] = useState(currentUser.firstName)
@@ -16,7 +14,8 @@ const EditProfile = () => {
     const [bio, setBio] = useState(currentUser.bio)
     const [city, setCity] = useState(currentUser.city)
     const [website, setWebsite] = useState(currentUser.website)
-    const [birthday, setBirthday] = useState(currentUser.birthday)
+    const birthdayData = currentUser.birthday.slice(0, 10)
+    const [birthday, setBirthday] = useState(birthdayData)
     const [countryCode, setCountryCode] = useState(currentUser.countryCode)
     const [phoneNumber, setPhoneNumber] = useState(currentUser.number)
     const [address, setAddress] = useState(currentUser.address)
@@ -25,18 +24,18 @@ const EditProfile = () => {
     const updateProfileHandler = () => {
         const newUser = {
             ...currentUser,
-            banner: banner,
-            avatar: avatar,
-            firstName: firstName,
-            lastName: lastName,
-            bio: bio,
-            city: city,
-            address: address,
-            website: website,
-            birthday: birthday,
-            // email: email,
+            banner,
+            avatar,
+            firstName,
+            lastName,
+            bio,
+            city,
+            address,
+            website,
+            birthday,
+            // email,
             // handle: handle,
-            countryCode: countryCode,
+            countryCode,
             number: phoneNumber,
             role: accountType,
         }
@@ -44,9 +43,8 @@ const EditProfile = () => {
         navigate('/profile')
     }
     return (
-        <div className={'row'}>
-            <div className={'col-3'}></div>
-            <div className="col-6 pt-2">
+        <div className={'container-fluid'}>
+            <div className="pt-2">
                 <div className="card">
                     <div className="card-img-top position-relative">
                         <img src={`/images/b${currentUser.banner}.jpg`}
@@ -54,9 +52,9 @@ const EditProfile = () => {
                         <img className="position-absolute rounded-circle img-thumbnail"
                              style={{
                                  'height': '85%',
-                                 'width': '50%',
-                                 'bottom': '5%',
-                                 'left': '25%'
+                                 'width': '15%',
+                                 'bottom': '10%',
+                                 'left': '43%'
                              }}
                              src={`/images/p${currentUser.avatar}.jpg`} alt=""/>
                     </div>
@@ -192,7 +190,8 @@ const EditProfile = () => {
                                                htmlFor={"countryCode-field"}>Country Code</label>
                                         <select className={"form-control border-0 ps-2"}
                                                 id={"countryCode-field"}
-                                                onChange={event => setCountryCode(event.target.value)}>
+                                                onChange={event => setCountryCode(event.target.value)}
+                                                value={countryCode}>
                                             <option selected disabled>
                                                 Country code
                                             </option>
@@ -237,7 +236,8 @@ const EditProfile = () => {
                                            htmlFor={"account-field"}>Account Type</label>
                                     <select className={"form-control border-0 ps-2"}
                                             id={"account-field"}
-                                            onChange={event => setAccountType(event.target.value)}>
+                                            onChange={event => setAccountType(event.target.value)}
+                                            value={accountType}>
                                         <option selected disabled>
                                             Select the account type
                                         </option>
@@ -272,7 +272,6 @@ const EditProfile = () => {
                     </div>
                 </div>
             </div>
-            <div className={'col-3'}></div>
         </div>
     )
 }

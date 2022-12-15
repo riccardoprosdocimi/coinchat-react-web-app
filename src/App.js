@@ -10,7 +10,7 @@ import EditProfile from "./edit-profile";
 import Search from "./search";
 import Detail from "./detail-screen";
 import {configureStore} from "@reduxjs/toolkit";
-import usersReducer from "./reducers/users-reducer";
+import UsersReducer from "./reducers/users-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import CoinDataReducer from "./reducers/coin-data-reducer";
 import CoinMarketChartReducer from "./reducers/coin-market-chart-reducer";
@@ -23,10 +23,15 @@ import PublicProfile from "./public-profile";
 import FollowReducer from "./reducers/follow-reducer";
 import BlogListScreen from "./blog-list-screen";
 import SearchReducer from "./reducers/search-reducer";
+import BlogsReducer from "./reducers/blog-reducer";
+import EditUsers from "./users/edit-users";
+import BlogScreen from "./blog-detail-screen";
+import BlogPostEditScreen from "./blog-post-edit-screen";
+import CreateUser from "./users/create-user";
 
 const store = configureStore({
                                  reducer: {
-                                     users: usersReducer,
+                                     users: UsersReducer,
                                      profile: profileReducer,
                                      coinData: CoinDataReducer,
                                      coinMarketChart: CoinMarketChartReducer,
@@ -35,6 +40,7 @@ const store = configureStore({
                                      comments: GeneralCommentsReducer,
                                      follow: FollowReducer,
                                      resList: SearchReducer,
+                                     blogs: BlogsReducer,
                                  }
                              });
 
@@ -48,6 +54,8 @@ function App() {
                         <Routes>
                             <Route index
                                    element={<Home/>}/>
+                            <Route path={'/home'}
+                                   element={<Home/>}/>
                             <Route path={'/profile'}
                                    element={
                                        <ProtectedRoute>
@@ -57,7 +65,23 @@ function App() {
                             <Route path={'/profile/:uid'}
                                    element={<PublicProfile/>}/>
                             <Route path={'/profile/edit-profile'}
-                                   element={<EditProfile/>}/>
+                                   element={
+                                <ProtectedRoute>
+                                    <EditProfile/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path={'/edit-users'}
+                                   element={
+                                <ProtectedRoute>
+                                    <EditUsers/>
+                                </ProtectedRoute>
+                            }/>
+                            <Route path={'/create-user'}
+                                   element={
+                                       <ProtectedRoute>
+                                           <CreateUser/>
+                                       </ProtectedRoute>
+                                   }/>
                             <Route path={"/search"}
                                    element={<Search/>}/>
                             <Route path={"/detail/*"}
@@ -66,8 +90,12 @@ function App() {
                                    element={<Login/>}/>
                             <Route path={"/register"}
                                    element={<Register/>}/>
-                            <Route path={"/blog"}
+                            <Route path={"/bloglist"}
                                    element={<BlogListScreen/>}/>
+                            <Route path={"/blog/*"}
+                                   element={<BlogScreen/>}/>
+                            <Route path={"/blog-edit/:type"}
+                                   element={<BlogPostEditScreen/>}/>
                         </Routes>
                     </div>
                 </BrowserRouter>
@@ -75,5 +103,4 @@ function App() {
         </Provider>
     );
 }
-
 export default App;

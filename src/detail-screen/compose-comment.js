@@ -1,14 +1,13 @@
 import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {createNewCommentThunk} from "../services/comment-thunk";
+import {useSearchParams} from "react-router-dom";
 
 
 const ComposeComment = ({objectType}) => {
     
     const {currentUser} = useSelector(state => state.users);
-    const {coinData} = useSelector((state) => {
-        return state.coinData;
-    });
+    let [searchParams] = useSearchParams();
 
     let [myComment, setMyComment] = useState('');
 
@@ -16,7 +15,7 @@ const ComposeComment = ({objectType}) => {
     function CommentSubmitClickHandler() {
         const newComment = {
             authorID: currentUser._id,
-            objectID: coinData.id,
+            objectID: searchParams.get(objectType === "Coin"?"coinID":"blogID"),
             objectType: objectType,
             detailContent: myComment
         }
@@ -31,12 +30,12 @@ const ComposeComment = ({objectType}) => {
         : <fieldset className={"py-2"}>
             <div className="d-flex flex-column">
                 <div className="d-flex pb-2">
-                    <div className="">
-                        <img className="wd-rounded-image"
+                    <div className="col-1">
+                        <img className="wd-rounded-image" width={"32px"} height={"32px"}
                              src={`/images/p${currentUser.avatar}.jpg`} alt="myAvatar"
                         />
                     </div>
-                    <div className="mt-2 ms-3">
+                    <div className="mt-1 ms-3">
                         <h6 align="center" className="">{currentUser.firstName} {currentUser.lastName}</h6>
                     </div>
                 </div>

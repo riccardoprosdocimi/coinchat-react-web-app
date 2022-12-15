@@ -14,8 +14,8 @@ const CommentArea = ({objectType}) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getCommentsByObjectIDThunk({
-            objID: searchParams.get("coinID"),
-            objType: "Coin"
+            objID: searchParams.get(objectType === "Coin"?"coinID":"blogID"),
+            objType: objectType
     }));
         currentUser && dispatch(findUCRecordByUserIDThunk(currentUser._id))
     },[updateFlag])
@@ -24,7 +24,7 @@ const CommentArea = ({objectType}) => {
     reverseComment.reverse();
 
     return (
-        <section id="comments" className={"border-top vh-100 container justify-content-center pe-0"}>
+        <section id="comments" className={"vh-100 container justify-content-center pe-0"}>
             <h3>{Object.keys(comments).length} Comments</h3>
             <ComposeComment objectType={objectType}/>
             <div className={"list-group border-top overflow-auto h-100 pe-0"}>

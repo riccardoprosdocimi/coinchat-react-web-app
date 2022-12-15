@@ -2,7 +2,6 @@ import React, {useEffect}  from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getTrendingCoinsThunk} from "../services/home-thunk";
 import {Link} from "react-router-dom";
-import HomeWatchlistItem from "./home-watchlist_item";
 
 
 
@@ -15,7 +14,6 @@ const MainComponent =() => {
         dispatch(getTrendingCoinsThunk())
     }, [])
 
-    console.log(coins)
     return (
 
         <ul className="list-group pt-4">
@@ -29,7 +27,7 @@ const MainComponent =() => {
 
                                       <div className="col-xxl-2 col-xl-3 col-lg-3 ">
                                           <img src={coin.item.large} className="rounded" width="100px"
-                                               height="100px"/>
+                                               height="100px" alt={"Coin large thumbnail"}/>
                                       </div>
 
                                       <div className="col-xxl-7 col-xl-5 col-lg-5">
@@ -43,7 +41,7 @@ const MainComponent =() => {
                                       <div className="col-xxl-3 col-xl-4 col-lg-4">
                                           <Link to={`/detail?coinID=${coin.item.id}`}>
 
-                                              <button className="wd-button-follow btn btn-warning wd-navbar-text float-end d-flex align-items-center"> View
+                                              <button className="wd-btn-style btn wd-navbar-text float-end d-flex align-items-center"> View
 
                                               </button>
                                           </Link>
