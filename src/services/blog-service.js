@@ -2,7 +2,9 @@ import axios from "axios";
 import {Blog_API} from "../util/global-variables";
 
 export const createNewBlog = async (newBlog) => {
-    return await axios.post(Blog_API, newBlog)
+    await axios.post(Blog_API, newBlog).then().catch(
+        err => console.log(err)
+    )
 }
 
 export const findAllBlogs = async () => {
