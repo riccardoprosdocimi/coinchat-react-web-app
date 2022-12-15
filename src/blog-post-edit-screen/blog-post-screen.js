@@ -3,6 +3,7 @@ import AsyncSelect from 'react-select/async';
 import {useDispatch, useSelector} from "react-redux";
 import {createNewBlogThunk} from "../services/blog-thunk";
 import {useNavigate} from "react-router-dom";
+import {coinGeckoSearch_API} from "../util/global-variables";
 
 function BlogPostScreen() {
     const {currentUser} = useSelector(state => state.users);
@@ -24,7 +25,7 @@ function BlogPostScreen() {
 
     // load options using API call
     const loadOptions = async (inputValue) => {
-        const res = await fetch(`https://api.coingecko.com/api/v3/search?query=${inputValue}`)
+        const res = await fetch(`${coinGeckoSearch_API}${inputValue}`)
         const data = await res.json()
         return data["coins"].slice(0, 5)
     };
@@ -68,7 +69,7 @@ function BlogPostScreen() {
 
     return (
 
-        <form className={"container col-6"} onSubmit={handleSubmit}>
+        <form className={"container col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-sm-12 col-12"} onSubmit={handleSubmit}>
             <div className={"form-group"}>
                 <label>Choose the coin</label>
                 <AsyncSelect

@@ -43,5 +43,7 @@ export const deleteABlogThunk = createAsyncThunk(
 
 export const findBlogByBlogIDThunk = createAsyncThunk(
     "findBlogByBlogID",
-    (blogID) => findBlogByBlogID(blogID)
+    (blogID) => {
+        return findBlogByBlogID(blogID)
+    }
 )

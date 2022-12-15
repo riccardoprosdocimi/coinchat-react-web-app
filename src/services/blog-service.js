@@ -2,7 +2,9 @@ import axios from "axios";
 import {Blog_API} from "../util/global-variables";
 
 export const createNewBlog = async (newBlog) => {
-    return await axios.post(Blog_API, newBlog)
+    await axios.post(Blog_API, newBlog).then().catch(
+        err => console.log(err)
+    )
 }
 
 export const findAllBlogs = async () => {
@@ -28,6 +30,8 @@ export const updateABlog = async (blogID, blogData) => {
     const requestBody = {
         blogID
     }
+    console.log(blogID)
+    console.log(blogData)
     return (await axios.put(Blog_API, blogData, {params: requestBody})).data
 }
 

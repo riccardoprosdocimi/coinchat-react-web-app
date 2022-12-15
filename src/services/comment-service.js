@@ -2,7 +2,9 @@ import axios from "axios";
 import {Comment_API, User_API} from "../util/global-variables";
 
 export const createNewComment = async (newComment) => {
-    return await axios.post(Comment_API, newComment)
+     await axios.post(Comment_API, newComment).then().catch(
+         err => console.log(err)
+     )
 }
 
 

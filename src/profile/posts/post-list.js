@@ -6,7 +6,7 @@ const PostList = ({comments, allowedToRemove}) => {
     return(
         <ul className={'list-group'}>
             {
-                sortedComments.length > 0 && sortedComments.map(
+                sortedComments.length > 0 && sortedComments.filter(c => c.authorID !== null).map(
                     comment => <PostListItem
                         key={comment._id}
                         comment={comment}
@@ -18,7 +18,7 @@ const PostList = ({comments, allowedToRemove}) => {
                 <li className='list-group-item'>
                     <br/><br/>
                     <h4 className='text-center text-secondary'>
-                        No posts/comments from this user yet!
+                        No comments yet!
                     </h4>
                     <br/><br/>
                 </li>

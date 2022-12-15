@@ -154,12 +154,25 @@ const Profile = () => {
                         (currentUser.role === 'PROFESSIONAL' || currentUser.role === 'ADMIN') &&
                         <Tab tabClassName={'wd-profile-tabs'}
                              eventKey="blog" title="Blog Posts">
-                            {blogList.map(
+                            {
+                                blogList.filter(b => b.authorID !== null).map(
                                 blog =>
                                     <div className='border border-dark border-opacity-25 rounded-3 pb-1'>
                                         <BlogListItem blog={blog}/>
                                     </div>
                             )}
+                            {
+                                blogList.length === 0 &&
+                                <div className='list-group'>
+                                    <div className='list-group-item'>
+                                        <br/><br/>
+                                        <h4 className='text-center text-secondary'>
+                                            You haven't made a post yet
+                                        </h4>
+                                        <br/><br/>
+                                    </div>
+                                </div>
+                            }
                         </Tab>
                     }
                     <Tab tabClassName={'wd-profile-tabs'}
@@ -172,25 +185,26 @@ const Profile = () => {
                         <div className='list-group'>
                             {
                                 followers &&
-                                followers.map(follow =>
-                                                  <Link to={`/profile/${follow.follower._id}`}
-                                                        className='list-group-item' key={follow.follower._id}>
-                                                      <div className='row'>
-                                                          <div className='col-1'>
-                                                              <img
-                                                                  src={`/images/p${follow.follower.avatar}.jpg`}
-                                                                  alt=""
-                                                                  className='rounded-circle pt-2 w-100'/>
-                                                          </div>
-                                                          <div className='col pt-2 fs-3 fw-bold'>
-                                                              {follow.follower.firstName} {follow.follower.lastName}
-                                                              <div
-                                                                  className='fs-5 text-secondary fw-normal'>
-                                                                  @{follow.follower.handle}
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </Link>
+                                followers.filter(f => f.follower !== null).map(
+                                    follow =>
+                                        <Link to={`/profile/${follow.follower._id}`}
+                                            className='list-group-item' key={follow.follower._id}>
+                                          <div className='row'>
+                                              <div className='col-1'>
+                                                  <img
+                                                      src={`/images/p${follow.follower.avatar}.jpg`}
+                                                      alt=""
+                                                      className='rounded-circle pt-2 w-100'/>
+                                              </div>
+                                              <div className='col pt-2 fs-3 fw-bold'>
+                                                  {follow.follower.firstName} {follow.follower.lastName}
+                                                  <div
+                                                      className='fs-5 text-secondary fw-normal'>
+                                                      @{follow.follower.handle}
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </Link>
                                 )
                             }
                             {
@@ -199,7 +213,7 @@ const Profile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            No one follows this user yet!
+                                            You have no followers yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
@@ -212,25 +226,26 @@ const Profile = () => {
                         <div className='list-group'>
                             {
                                 following &&
-                                following.map(follow =>
-                                                  <Link to={`/profile/${follow.followee._id}`}
-                                                        className='list-group-item' key={follow.followee._id}>
-                                                      <div className='row'>
-                                                          <div className='col-1'>
-                                                              <img
-                                                                  src={`/images/p${follow.followee.avatar}.jpg`}
-                                                                  alt=""
-                                                                  className='rounded-circle pt-2 w-100'/>
-                                                          </div>
-                                                          <div className='col pt-2 fs-3 fw-bold'>
-                                                              {follow.followee.firstName} {follow.followee.lastName}
-                                                              <div
-                                                                  className='fs-5 text-secondary fw-normal'>
-                                                                  @{follow.followee.handle}
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </Link>
+                                following.filter(f => f.followee !== null).map(
+                                    follow =>
+                                        <Link to={`/profile/${follow.followee._id}`}
+                                            className='list-group-item' key={follow.followee._id}>
+                                          <div className='row'>
+                                              <div className='col-1'>
+                                                  <img
+                                                      src={`/images/p${follow.followee.avatar}.jpg`}
+                                                      alt=""
+                                                      className='rounded-circle pt-2 w-100'/>
+                                              </div>
+                                              <div className='col pt-2 fs-3 fw-bold'>
+                                                  {follow.followee.firstName} {follow.followee.lastName}
+                                                  <div
+                                                      className='fs-5 text-secondary fw-normal'>
+                                                      @{follow.followee.handle}
+                                                  </div>
+                                              </div>
+                                          </div>
+                                        </Link>
                                 )
                             }
                             {
@@ -239,7 +254,7 @@ const Profile = () => {
                                     <div className='list-group-item'>
                                         <br/><br/>
                                         <h4 className='text-center text-secondary'>
-                                            This user follows no one yet!
+                                            You don't follow anyone yet!
                                         </h4>
                                         <br/><br/>
                                     </div>
