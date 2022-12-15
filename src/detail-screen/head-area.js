@@ -46,6 +46,10 @@ const HeadArea = () => {
     }
 
     function removeWatchlistItem() {
+        if (!currentUser) {
+            alert("Please login before add to watchlist")
+            return
+        }
         dispatch(removeWatchlistThunk(watchlistID))
         setWatchStateFlag(false);
     }
@@ -61,7 +65,7 @@ const HeadArea = () => {
             <div className="d-flex col-12">
                 <h3 className={""}><img src={coinData.image.large} width={"36px"} alt={"The icon of this coin"}/> {coinData.name}  {coinData.symbol}</h3>
                 {
-                    !watchState ?
+                    !watchState || !currentUser ?
 
                         <button onClick={() => addWatchlistItem()}
                                 className="btn ms-3 wd-btn-style">
