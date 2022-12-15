@@ -95,8 +95,8 @@ const CommentItem = ({key, comment}) => {
 
                 <p>{comment.detailContent}</p>
                 <ul className="list-unstyled list-inline d-flex justify-content-between">
-                    <li><i className="fa fa-calendar wd-app-color-yellow"></i>  <Moment fromNow>{comment.createdAt}</Moment></li>
-                    <li>
+                    <li key={"a"}><i className="fa fa-calendar wd-app-color-yellow"></i>  <Moment fromNow>{comment.createdAt}</Moment></li>
+                    <li key={"b"}>
                         <button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"} onClick={() => thumbsUpClickHandler()}>
                             {
                             currentReactionType === 1
@@ -105,10 +105,10 @@ const CommentItem = ({key, comment}) => {
                             }
                         </button>
                     </li>
-                    <li>{
+                    <li key={"c"}>{
                         comment.likes - comment.dislikes
                     }</li>
-                    <li>
+                    <li key={"d"}>
                         <button type={"button"} className={"btn btn-link pt-0 ps-0 text-dark"} onClick={() => thumbsDownClickHandler()}>
                             {
                                 currentReactionType === -1
