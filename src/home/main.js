@@ -41,7 +41,7 @@ const MainComponent =() => {
                                       </div>
 
                                       <div className="col-xxl-3 col-xl-4 col-lg-4">
-                                          <Link to={`/detail?coinID=${coin.item.name}`}>
+                                          <Link to={`/detail?coinID=${coin.item.id}`}>
 
                                               <button className="wd-button-follow btn btn-warning wd-navbar-text float-end d-flex align-items-center"> View
 
