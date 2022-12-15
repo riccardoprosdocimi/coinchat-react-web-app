@@ -45,6 +45,10 @@ const SearchResultItem = ({result}) => {
 
     function removeWatchlistItem(e) {
         e.preventDefault();
+        if (!currentUser) {
+            alert("Please login before add to watchlist")
+            return
+        }
         dispatch(removeWatchlistThunk(watchlistID))
         setWatchStateFlag(false);
     }
@@ -57,7 +61,7 @@ const SearchResultItem = ({result}) => {
             <div className="card-body d-flex">
                 <h5 className="card-title">M.Cap Rank: {result.market_cap_rank}</h5>
                 {
-                    !watchState ?
+                    !watchState || !currentUser ?
 
                         <button onClick={(e) => addWatchlistItem(e)}
                                 className="btn btn-sm ms-auto wd-btn-style">
