@@ -3,7 +3,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getTrendingCoinsThunk} from "../services/home-thunk";
 import {Link} from "react-router-dom";
 
-
+const moneyFormat = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD'
+})
 
 const MainComponent =() => {
 
@@ -34,7 +37,7 @@ const MainComponent =() => {
                                           <div className="fw-bolder pe-2" > {coin.item.name} -- {coin.item.symbol}
 
                                           </div>
-                                          <div className="text-secondary"> <span> price: {coin.item.price_btc}</span></div>
+                                          <div className="text-secondary"> <span> {moneyFormat.format(coin.item.price_btc *17388.40)} </span></div>
 
                                       </div>
 
