@@ -1,6 +1,8 @@
-# [Coinchat](https://coinchat.netlify.app/)
+# ***Archived***
 
-## Authors:
+## [CoinChat](https://coinchat.netlify.app/)
+
+### Authors:
 - Jax Tan
 - Riccardo Prosdocimi
 - Nano Liklikadze
